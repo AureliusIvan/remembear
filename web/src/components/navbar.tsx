@@ -31,6 +31,11 @@ function Navbar() {
               className={buttonVariants({variant: "outline"})}>
             Setting
           </Link>
+          <Link
+              href={"/integration"}
+              className={buttonVariants({variant: "outline"})}>
+            Integration
+          </Link>
         </SheetHeader>
       </SheetContent>
     </Sheet>
