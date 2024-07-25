@@ -1,13 +1,13 @@
 import os
+import httpx
+import backoff
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from server.domain.service.RememberService import RememberService
-import backoff
-import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
-
 app = FastAPI()
 
 origins = [
