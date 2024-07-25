@@ -6,7 +6,10 @@ import {Textarea} from "@/components/ui/textarea";
 import {ask} from "@/services/ServerService";
 import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
+import {getObject, setObject} from "@/services/HistoryService";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
+``
 type Inputs = {
   prompt: string
 }
@@ -37,9 +40,10 @@ export default function Home() {
     try {
       const reply = await ask(prompt)
       if (reply) {
-        setChat(prevChat => [...prevChat,
-          {role: "model", message: reply.message}]
-        );
+        // @ts-ignore
+        setChat(prevChat => {
+          return [...prevChat, {role: "model", message: reply.message}];
+        });
       }
     } catch (Error) {
       console.log(Error)
@@ -49,6 +53,23 @@ export default function Home() {
     }
   }
 
+
+  useEffect(() => {
+    if (chat.length > 0) {
+      setObject("chat-history",
+          {
+            data: JSON.stringify(chat)
+          })
+    } else {
+      const fetchHistory = async () => {
+        const data = await getObject("chat-history").then(data => {
+          return JSON.parse(data.data) as Chat[]
+        })
+        setChat(data)
+      };
+      fetchHistory()
+    }
+  }, [chat]);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => handleAsk(data.prompt)
 
@@ -60,7 +81,7 @@ export default function Home() {
 
 
           {/* chat bubble */}
-          <div className={"w-full"}>
+          <ScrollArea className={"w-full h-[75vh]"}>
             {chat.map((data: Chat, index: number) => {
               const isUser = data.role === "user"; // Check if the message is from the user
 
@@ -78,7 +99,7 @@ export default function Home() {
                   </div>
               );
             })}
-          </div>
+          </ScrollArea>
 
           {/* status loading */}
           {isLoading && (

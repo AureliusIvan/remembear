@@ -11,7 +11,7 @@ function Navbar() {
     <Sheet>
 
       {/* side menu trigger */}
-      <SheetTrigger className={"h-[2rem] w-[2rem]"}>
+      <SheetTrigger className={"h-[1.5rem] w-[2rem]"}>
         <LuMenu width={10}/>
       </SheetTrigger>
 
