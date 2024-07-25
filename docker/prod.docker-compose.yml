@@ -27,7 +27,7 @@ services:
           pip install -r /app/requirements.txt;
           source /app/.venv/bin/activate;
         fi &&
-        fastapi dev server/main.py --host 0.0.0.0 &
+        fastapi run server/main.py --host 0.0.0.0 &
         sleep infinity
       "
 

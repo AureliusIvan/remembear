@@ -1,8 +1,12 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from server.domain.service.RememberService import RememberService
 import backoff
 import httpx
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -10,7 +14,9 @@ origins = [
     "http://localhost",
     "http://localhost:3000",  # Adjust based on your frontend's URL and port
     "http://127.0.0.1:3000",
+    os.getenv('NEXT_PUBLIC_SERVER_URL')
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -22,7 +28,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello!"}
 
 
 @app.get("/hello/{name}")

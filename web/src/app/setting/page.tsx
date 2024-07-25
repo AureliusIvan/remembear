@@ -11,11 +11,18 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import {Button} from "@/components/ui/button";
+import {Notify} from "@/services/NotificationService";
 
 export default function Setting() {
   return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        Setting
+        <h1>
+          Setting
+        </h1>
+
+
+
+        {/*Drawer*/}
         <Drawer>
           <DrawerTrigger>Open</DrawerTrigger>
           <DrawerContent>
@@ -24,7 +31,14 @@ export default function Setting() {
               <DrawerDescription>This action cannot be undone.</DrawerDescription>
             </DrawerHeader>
             <DrawerFooter>
-              <Button>Submit</Button>
+              <Button
+                  type={'button'}
+                  onClick={() => {
+                    Notify()
+                  }}
+              >
+                Submit
+              </Button>
               <DrawerClose>
                 <Button variant="outline">Cancel</Button>
               </DrawerClose>
