@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if .env file exists in the parent directory
-if [ ! -f ../.env ]; then
-  echo "../.env file not found!"
+if [ ! -f .env ]; then
+  echo ".env file not found!"
   exit 1
 fi
 
