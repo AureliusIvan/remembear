@@ -1,11 +1,12 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-26T09:49:26.654Z",
+    "updated_at": "2024-07-26T10:02:37.150Z",
     "created_at": "2024-07-26T08:52:13.997Z",
     "pipelines": [
       "204addeb-4321-49e4-85fd-402af97bf71b",
-      "a601e9e5-e50b-4037-ab59-d3e1f54d7821"
+      "a601e9e5-e50b-4037-ab59-d3e1f54d7821",
+      "654c51cd-8dc9-45d8-a824-62d2236a1655"
     ]
   },
   "lookup": [
@@ -22,7 +23,9 @@
       "web/src/components/ui/toast.tsx",
       "web/src/components/ui/toaster.tsx",
       "web/src/components/ui/use-toast.ts",
-      "web/src/services/NotificationService.ts"
+      "web/src/services/NotificationService.ts",
+      "web/src/components/navbar.tsx",
+      "web/src/services/ServerService.ts"
     ]
   ]
 }

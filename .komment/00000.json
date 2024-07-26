@@ -520,5 +520,119 @@
         "items": []
       }
     }
+  },
+  {
+    "name": "navbar.tsx",
+    "path": "web/src/components/navbar.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component named \"Navbar\" that implements a navigation bar with three buttons for navigating between different routes in a Next.js application. The component uses the \"react-icons\" package to display an icon and the \"next/navigation\" package to handle client-side routing.",
+        "items": [
+          {
+            "id": "4a284a91-2fd4-2e9f-5c4d-5cadefaa2515",
+            "ancestors": [],
+            "description": "Renders a form containing a side menu with three options: \"Home\", \"Integration\", and \"Setting\". Clicking on each option navigates to corresponding routes using the React Router's `useRouter` hook. The menu also includes a close button for each option.",
+            "params": [],
+            "returns": {
+              "type_name": "React.ReactElement",
+              "description": "A JSX element consisting of a form with various components including a side menu, triggers, panels and buttons."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "function App() {\n  return <Navbar />\n}\n",
+              "description": "\nThis code defines a simple React application that renders the Navbar component."
+            },
+            "name": "Navbar",
+            "location": {
+              "start": 17,
+              "insert": 17,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 54,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ServerService.ts",
+    "path": "web/src/services/ServerService.ts",
+    "content": {
+      "structured": {
+        "description": "An async function `ask` that sends a GET request to a server to retrieve a prompt response. The response is parsed into JSON format and checked for an action array. If present, each action is used to trigger a notification via the `Notify` service from the `NotificationService`.",
+        "items": [
+          {
+            "id": "3ad6b2f8-c670-20a1-3e4a-e320f49521c8",
+            "ancestors": [],
+            "description": "Defines a set of properties for an object that represents an action type.\n\nSpecify: The interface has an optional property named `type`, which can be a string.\n\n Specify: The interface also has an optional property named `title`, which can be a string.\n\n Define: The interface includes an optional property named `body`, which can be a string.\n\n Specify: Finally, the interface defines an optional property named `at`, which can be a string.",
+            "name": "actionType",
+            "location": {
+              "start": 5,
+              "insert": 5,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 6,
+            "docLength": null
+          },
+          {
+            "id": "8f16f514-9936-0b9d-1a48-3201a416f619",
+            "ancestors": [],
+            "description": "Defines an object with two properties.\n\nIt has a required property `message`, which is expected to be of type `string`.\n\nAdditionally, it may have an optional property `action`, which is expected to be an array of objects conforming to the `actionType` type.",
+            "name": "askPayloadType",
+            "location": {
+              "start": 12,
+              "insert": 12,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 4,
+            "docLength": null
+          },
+          {
+            "id": "ac8f933f-096f-df81-8340-52bfb0d6624e",
+            "ancestors": [],
+            "description": "Sends a GET request to a server with a provided prompt, parses the response as JSON, and if the response is valid, extracts an array of actions from the payload, notifies each action by title, body, and timestamp using the `Notify` function, and returns the parsed payload.",
+            "params": [
+              {
+                "name": "prompt",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Intended to be used as a query string in an HTTP request."
+              }
+            ],
+            "returns": {
+              "type_name": "askPayloadType",
+              "description": "Parsed JSON payload from the server's response. If no error occurs during execution, this payload contains actions with title, body and timestamp."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "ask('How are you doing today?');\n",
+              "description": ""
+            },
+            "name": "ask",
+            "location": {
+              "start": 17,
+              "insert": 17,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 28,
+            "docLength": null
+          }
+        ]
+      }
+    }
   }
 ]
