@@ -16,12 +16,16 @@ import {PushNotifications} from '@capacitor/push-notifications';
  */
 const addListeners = async () => {
   await PushNotifications.addListener('registration', token => {
+    // Listens for push registration events, logging the received token to the console.
+
     // Listens for push registration events and logs the received token to the console.
 
     console.info('Registration token: ', token.value);
   });
 
   await PushNotifications.addListener('registrationError', err => {
+    // Listens for and logs push notification registration errors.
+
     // Listens for registration errors with push notifications and logs them to the console.
 
     console.error('Registration error: ', err.error);
@@ -30,10 +34,14 @@ const addListeners = async () => {
   await PushNotifications.addListener('pushNotificationReceived', notification => {
     // Subscribes to push notifications.
 
+    // Subscribes to push notifications.
+
     console.log('Push notification received: ', notification);
   });
 
   await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
+    // Listens for push notifications actions and logs them.
+
     // Listens for push notifications actions and logs them to the console.
 
     console.log('Push notification action performed', notification.actionId, notification.inputValue);

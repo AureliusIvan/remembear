@@ -59,6 +59,8 @@ export default function Home() {
       const reply = await ask(prompt)
       if (reply) {
         setChat(prevChat => {
+          // Concatenates a new chat item to an array.
+
           // Appends new chat item.
 
           return [...prevChat, {role: "model", message: reply.message}];
@@ -76,6 +78,8 @@ export default function Home() {
   useEffect(() => {
     // Initializes and updates chat history state.
 
+    // Initializes and updates chat history state.
+
     if (chat.length > 0) {
       setObject("chat-history",
           {
@@ -91,6 +95,8 @@ export default function Home() {
        */
       const fetchHistory = async () => {
         const data = await getObject("chat-history").then(data => {
+          // Retrieves and parses chat history data.
+
           // Retrieves and parses chat history.
 
           return JSON.parse(data.data) as Chat[]
@@ -113,6 +119,8 @@ export default function Home() {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[75vh]"}>
             {chat.map((data: Chat, index: number) => {
+              // Maps over a chat array and renders messages.
+
               // Maps over a chat array and renders a message for each item.
 
               const isUser = data.role === "user"; // Check if the message is from the user

@@ -1,27 +1,26 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-26T08:41:23.869Z",
-    "created_at": "2024-07-26T08:41:34.521Z",
+    "updated_at": "2024-07-26T08:52:03.768Z",
+    "created_at": "2024-07-26T08:52:13.997Z",
     "pipelines": [
-      "7142b758-d47d-470d-92bb-effdfadd3bab"
+      "204addeb-4321-49e4-85fd-402af97bf71b"
     ]
   },
   "lookup": [
     [
+      "server/domain/service/RememberService.py",
+      "server/domain/service/TriggerService.py",
+      "web/public/background.js",
+      "web/src/app/integration/page.tsx",
+      "web/src/app/login/page.tsx",
       "web/src/app/not-found.tsx",
+      "web/src/app/page.tsx",
+      "web/src/app/setting/page.tsx",
       "web/src/components/ui/sonner.tsx",
       "web/src/components/ui/toast.tsx",
       "web/src/components/ui/toaster.tsx",
       "web/src/components/ui/use-toast.ts",
-      "server/domain/service/RememberService.py",
-      "server/domain/service/TriggerService.py",
-      "web/capacitor.config.ts",
-      "web/public/background.js",
-      "web/src/app/integration/page.tsx",
-      "web/src/app/login/page.tsx",
-      "web/src/app/page.tsx",
-      "web/src/app/setting/page.tsx",
       "web/src/services/NotificationService.ts"
     ]
   ]

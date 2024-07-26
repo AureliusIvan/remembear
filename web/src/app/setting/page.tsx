@@ -35,6 +35,8 @@ export default function Setting() {
 
 
   React.useEffect(() => {
+    // Initializes and registers push notifications.
+
     // Initializes and registers push notifications if available.
 
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
@@ -43,10 +45,14 @@ export default function Setting() {
     }
 
     PushNotifications.checkPermissions().then((res) => {
+      // Handles push notification permissions.
+
       // Handles push notifications permissions.
 
       if (res.receive !== 'granted') {
         PushNotifications.requestPermissions().then((res) => {
+          // Handles push notification permissions.
+
           // Handles push notification permissions.
 
           if (res.receive === 'denied') {
@@ -87,6 +93,9 @@ export default function Setting() {
         (
             // token: Token
         ) => {
+          // Listens for push notification registrations and displays a toast upon successful
+          // registration.
+
           // Listens for push notifications and displays a toast message on successful registration.
 
           toast({
@@ -98,6 +107,8 @@ export default function Setting() {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
+          // Handles registration errors.
+
           // Handles errors.
 
           alert('Error on registration: ' + JSON.stringify(error));
@@ -107,6 +118,8 @@ export default function Setting() {
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
+          // Handles push notifications.
+
           // Handles push notifications.
 
           setnotifications(notifications => [...notifications, {
@@ -121,6 +134,8 @@ export default function Setting() {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
+          // Handles push notifications.
+
           // Handles push notifications.
 
           setnotifications(notifications => [...notifications, {

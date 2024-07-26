@@ -85,6 +85,8 @@ const addToRemoveQueue = (toastId: string) => {
   }
 
   const timeout = setTimeout(() => {
+    // Removes a toast after delay.
+
     // Deletes and removes a toast after a delay.
 
     toastTimeouts.delete(toastId)
@@ -135,6 +137,8 @@ export const reducer = (state: State, action: Action): State => {
         addToRemoveQueue(toastId)
       } else {
         state.toasts.forEach((toast) => {
+          // Adds toast IDs to removal queue.
+
           // Adds toasts ID to remove queue.
 
           addToRemoveQueue(toast.id)
@@ -181,6 +185,8 @@ let memoryState: State = {toasts: []}
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
+    // Executes each listener.
+
     // Calls back with a callback.
 
     listener(memoryState)
@@ -261,6 +267,8 @@ function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {
+    // Manages state updates.
+
     // Registers and unregisters a state update listener.
 
     listeners.push(setState)

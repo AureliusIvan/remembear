@@ -26,6 +26,8 @@ export function Toaster() {
   return (
       <ToastProvider>
         {toasts.map(function ({id, title, description, action, ...props}) {
+          // Renders toasts.
+
           // Renders a toast list.
 
           return (
