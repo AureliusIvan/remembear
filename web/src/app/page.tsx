@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
 import {getObject, setObject} from "@/services/HistoryService";
 import {ScrollArea} from "@/components/ui/scroll-area"
+import {useToast} from "@/components/ui/use-toast";
 
 ``
 type Inputs = {
@@ -25,11 +26,12 @@ type Chat = {
  * responses from a model. It displays a list of chat messages with user input on the
  * right and model output on the left. The UI updates in real-time as new messages
  * are added or fetched from local storage.
- * 
+ *
  * @returns {React.ReactElement} A JSX element representing the home page component
  * with a chat interface and a form to send messages.
  */
 export default function Home() {
+  const {toast} = useToast()
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
@@ -43,9 +45,9 @@ export default function Home() {
    * previous chat history, and sending the prompt to a model for response. It then
    * updates the chat history with the response or an error message, and finally sets
    * the UI back to non-loading state.
-   * 
+   *
    * @param {string} prompt - Used to send a message to be answered by the model.
-   * 
+   *
    * @returns {undefined} Implicitly returned when the function completes its execution
    * without explicitly returning a value.
    */
@@ -65,7 +67,10 @@ export default function Home() {
         });
       }
     } catch (Error) {
-      console.log(Error)
+      console.error(Error)
+      toast({
+        title: "Cannot invoke Bear :("
+      })
     } finally {
       console.log(chat)
       setIsLoading(false)
@@ -85,7 +90,7 @@ export default function Home() {
       /**
        * @description Asynchronously retrieves chat history from storage, parses it as a
        * JSON object, and updates the `chat` state with the retrieved data.
-       * 
+       *
        * @returns {undefined} Assigned to the state variable 'chat' after parsing JSON data
        * into an array of objects conforming to the `Chat` interface.
        */
@@ -97,6 +102,7 @@ export default function Home() {
         })
         setChat(data)
       };
+
       fetchHistory()
     }
   }, [chat]);
@@ -108,7 +114,6 @@ export default function Home() {
           onSubmit={handleSubmit(onSubmit)}
       >
         <main className="flex h-full flex-col items-center justify-between p-6">
-
 
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[75vh]"}>
@@ -140,8 +145,6 @@ export default function Home() {
               </div>
           )}
 
-          {/*<Progress value={isLoading}/>*/}
-
           <div className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
             <Textarea
                 {...register("prompt")}
@@ -158,7 +161,6 @@ export default function Home() {
               send
             </Button>
           </div>
-
 
         </main>
       </form>

@@ -1,5 +1,6 @@
 /// <reference types="@capacitor/local-notifications" />
 import type {CapacitorConfig} from '@capacitor/cli';
+import {KeyboardResize, KeyboardStyle} from "@capacitor/keyboard";
 
 const config: CapacitorConfig = {
   appId: 'com.remembear.app',
@@ -22,6 +23,11 @@ const config: CapacitorConfig = {
     },
     PushNotifications: {
       presentationOptions: ["badge", "sound", "alert"],
+    },
+    Keyboard: {
+      resize: KeyboardResize.Body,
+      style: KeyboardStyle.Dark,
+      resizeOnFullScreen: true,
     },
   }
 };

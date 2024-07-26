@@ -11,6 +11,7 @@ class TriggerService:
     processed actions are returned as a list.
 
     """
+
     def __init__(self):
         return
 
