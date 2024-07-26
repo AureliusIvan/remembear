@@ -8,5 +8,289 @@
         "items": []
       }
     }
+  },
+  {
+    "name": "main.ts",
+    "path": "web/.storybook/main.ts",
+    "content": {
+      "structured": {
+        "description": "A Storybook configuration object, which specifies the settings for building and running stories in a Next.js application. The configuration includes a set of story files to be processed, a list of installed add-ons, and framework options that enable SWC support for builders. Additionally, it specifies a static directory for serving public assets.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "preview.ts",
+    "path": "web/.storybook/preview.ts",
+    "content": {
+      "structured": {
+        "description": "And exports a preview configuration object using the Storybook package. The preview configuration specifies parameters for controlling and matching certain types of data, such as colors and dates. This configuration is used by Storybook to render previews of React components.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Button.stories.ts",
+    "path": "web/src/components/ui/Button.stories.ts",
+    "content": {
+      "structured": {
+        "description": "A Storybook configuration for a UI component named 'Button'. The meta object specifies the title, component, layout, and parameters for the story. It uses '@storybook/react' and '@storybook/test' packages to configure the story. The Secondary story is an instance of the Button component with default variant and children content.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Button.stories.ts",
+    "path": "web/src/stories/Button.stories.ts",
+    "content": {
+      "structured": {
+        "description": "Stories and configurations for Storybook, a development environment for React components. It uses @storybook/react package to create four variants of a Button component: Primary, Secondary, Large, and Small. Each variant has different arguments such as primary state, label, and size. The code also uses argTypes and args features from Storybook to specify the types and default values of the component's props.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Button.tsx",
+    "path": "web/src/stories/Button.tsx",
+    "content": {
+      "structured": {
+        "description": "A reusable React UI component called Button that accepts props for its appearance and behavior. The Button component is customizable through various options such as primary state, size, background color, and label text. It also allows for an optional click handler event.",
+        "items": [
+          {
+            "id": "81371c79-534f-fbb0-8942-026e1a865ba0",
+            "ancestors": [],
+            "description": "Defines a set of properties that can be used to customize the behavior and appearance of a button component.\n\nConfigure whether the button is the principal call to action on the page with the optional `primary` property, which takes a boolean value if specified.\n\nSpecify the background color of the button using the optional `backgroundColor` property, which accepts a string value representing the color.\n\nDetermine the size of the button by setting the `size` property to one of the three predefined values: 'small', 'medium', or 'large'.\n\nRequire a label for the button, which is represented by the non-optional `label` property that takes a string value.\n\nOptionally provide a click handler function using the `onClick` property, which can be set to any valid function returning no value (`void`).",
+            "name": "ButtonProps",
+            "location": {
+              "start": 4,
+              "insert": 4,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 22,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "Header.stories.ts",
+    "path": "web/src/stories/Header.stories.ts",
+    "content": {
+      "structured": {
+        "description": "A meta object and its corresponding story in Storybook for React component \"Header\". The meta object specifies properties such as title, component, tags and parameters for the story. It also defines three callback functions onLogin, onLogout and onCreateAccount as arguments for the Header component.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Header.tsx",
+    "path": "web/src/stories/Header.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component called Header that displays a logo and user information. It accepts props for user data, login/logout functions, and an account creation function. The component renders differently depending on whether the user is logged in or not, displaying either login/login out and create account buttons or a welcome message with a logout button.",
+        "items": [
+          {
+            "id": "9b5573f0-d61d-bcae-0540-2bf355bc2d20",
+            "ancestors": [],
+            "description": "Defines a set of properties that can be used as props for a component, specifically a header component. \n\nThese properties include:\n\n* `user`: an optional property of type `User`. This suggests that the header may display information about the current user.\n* `onLogin`: an optional function that is called when the login action occurs. It has no return value and takes no arguments.\n* `onLogout`: an optional function that is called when the logout action occurs. It has no return value and takes no arguments.\n* `onCreateAccount`: an optional function that is called when the create account action occurs. It has no return value and takes no arguments.\n\nThe use of question marks (`?`) after the property names indicates that these properties are optional, meaning they may not be provided to the component when it is rendered.",
+            "name": "HeaderProps",
+            "location": {
+              "start": 10,
+              "insert": 10,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 6,
+            "docLength": null
+          },
+          {
+            "id": "7f89d9d9-4036-afb6-9a4c-959fab0852a8",
+            "ancestors": [],
+            "description": "Renders a header component with an SVG logo, title \"Acme\", and authentication buttons for logging in, out, or creating an account, depending on the presence of a user object and corresponding event handlers.",
+            "params": [
+              {
+                "name": "obj",
+                "default_value": null,
+                "optional": false,
+                "type_name": "object",
+                "description": "Called `HeaderProps`. It contains four properties: `user`, `onLogin`, `onLogout`, and `onCreateAccount`. These properties represent the user data, login event handler, logout event handler, and create account event handler respectively."
+              },
+              {
+                "name": "obj.user",
+                "default_value": null,
+                "optional": false,
+                "type_name": "HeaderProps",
+                "description": "Used to display welcome message for authenticated users."
+              },
+              {
+                "name": "obj.onLogin",
+                "default_value": null,
+                "optional": false,
+                "type_name": "HeaderProps",
+                "description": "A callback for login functionality."
+              },
+              {
+                "name": "obj.onLogout",
+                "default_value": null,
+                "optional": false,
+                "type_name": "HeaderProps",
+                "description": "Responsible for handling user logout actions."
+              },
+              {
+                "name": "obj.onCreateAccount",
+                "default_value": null,
+                "optional": false,
+                "type_name": "HeaderProps",
+                "description": "Used to handle creation of an account."
+              }
+            ],
+            "usage": {
+              "language": "typescript",
+              "code": "const user = { name: 'John Doe' };\nHeader({ user, onLogin: () => console.log('log in'), onLogout: () => console.log('log out'), onCreateAccount: () => console.log('create account') });\n",
+              "description": ""
+            },
+            "name": "Header",
+            "location": {
+              "start": 17,
+              "insert": 17,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 40,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "Page.stories.ts",
+    "path": "web/src/stories/Page.stories.ts",
+    "content": {
+      "structured": {
+        "description": "A storybook component named 'Page' with two test scenarios: LoggedOut and LoggedIn. The tests use Storybook's built-in testing utilities, including within, userEvent, and expect from '@storybook/test', to interact with the Page component in a browser-based environment.",
+        "items": [
+          {
+            "id": "c37f7252-3693-b78f-6747-ced8cb3e5f27",
+            "ancestors": [],
+            "description": "Simulates user interactions with a web page's login and logout buttons. It waits for the login button to be present, clicks it, and then verifies its absence after clicking. The function also searches for and expects the logout button to be present.",
+            "params": [
+              {
+                "name": "obj",
+                "default_value": null,
+                "optional": false,
+                "type_name": "object",
+                "description": "Named `canvasElement`. It is expected to be an element from which other elements can be accessed using methods such as `getByRole` and `within`."
+              },
+              {
+                "name": "obj.canvasElement",
+                "default_value": null,
+                "optional": false,
+                "type_name": "HTMLCanvasElement",
+                "description": "Used as a reference to a HTML canvas element."
+              }
+            ],
+            "usage": {
+              "language": "typescript",
+              "code": "play({\n  canvasElement: document.getElementById('canvas'),\n});\n",
+              "description": ""
+            },
+            "name": "play",
+            "location": {
+              "start": 22,
+              "insert": 22,
+              "offset": " ",
+              "indent": 2,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 10,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "Page.tsx",
+    "path": "web/src/stories/Page.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component named `Page` that utilizes Storybook's features for building and rendering UIs with mock data. The component includes a header with login, logout, and create account functionality, as well as a section displaying page content and tips for using Storybook. It leverages React state to manage user information and employs the `useState` hook from the React library.",
+        "items": [
+          {
+            "id": "557c31ef-1937-ee88-084f-a2eed170e4c9",
+            "ancestors": [],
+            "description": "Renders an article element containing a Header component and other content. The Header component is passed user information, and three callback functions: onLogin, onLogout, and onCreateAccount. These callbacks update the user state when triggered.",
+            "params": [],
+            "returns": {
+              "type_name": "React.ReactElement",
+              "description": "A JSX element representing an HTML article with child components and elements."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "function App(): JSX.Element {\n  return <Page />;\n}\n",
+              "description": ""
+            },
+            "name": "Page",
+            "location": {
+              "start": 10,
+              "insert": 10,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 64,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "navbar.tsx",
+    "path": "web/src/components/navbar.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component called Navbar that renders a navigation bar with multiple options. The component utilizes React's useNavigation hook from Next.js and Iconify library's LuMenu icon. The navigation bar includes a toggle button for displaying a side menu, which contains links to different routes in the application, including home, integration, and settings pages.",
+        "items": [
+          {
+            "id": "91e74bf5-50c6-218f-b94b-ac1f74be25cd",
+            "ancestors": [],
+            "description": "Renders a navigation bar containing a side menu, triggered by a button with an icon. The side menu includes a title, description, and close buttons leading to different routes ('/', '/integration', '/setting') using the `useRouter` hook from React Router.",
+            "params": [],
+            "returns": {
+              "type_name": "React.ReactElement",
+              "description": "A JSX element that represents a div with various child elements including a Sheet component, a SheetTrigger component, and other components such as LuMenu, Button, and Text."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "function App() {\n  return <Navbar />;\n}\n",
+              "description": "\nThis code renders the `Navbar` component within the `App` component."
+            },
+            "name": "Navbar",
+            "location": {
+              "start": 17,
+              "insert": 17,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 54,
+            "docLength": null
+          }
+        ]
+      }
+    }
   }
 ]

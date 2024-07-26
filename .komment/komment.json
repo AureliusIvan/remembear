@@ -1,15 +1,26 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-26T12:36:30.324Z",
+    "updated_at": "2024-07-26T14:18:33.575Z",
     "created_at": "2024-07-26T12:36:31.817Z",
     "pipelines": [
-      "acbdd4d4-6b90-4370-ada5-4009b94674bf"
+      "acbdd4d4-6b90-4370-ada5-4009b94674bf",
+      "22ba0bc7-42cb-4d21-a711-9c8ac1922e39"
     ]
   },
   "lookup": [
     [
-      "server/domain/service/RememberService.py"
+      "server/domain/service/RememberService.py",
+      "web/.storybook/main.ts",
+      "web/.storybook/preview.ts",
+      "web/src/components/ui/Button.stories.ts",
+      "web/src/stories/Button.stories.ts",
+      "web/src/stories/Button.tsx",
+      "web/src/stories/Header.stories.ts",
+      "web/src/stories/Header.tsx",
+      "web/src/stories/Page.stories.ts",
+      "web/src/stories/Page.tsx",
+      "web/src/components/navbar.tsx"
     ]
   ]
 }
