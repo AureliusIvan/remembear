@@ -11,6 +11,14 @@ const config: CapacitorConfig = {
       iconColor: "#488AFF",
       // sound: "beep.wav",
     },
+    BackgroundRunner: {
+      label: 'com.remembear.background.task',
+      src: 'background.js',
+      event: 'myCustomEvent',
+      repeat: true,
+      interval: 2,
+      autoStart: false,
+    },
   }
 };
 
