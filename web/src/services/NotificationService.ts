@@ -1,5 +1,4 @@
 import {LocalNotifications, PermissionStatus} from "@capacitor/local-notifications";
-import {BackgroundRunner} from "@capacitor/background-runner";
 
 interface Notify {
   title: string
@@ -10,27 +9,18 @@ interface Notify {
 async function Notify(
     title = "Remembear",
     body = "Remembear to wash your hand",
-    at = new Date(Date.now() + 1000 * 5)
+    at = new Date(Date.now() + 1000 * 10)
 ) {
   let localNotificationPermission: PermissionStatus = await LocalNotifications.checkPermissions()
 
   if (localNotificationPermission.display !== "granted") {
-
     localNotificationPermission = await LocalNotifications.requestPermissions()
-
     if (localNotificationPermission.display !== "granted") {
       return
     }
   }
 
-  await BackgroundRunner.dispatchEvent({
-    label: 'myCustomEvent',
-    event: 'myCustomEvent',
-    details: {
-      // custom data
-    },
-  });
-
+  console.log("background runner was triggered")
   return await LocalNotifications.schedule({
     notifications: [
       {
@@ -38,14 +28,13 @@ async function Notify(
         body: body,
         id: 1,
         schedule: {
-          at: at
+          at: at,
+          allowWhileIdle: true
         },
-        // sound: null,
-        // attachments: null,
-        actionTypeId: '',
-        extra: null,
-      },
-    ],
+        actionTypeId: '1234',
+        extra: null
+      }
+    ]
   });
 }
 

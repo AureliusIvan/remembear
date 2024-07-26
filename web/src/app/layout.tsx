@@ -4,6 +4,7 @@ import "./globals.css";
 import {Analytics} from "@vercel/analytics/react"
 import React, {StrictMode} from "react";
 import {Navbar} from "@/components/navbar";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <html lang="en">
           <body className={inter.className}>
           <Navbar/>
+          <Toaster/>
           {children}
           </body>
           </html>

@@ -9,7 +9,7 @@ const config: CapacitorConfig = {
     LocalNotifications: {
       smallIcon: "ic_stat_icon_config_sample",
       iconColor: "#488AFF",
-      // sound: "beep.wav",
+      sound: "nyah.wav",
     },
     BackgroundRunner: {
       label: 'com.remembear.background.task',
@@ -18,6 +18,10 @@ const config: CapacitorConfig = {
       repeat: true,
       interval: 2,
       autoStart: false,
+
+    },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"],
     },
   }
 };
