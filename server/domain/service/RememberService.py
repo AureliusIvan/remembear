@@ -22,6 +22,26 @@ generation_config = {
 # Initialize the Gemini client
 
 class RememberService:
+    """
+    Provides a conversational AI assistant named Bear that helps users remember
+    events and things they discuss. It uses a generative model to respond to user
+    questions, stores user conversations, and allows searching of stored memories.
+
+    Attributes:
+        memory (Memory): Initialized from a configuration dictionary. It provides
+            functionality to store and retrieve user memories, allowing the service
+            to keep track of previous conversations and events.
+        client (genaiGenerativeModel): Initialized with a specific model name,
+            generation configuration, and safety settings. It represents a generative
+            AI model that can generate human-like responses to user input.
+        app_id (str): Assigned the value "remembear-app". Its purpose is not
+            explicitly stated, but it could be used to identify the application
+            or service within a larger system.
+        messages (List[Dict[str,List[str]]]): Used to store chat messages between
+            a user and Bear, with each message having a role (user or model) and
+            one or more parts representing the content of the message.
+
+    """
     def __init__(self):
         """
         Initialize the PersonalAI with memory configuration and Gemini client.
@@ -133,9 +153,40 @@ class RememberService:
         })
 
     def get_memories(self, user_id):
+        """
+        Retrieves all memories associated with a specified user ID from the memory
+        storage and returns them as a list of text strings, filtered from the
+        original data structure.
+
+        Args:
+            user_id (str): Required, as it determines which user's memories are
+                retrieved from the memory storage.
+
+        Returns:
+            List[str]: A list of memory text strings, each string representing a
+            single memory retrieved from the database using the provided user ID.
+
+        """
         memories = self.memory.get_all(user_id=user_id)
         return [m['text'] for m in memories]
 
     def search_memories(self, query, user_id):
+        """
+        Searches for memories related to a given query and user ID using an internal
+        memory storage component (self.memory). It returns a list of text strings
+        representing the matching memories.
+
+        Args:
+            query (str | List[str]): Used to search for matching memories based
+                on its content, either as a single string or a list of strings.
+            user_id (int | str): Used to filter the results returned by the
+                `self.memory.search(query)` method, which searches for memories
+                related to the specified user ID.
+
+        Returns:
+            List[str]: A list of strings. Each string represents the text content
+            of a memory retrieved from the database using the query and user_id provided.
+
+        """
         memories = self.memory.search(query, user_id=user_id)
         return [m['text'] for m in memories]
