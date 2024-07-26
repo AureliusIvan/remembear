@@ -4,7 +4,7 @@
     "path": "server/domain/service/RememberService.py",
     "content": {
       "structured": {
-        "description": "A personal AI assistant named Bear that helps users remember events and things they discuss. It uses OpenAI's Gemini API for text generation and Qdrant vector store for memory storage. The assistant can respond to user questions by generating human-like responses based on the input query and previous related memories.",
+        "description": "A class `RememberService` that provides a conversational AI assistant named Bear, which uses a generative model to respond to user questions and stores user conversations. The service utilizes the Google Generative AI API to generate human-like responses and stores user memories using an internal memory storage component.",
         "items": []
       }
     }
@@ -14,7 +14,7 @@
     "path": "server/domain/service/TriggerService.py",
     "content": {
       "structured": {
-        "description": "A TriggerService class that parses a given message and extracts specific data from it. The parsing is done using JSON and regular expression. The parsed actions are returned as a list.",
+        "description": "A TriggerService class that parses a raw message and extracts specific data from it. It uses json and re packages to extract and parse JSON objects within the input string. The extracted data is then processed into a list of actions with their respective types, titles, bodies, and timestamps.",
         "items": []
       }
     }
@@ -24,14 +24,14 @@
     "path": "web/public/background.js",
     "content": {
       "structured": {
-        "description": "And utilizes various event listeners and registration mechanisms for push notifications within a Capacitor application. It employs the PushNotifications package from @capacitor/push-notifications to monitor registration events, registration errors, received push notifications, and actions performed on such notifications. The code also requests permissions for push notification receipt and registers the device for notifications if necessary.",
+        "description": "Event listeners and handlers for push notifications using the Capacitor PushNotifications library. It registers event listeners for registration, error, received, and action performed events, logging information to the console. The code also checks for push notification permissions, requests them if necessary, and registers the device to receive notifications.",
         "items": [
           {
-            "id": "cabc8139-cde1-a995-ed44-2121721f67c4",
+            "id": "e23c9f64-9088-5abb-c846-0d86d26eb523",
             "ancestors": [
-              "f2f1c5d5-70a6-309a-544c-ea6ea457f1cf"
+              "3c176ee2-0f4f-2fbb-6549-1a2b5c63b2d1"
             ],
-            "description": "Listens for push registration events, logging the received token to the console.",
+            "description": "Listens for push notifications and logs their tokens.",
             "name": null,
             "location": {
               "start": 18,
@@ -45,11 +45,11 @@
             "docLength": null
           },
           {
-            "id": "6a8716ea-80e1-5e9d-a747-e0b074f1256b",
+            "id": "d3a0da30-85a0-589c-4847-30ed6be429bf",
             "ancestors": [
-              "f2f1c5d5-70a6-309a-544c-ea6ea457f1cf"
+              "3c176ee2-0f4f-2fbb-6549-1a2b5c63b2d1"
             ],
-            "description": "Listens for and logs push notification registration errors.",
+            "description": "Listens for push notification registration errors and logs them.",
             "name": null,
             "location": {
               "start": 24,
@@ -63,11 +63,11 @@
             "docLength": null
           },
           {
-            "id": "d964997b-5502-f99d-7e42-e8626397225e",
+            "id": "4b4f88b8-24e3-f685-514e-d45f4f674ebf",
             "ancestors": [
-              "f2f1c5d5-70a6-309a-544c-ea6ea457f1cf"
+              "3c176ee2-0f4f-2fbb-6549-1a2b5c63b2d1"
             ],
-            "description": "Subscribes to push notifications.",
+            "description": "Subscribes to and logs push notifications.",
             "name": null,
             "location": {
               "start": 30,
@@ -81,11 +81,11 @@
             "docLength": null
           },
           {
-            "id": "10059208-d66b-9c80-164e-f40a60e062b6",
+            "id": "4290657d-dc9e-aa97-f04f-e7bb3a55fd1f",
             "ancestors": [
-              "f2f1c5d5-70a6-309a-544c-ea6ea457f1cf"
+              "3c176ee2-0f4f-2fbb-6549-1a2b5c63b2d1"
             ],
-            "description": "Listens for push notifications actions and logs them.",
+            "description": "Listens and logs actions of push notifications.",
             "name": null,
             "location": {
               "start": 36,
@@ -107,7 +107,7 @@
     "path": "web/src/app/integration/page.tsx",
     "content": {
       "structured": {
-        "description": "A reusable React component called \"Integration\" that renders a form with a heading and a list of links to external platforms wrapped in styled buttons. The links are generated using Next.js's Link component from \"next/link\" package, and the button styles are applied using a function named \"buttonVariants\" from an imported UI component library.",
+        "description": "A React component called \"Integration\" that renders a form with a main section containing an integration heading and a list of links to external platforms wrapped in buttons. The component utilizes Next.js's Link component from \"next/link\" to render these links. The styles for the buttons are defined using the \"buttonVariants\" function, which is imported from another file.",
         "items": []
       }
     }
@@ -117,7 +117,7 @@
     "path": "web/src/app/login/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component called Login that renders an HTML form with a heading and a link to log in with Google. The link is styled using the `buttonVariants` function from the `/components/ui/button` module. The form is wrapped in a `<main>` element with a specific class name, indicating a flexible box layout with vertical alignment and padding.",
+        "description": "A React functional component named `Login`. The component returns an HTML form with a main content area and a heading that says \"Login\". It includes a link to log in with Google, styled according to the `buttonVariants` function from a UI button component.",
         "items": []
       }
     }
@@ -127,7 +127,7 @@
     "path": "web/src/app/not-found.tsx",
     "content": {
       "structured": {
-        "description": "A React component named \"NotFound\" that renders a UI element displaying an error message when a requested resource is not found. The component uses Next.js's Link package to provide a link for users to return to the home page.",
+        "description": "A React component called `NotFound` that renders a UI element for displaying \"Not Found\" messages. The component uses the Next.js framework and utilizes its `Link` component to provide a link back to the home page when a requested resource is not found. The JSX elements comprise of an `<h2>` heading, a paragraph with a brief description, and a link to return to the home page.",
         "items": []
       }
     }
@@ -137,15 +137,15 @@
     "path": "web/src/app/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component that renders a chat interface. It uses react-hook-form for form handling and useForm to manage input state. The component fetches chat history from local storage, updates it in real-time as new messages are added or fetched, and displays a list of chat messages with user input on the right and model output on the left.",
+        "description": "A React component that renders a chat interface for users to send prompts and receive responses from a model. It utilizes react-hook-form for form handling and useEffect for initializing and updating the chat history state. The component fetches and stores local storage, updates the UI in real-time as new messages are added or fetched, and includes a form to send user input to the model for response.",
         "items": [
           {
-            "id": "d0548135-1978-ac85-8745-c37ad38ae1f5",
+            "id": "aa9ff932-b4ac-e9ad-9b4c-aef535e722f2",
             "ancestors": [
-              "9dc9a358-93e7-17a2-6249-dd1f4454b296",
-              "322c1c5e-fc5a-90b0-474a-1ae5da61ae7e"
+              "8d411b81-663f-b297-2344-d876cbdd0940",
+              "1c331ed5-cd43-0db7-1641-6c8653c8cbfb"
             ],
-            "description": "Concatenates a new chat item to an array.",
+            "description": "Concatenates new chat items.",
             "name": null,
             "location": {
               "start": 61,
@@ -159,9 +159,9 @@
             "docLength": null
           },
           {
-            "id": "2974321b-ade5-179f-7949-211afa8ac8ed",
+            "id": "26dd1b59-8bba-e885-1245-990700e80b90",
             "ancestors": [
-              "9dc9a358-93e7-17a2-6249-dd1f4454b296"
+              "8d411b81-663f-b297-2344-d876cbdd0940"
             ],
             "description": "Initializes and updates chat history state.",
             "name": null,
@@ -177,13 +177,13 @@
             "docLength": null
           },
           {
-            "id": "2442ab15-39ad-9fa6-cf43-6181ce7fe790",
+            "id": "4b44cc6e-7a14-6284-564f-cdfecd01f46f",
             "ancestors": [
-              "9dc9a358-93e7-17a2-6249-dd1f4454b296",
-              "2974321b-ade5-179f-7949-211afa8ac8ed",
-              "f5f957ee-954a-26a0-e548-1de502d2d4fd"
+              "8d411b81-663f-b297-2344-d876cbdd0940",
+              "26dd1b59-8bba-e885-1245-990700e80b90",
+              "d6948fae-e77a-258a-8a4f-cb1b9a00452e"
             ],
-            "description": "Retrieves and parses chat history data.",
+            "description": "Retrieves and parses chat history.",
             "name": null,
             "location": {
               "start": 93,
@@ -197,11 +197,11 @@
             "docLength": null
           },
           {
-            "id": "aecf6b4c-5647-098d-9c4a-faf25d0498ec",
+            "id": "f04f0636-bdcd-74af-4b46-09344cf7893d",
             "ancestors": [
-              "9dc9a358-93e7-17a2-6249-dd1f4454b296"
+              "8d411b81-663f-b297-2344-d876cbdd0940"
             ],
-            "description": "Maps over a chat array and renders messages.",
+            "description": "Renders chat messages.",
             "name": null,
             "location": {
               "start": 115,
@@ -223,14 +223,14 @@
     "path": "web/src/app/setting/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component that initializes and manages push notifications for an application. It checks for available permissions, requests permission if not granted, registers with Apple/Google, and listens for registration success/failure, push notification receipt, and action performed events using Capacitor's PushNotifications plugin. The component also uses the Notifier service to display a toast message upon successful registration and provides a drawer interface for user interaction.",
+        "description": "A React component that initializes and manages push notifications for an application using Capacitor's PushNotifications plugin. It checks for available permissions, requests permission if not granted, registers with Apple/Google, and listens for registration success/failure, push notification receipt, and action performed events. The component displays a toast message on successful registration and handles errors.",
         "items": [
           {
-            "id": "7cc41729-361a-d890-1747-ef1d895bc918",
+            "id": "8e74959e-1f87-df8e-0c44-79e77e2e1148",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba"
+              "2303117a-86fb-c796-9d4e-f845945a92fa"
             ],
-            "description": "Initializes and registers push notifications.",
+            "description": "Initializes push notifications if available.",
             "name": null,
             "location": {
               "start": 37,
@@ -244,12 +244,12 @@
             "docLength": null
           },
           {
-            "id": "ba8139e9-f5fa-37bf-d746-b917622ac7f4",
+            "id": "f866acc3-023d-5eb3-3b4f-ac8cea7f2955",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "7cc41729-361a-d890-1747-ef1d895bc918"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "8e74959e-1f87-df8e-0c44-79e77e2e1148"
             ],
-            "description": "Handles push notification permissions.",
+            "description": "Handles push notifications permissions.",
             "name": null,
             "location": {
               "start": 45,
@@ -263,11 +263,11 @@
             "docLength": null
           },
           {
-            "id": "7737a927-5da3-75b7-b249-c7638cd4c044",
+            "id": "e4fcc6fd-7efc-7494-2242-d58385508083",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "7cc41729-361a-d890-1747-ef1d895bc918",
-              "ba8139e9-f5fa-37bf-d746-b917622ac7f4"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "8e74959e-1f87-df8e-0c44-79e77e2e1148",
+              "f866acc3-023d-5eb3-3b4f-ac8cea7f2955"
             ],
             "description": "Handles push notification permissions.",
             "name": null,
@@ -283,12 +283,12 @@
             "docLength": null
           },
           {
-            "id": "7300328d-824c-14b5-094e-b8c773be8ef4",
+            "id": "722ea409-b0e3-d09a-f945-38f08c7ad808",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "172e6e85-9fcd-93a2-d648-2b3f3ab50bb5"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "6d005373-e9ba-1991-1141-0dfdc9c2b196"
             ],
-            "description": "Listens for push notification registrations and displays a toast upon successful registration.",
+            "description": "Registers for push notifications and handles registration success.",
             "name": null,
             "location": {
               "start": 86,
@@ -302,12 +302,12 @@
             "docLength": null
           },
           {
-            "id": "f215a64b-128a-21a3-7b4b-5eec6eb3b5b3",
+            "id": "23d75a00-b68c-f1a4-e34c-cff7b785746e",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "172e6e85-9fcd-93a2-d648-2b3f3ab50bb5"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "6d005373-e9ba-1991-1141-0dfdc9c2b196"
             ],
-            "description": "Handles registration errors.",
+            "description": "Handles registration error notifications.",
             "name": null,
             "location": {
               "start": 99,
@@ -321,10 +321,10 @@
             "docLength": null
           },
           {
-            "id": "e2d45213-692a-089e-5f48-b525c8993b18",
+            "id": "2da7eed2-d214-aa9b-f742-74b4384cdb1c",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "172e6e85-9fcd-93a2-d648-2b3f3ab50bb5"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "6d005373-e9ba-1991-1141-0dfdc9c2b196"
             ],
             "description": "Handles push notifications.",
             "name": null,
@@ -340,12 +340,12 @@
             "docLength": null
           },
           {
-            "id": "a25da74d-adc5-2694-204c-af2e6b9e1d7e",
+            "id": "aed0c718-2eff-8487-d945-04ae1871c934",
             "ancestors": [
-              "ba66e485-8f9e-3c99-024f-ee24d1df0fba",
-              "172e6e85-9fcd-93a2-d648-2b3f3ab50bb5"
+              "2303117a-86fb-c796-9d4e-f845945a92fa",
+              "6d005373-e9ba-1991-1141-0dfdc9c2b196"
             ],
-            "description": "Handles push notifications.",
+            "description": "Listens for push notifications and updates local state when notified.",
             "name": null,
             "location": {
               "start": 122,
@@ -367,7 +367,7 @@
     "path": "web/src/components/ui/sonner.tsx",
     "content": {
       "structured": {
-        "description": "A React component called Toaster that wraps a Sonner toaster with customized styles based on the current theme. It uses the Next-themes hook to retrieve the current theme and passes it as a prop to the Sonner component. The component accepts additional props, which are spread onto the Sonner component to customize its appearance according to different themes.",
+        "description": "A React component called Toaster that uses the Next-Themes hook to retrieve the current theme and applies customized styles based on it. The component takes additional props, which are passed onto the Sonner component from the sonner package. The Toaster component wraps its children with the theme-provided styles and props, effectively rendering a toaster component with theme-dependent appearance.",
         "items": []
       }
     }
@@ -377,12 +377,12 @@
     "path": "web/src/components/ui/toast.tsx",
     "content": {
       "structured": {
-        "description": "A set of components and utilities for creating toast notifications in a React application. It uses Radix UI's Toast library as a foundation and provides additional styling and functionality through various utility functions and custom components such as ToastProvider, ToastViewport, Toast, ToastAction, ToastTitle, ToastDescription, and ToastClose. The code also employs Lucide-React for icons and Class-Variance-Authority for styling.",
+        "description": "A set of components and providers for implementing toast notifications in a React application using the Radix UI library. The components include ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, and ToastClose, which are used to render customizable notification messages with optional actions and close buttons.",
         "items": [
           {
-            "id": "756ce731-722d-5691-684f-d32784551d6f",
+            "id": "7fc8a6c7-7fce-c4a3-a644-6cbd9aecb7a2",
             "ancestors": [],
-            "description": "Forwards props to a Toast component.",
+            "description": "Forwards refs and props.",
             "name": null,
             "location": {
               "start": 43,
@@ -404,14 +404,14 @@
     "path": "web/src/components/ui/toaster.tsx",
     "content": {
       "structured": {
-        "description": "A React component called Toaster that renders a list of toast notifications provided by the useToast hook. The useToast hook returns an array of toast objects, each containing title, description and action if available. The Toaster component wraps these toasts in a ToastProvider and ToastViewport components from the ui/toast package.",
+        "description": "A Toaster React component that renders a list of toast notifications provided by the useToast hook from the ui module. The toaster is wrapped in a ToastProvider and ToastViewport components to manage the toast notifications. The component uses React's map function to iterate over the toasts array returned by useToast, rendering each toast with its title, description, action and close button.",
         "items": [
           {
-            "id": "c138758d-733a-f699-544e-898882a0e120",
+            "id": "26841969-c745-2f99-3d49-02f0c2c5ed0f",
             "ancestors": [
-              "960fc2f7-effd-0cb6-9e43-c237b2e6c1d4"
+              "29fce682-093b-9db8-4e42-4400a2c9e817"
             ],
-            "description": "Renders toasts.",
+            "description": "Renders toast list.",
             "name": null,
             "location": {
               "start": 28,
@@ -433,14 +433,14 @@
     "path": "web/src/components/ui/use-toast.ts",
     "content": {
       "structured": {
-        "description": "A reusable toast notification system using React's `useState` and `useEffect`. The system allows for adding, updating, and dismissing toasts with customizable properties such as title, description, and action elements. It utilizes the `reducer` function to manage the state of toasts and dispatches actions to update the state accordingly.",
+        "description": "A toaster component using React's hooks API, inspired by react-hot-toast library. It uses a reducer and a dispatch function to manage a state object that stores an array of toast notifications. The toaster component provides methods for adding, updating, and dismissing toasts, enforcing a limit on the number of displayed toasts.",
         "items": [
           {
-            "id": "01750397-ea60-f198-6845-76688d35fedf",
+            "id": "2264bcab-5202-eaa6-124a-7b6cb7e34b32",
             "ancestors": [
-              "58c10907-afdd-4db0-6649-4f996ec1e7f1"
+              "f6bb57ff-3cdd-adb5-a047-61be5a9a87e4"
             ],
-            "description": "Removes a toast after delay.",
+            "description": "Postpones removal of toast for a specified delay.",
             "name": null,
             "location": {
               "start": 87,
@@ -454,11 +454,11 @@
             "docLength": null
           },
           {
-            "id": "86e71481-9db8-668a-6d4e-75986fa40c7d",
+            "id": "1a4cc80b-79de-5097-6e4c-b237166b0c52",
             "ancestors": [
-              "7f0ce81c-6c45-a597-e144-515407d7898f"
+              "6dc314ff-297d-9d9b-1649-09406e5cf009"
             ],
-            "description": "Adds toast IDs to removal queue.",
+            "description": "Adds an ID to a removal queue.",
             "name": null,
             "location": {
               "start": 137,
@@ -472,11 +472,11 @@
             "docLength": null
           },
           {
-            "id": "6ba52c42-1f49-b3a5-7846-e02c58746bd1",
+            "id": "2d3b9f7d-3fbe-8992-294a-d6d1a214d651",
             "ancestors": [
-              "a0e33f62-1e9d-f492-2d42-b7044a6362bc"
+              "ae215a46-7cbd-f7b8-9145-221dcc71f041"
             ],
-            "description": "Executes each listener.",
+            "description": "Calls each listener with memoryState as argument.",
             "name": null,
             "location": {
               "start": 183,
@@ -490,11 +490,11 @@
             "docLength": null
           },
           {
-            "id": "91d53288-c8ac-8596-794f-7586c5159629",
+            "id": "7361661e-5ca7-7387-fe45-fea90542b90a",
             "ancestors": [
-              "569ea359-0b96-1390-b244-312506adb92a"
+              "e79ec019-d993-49b5-d742-6a2f796a23a5"
             ],
-            "description": "Manages state updates.",
+            "description": "Adds/removes state update listener.",
             "name": null,
             "location": {
               "start": 263,
@@ -516,7 +516,7 @@
     "path": "web/src/services/NotificationService.ts",
     "content": {
       "structured": {
-        "description": "An interface `Notify` specifying properties required for a notification and schedules a local notification using Capacitor's `LocalNotifications` module. It checks permission before scheduling and logs a message if triggered in the background runner. The function takes parameters for title, body, and time of notification, defaulting to specific values if omitted.",
+        "description": "An interface for a notification and a function to schedule local notifications using the Capacitor Local Notifications module. The function checks for permission before scheduling the notification and logs a message if the background runner is triggered. It then schedules a local notification with the specified title, body, and date at which it should be displayed.",
         "items": []
       }
     }

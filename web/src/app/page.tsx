@@ -59,7 +59,7 @@ export default function Home() {
       const reply = await ask(prompt)
       if (reply) {
         setChat(prevChat => {
-          // Concatenates a new chat item to an array.
+          // Concatenates new chat items.
 
           // Appends new chat item.
 
@@ -95,7 +95,7 @@ export default function Home() {
        */
       const fetchHistory = async () => {
         const data = await getObject("chat-history").then(data => {
-          // Retrieves and parses chat history data.
+          // Retrieves and parses chat history.
 
           // Retrieves and parses chat history.
 
@@ -119,7 +119,7 @@ export default function Home() {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[75vh]"}>
             {chat.map((data: Chat, index: number) => {
-              // Maps over a chat array and renders messages.
+              // Renders chat messages.
 
               // Maps over a chat array and renders a message for each item.
 

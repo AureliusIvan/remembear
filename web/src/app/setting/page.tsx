@@ -35,7 +35,7 @@ export default function Setting() {
 
 
   React.useEffect(() => {
-    // Initializes and registers push notifications.
+    // Initializes push notifications if available.
 
     // Initializes and registers push notifications if available.
 
@@ -45,7 +45,7 @@ export default function Setting() {
     }
 
     PushNotifications.checkPermissions().then((res) => {
-      // Handles push notification permissions.
+      // Handles push notifications permissions.
 
       // Handles push notifications permissions.
 
@@ -93,8 +93,7 @@ export default function Setting() {
         (
             // token: Token
         ) => {
-          // Listens for push notification registrations and displays a toast upon successful
-          // registration.
+          // Registers for push notifications and handles registration success.
 
           // Listens for push notifications and displays a toast message on successful registration.
 
@@ -107,7 +106,7 @@ export default function Setting() {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
-          // Handles registration errors.
+          // Handles registration error notifications.
 
           // Handles errors.
 
@@ -134,7 +133,7 @@ export default function Setting() {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
-          // Handles push notifications.
+          // Listens for push notifications and updates local state when notified.
 
           // Handles push notifications.
 

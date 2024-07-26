@@ -45,7 +45,7 @@ const Toast = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
     VariantProps<typeof toastVariants>
 >(({ className, variant, ...props }, ref) => {
-  // Forwards props to a Toast component.
+  // Forwards refs and props.
 
   // Forwards ref and props to ToastPrimitives.Root component.
 
