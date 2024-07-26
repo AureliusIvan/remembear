@@ -15,14 +15,13 @@ class TriggerService:
         return
 
     @staticmethod
-    def parse(message: str):
+    def parse(raw_message: str) -> list:
         """
-        :param message: String
-        :return: list
+        :param raw_message: String
+        :return: tuple
         """
         try:
-            data = json.loads(extract_json(message))
-            print(data)
+            data = json.loads(extract_json(raw_message))
             actions = data.get("action", [])
             parsed_actions = []
             for action in actions:
