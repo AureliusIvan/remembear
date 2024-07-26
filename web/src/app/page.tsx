@@ -20,6 +20,15 @@ type Chat = {
 }
 
 
+/**
+ * @description Renders a chat interface, allowing users to submit prompts and receive
+ * responses from a model. It displays a list of chat messages with user input on the
+ * right and model output on the left. The UI updates in real-time as new messages
+ * are added or fetched from local storage.
+ * 
+ * @returns {React.ReactElement} A JSX element representing the home page component
+ * with a chat interface and a form to send messages.
+ */
 export default function Home() {
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -29,6 +38,17 @@ export default function Home() {
     reset,
   } = useForm<Inputs>()
 
+  /**
+   * @description Handles user prompts by setting the UI to loading state, resetting
+   * previous chat history, and sending the prompt to a model for response. It then
+   * updates the chat history with the response or an error message, and finally sets
+   * the UI back to non-loading state.
+   * 
+   * @param {string} prompt - Used to send a message to be answered by the model.
+   * 
+   * @returns {undefined} Implicitly returned when the function completes its execution
+   * without explicitly returning a value.
+   */
   const handleAsk = async (prompt: string) => {
     setIsLoading(true)
     reset()
@@ -39,6 +59,8 @@ export default function Home() {
       const reply = await ask(prompt)
       if (reply) {
         setChat(prevChat => {
+          // Appends new chat item.
+
           return [...prevChat, {role: "model", message: reply.message}];
         });
       }
@@ -52,14 +74,25 @@ export default function Home() {
 
 
   useEffect(() => {
+    // Initializes and updates chat history state.
+
     if (chat.length > 0) {
       setObject("chat-history",
           {
             data: JSON.stringify(chat)
           })
     } else {
+      /**
+       * @description Asynchronously retrieves chat history from storage, parses it as a
+       * JSON object, and updates the `chat` state with the retrieved data.
+       * 
+       * @returns {undefined} Assigned to the state variable 'chat' after parsing JSON data
+       * into an array of objects conforming to the `Chat` interface.
+       */
       const fetchHistory = async () => {
         const data = await getObject("chat-history").then(data => {
+          // Retrieves and parses chat history.
+
           return JSON.parse(data.data) as Chat[]
         })
         setChat(data)
@@ -80,6 +113,8 @@ export default function Home() {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[75vh]"}>
             {chat.map((data: Chat, index: number) => {
+              // Maps over a chat array and renders a message for each item.
+
               const isUser = data.role === "user"; // Check if the message is from the user
 
               return (
