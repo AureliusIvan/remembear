@@ -16,7 +16,7 @@ interface askPayloadType {
 
 async function ask(prompt: string) {
   try {
-    const response = await fetch(`${SERVER_URL}/ask/${prompt}`, {
+    const response = await fetch(`${SERVER_URL}/ask/${prompt} + ", current_datetime: " + ${new Date(Date.now()).toISOString()}`, {
       method: 'GET',
       mode: "cors",
     });
@@ -29,7 +29,9 @@ async function ask(prompt: string) {
     const payload: askPayloadType = await response.json();
 
     if (payload.action) {
+      console.log("date now is ", new Date(Date.now()).toISOString())
       for (const action of payload.action) {
+        console.log("date at is ", action.at)
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         Notify(action.title, action.body, new Date(action.at));

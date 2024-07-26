@@ -23,7 +23,7 @@ import {Notify} from "@/services/NotificationService";
  * checks for available permissions, requests permission if not granted, registers
  * with Apple/Google, and listens for registration success/failure, push notification
  * receipt, and action performed events.
- * 
+ *
  * @returns {JSX.Element} A React component consisting of various HTML elements such
  * as `main`, `h1`, `Drawer`, `Button`, etc.
  */

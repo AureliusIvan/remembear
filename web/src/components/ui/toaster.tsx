@@ -16,7 +16,7 @@ import {useToast} from "@/components/ui/use-toast"
  * toast contains title, description and action if available. It also includes a close
  * button. The toasts are wrapped around a `ToastProvider` component which provides
  * a viewport for the toast notifications.
- * 
+ *
  * @returns {ReactNode} A JSX element that contains a list of toast notifications
  * wrapped with a `ToastProvider` and a `ToastViewport`.
  */
