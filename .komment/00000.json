@@ -4,7 +4,7 @@
     "path": "server/domain/service/RememberService.py",
     "content": {
       "structured": {
-        "description": "A conversational AI assistant named Bear that uses generative models to respond to user questions and stores user conversations in memory. It utilizes packages such as Google's GenerativeAI library, Memory management, and dotenv for environment variables. The service provides features like storing chat messages, searching stored memories, and generating human-like responses based on input prompts.",
+        "description": "A class called RememberService that provides a conversational AI assistant named Bear to help users remember events and things they discuss. It uses a generative model from Google's generative ai package to respond to user questions and stores user conversations using a memory storage component. The service also allows searching of stored memories based on queries.",
         "items": []
       }
     }

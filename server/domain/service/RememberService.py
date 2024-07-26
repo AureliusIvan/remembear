@@ -1,5 +1,6 @@
 import os
-from mem0 import Memory
+from mem0.memory.main import Memory
+from mem0.client.main import MemoryClient
 from dotenv import load_dotenv
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
@@ -97,7 +98,14 @@ class RememberService:
             }
         }
 
-        self.memory = Memory.from_config(config)
+        self.memoryType = ""
+        if os.getenv('MEMORY_CLIENT'):
+            self.memory = MemoryClient(api_key=os.getenv('MEMORY_CLIENT'))
+            self.memoryType = "memory-client"
+        else:
+            self.memory = Memory.from_config(config)
+            self.memoryType = "memory-server"
+
         self.client = genai.GenerativeModel(
             model_name="gemini-1.5-flash",
             generation_config=generation_config,
@@ -200,7 +208,11 @@ class RememberService:
 
         """
         memories = self.memory.get_all(user_id=user_id)
-        return [m['text'] for m in memories]
+        print(memories)
+        if self.memoryType == 'memory-client':
+            return [m['memory'] for m in memories]
+        else:
+            return [m['text'] for m in memories]
 
     def search_memories(self, query, user_id):
         """
@@ -221,14 +233,7 @@ class RememberService:
 
         """
         memories = self.memory.search(query, user_id=user_id)
-        return [m['text'] for m in memories]
-
-
-def extract_message(text):
-    """Extracts the message from a text string using regular expressions."""
-    pattern = r'^([^\{]+)'
-    match = re.match(pattern, text)
-    if match:
-        return match.group(1).strip()
-    else:
-        return text  # Return None if no match is found
+        if self.memoryType == 'memory-client':
+            return [m['memory'] for m in memories]
+        else:
+            return [m['text'] for m in memories]
