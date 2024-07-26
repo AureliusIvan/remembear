@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@capacitor-community/fcm": "^6.0.0",
@@ -57,17 +59,33 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^6.1.1",
+    "@chromatic-com/storybook": "^1.6.1",
     "@eslint/js": "^9.7.0",
+    "@storybook/addon-essentials": "^8.2.6",
+    "@storybook/addon-interactions": "^8.2.6",
+    "@storybook/addon-links": "^8.2.6",
+    "@storybook/addon-onboarding": "^8.2.6",
+    "@storybook/blocks": "^8.2.6",
+    "@storybook/nextjs": "^8.2.6",
+    "@storybook/react": "^8.2.6",
+    "@storybook/test": "^8.2.6",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "eslint": "^9.7.0",
     "eslint-config-next": "14.2.5",
     "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "globals": "^15.8.0",
     "postcss": "^8.4.40",
+    "storybook": "^8.2.6",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

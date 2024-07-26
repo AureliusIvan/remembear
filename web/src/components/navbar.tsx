@@ -17,7 +17,7 @@ import {useRouter} from "next/navigation";
 function Navbar() {
   const router = useRouter()
 
-  return <form
+  return <div
       className={"w-full p-6"}
   >
     {/* side menu */}
@@ -66,7 +66,7 @@ function Navbar() {
         </SheetHeader>
       </SheetContent>
     </Sheet>
-  </form>
+  </div>
 }
 
 
