@@ -6,6 +6,19 @@ import React from "react";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
+/**
+ * @description Renders a `Sonner` component with customized styles based on the
+ * current theme. It uses the `useTheme` hook to get the theme and passes it as a
+ * prop to `Sonner`. The function also accepts additional props, which are spread
+ * onto the `Sonner` component.
+ * 
+ * @param {object} obj - Used to customize the appearance of the toaster based on
+ * different themes. The property names are used as CSS class names to style the
+ * toaster's components.
+ * 
+ * @returns {JSX.Element} A React component that wraps its children with additional
+ * props and styles based on the theme provided by `useTheme`.
+ */
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 

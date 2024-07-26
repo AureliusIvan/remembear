@@ -18,6 +18,15 @@ import {Capacitor} from "@capacitor/core";
 import {Notify} from "@/services/NotificationService";
 
 
+/**
+ * @description Initializes and manages push notifications for an application. It
+ * checks for available permissions, requests permission if not granted, registers
+ * with Apple/Google, and listens for registration success/failure, push notification
+ * receipt, and action performed events.
+ * 
+ * @returns {JSX.Element} A React component consisting of various HTML elements such
+ * as `main`, `h1`, `Drawer`, `Button`, etc.
+ */
 export default function Setting() {
   const {toast} = useToast()
   const nullEntry: unknown[] = []
@@ -26,14 +35,20 @@ export default function Setting() {
 
 
   React.useEffect(() => {
+    // Initializes and registers push notifications if available.
+
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
     if (!isPushNotificationsAvailable) {
       return
     }
 
     PushNotifications.checkPermissions().then((res) => {
+      // Handles push notifications permissions.
+
       if (res.receive !== 'granted') {
         PushNotifications.requestPermissions().then((res) => {
+          // Handles push notification permissions.
+
           if (res.receive === 'denied') {
             toast({
               title: "Push Notification permission denied",
@@ -51,6 +66,11 @@ export default function Setting() {
     });
   }, [])
 
+  /**
+   * @description Initializes and registers for push notifications, listening to
+   * registration success, error, received notifications, and action performed on
+   * notifications. It updates local notifications state accordingly.
+   */
   const register = () => {
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
     if (!isPushNotificationsAvailable) {
@@ -67,6 +87,8 @@ export default function Setting() {
         (
             // token: Token
         ) => {
+          // Listens for push notifications and displays a toast message on successful registration.
+
           toast({
             title: "Push registration success",
           })
@@ -76,6 +98,8 @@ export default function Setting() {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
+          // Handles errors.
+
           alert('Error on registration: ' + JSON.stringify(error));
         }
     );
@@ -83,6 +107,8 @@ export default function Setting() {
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
+          // Handles push notifications.
+
           setnotifications(notifications => [...notifications, {
             id: notification.id,
             title: notification.title,
@@ -95,6 +121,8 @@ export default function Setting() {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
+          // Handles push notifications.
+
           setnotifications(notifications => [...notifications, {
             id: notification.notification.data.id,
             title: notification.notification.data.title,
