@@ -1,13 +1,13 @@
 "use client"
 
 import React from 'react'
-import {Button, buttonVariants} from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea";
 import {ask} from "@/services/ServerService";
 import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
 import {getObject, setObject} from "@/services/HistoryService";
-import { ScrollArea } from "@/components/ui/scroll-area"
+import {ScrollArea} from "@/components/ui/scroll-area"
 
 ``
 type Inputs = {
@@ -26,9 +26,7 @@ export default function Home() {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
-    formState: {errors},
   } = useForm<Inputs>()
 
   const handleAsk = async (prompt: string) => {
@@ -40,7 +38,6 @@ export default function Home() {
     try {
       const reply = await ask(prompt)
       if (reply) {
-        // @ts-ignore
         setChat(prevChat => {
           return [...prevChat, {role: "model", message: reply.message}];
         });
@@ -118,7 +115,7 @@ export default function Home() {
                 placeholder={"Enter message here"}>
             </Textarea>
             <Button
-                onClick={(e) => {
+                onClick={() => {
                   setIsLoading(true)
                 }}
                 type={"submit"}

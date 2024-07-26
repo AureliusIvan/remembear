@@ -4,6 +4,7 @@ from mem0 import Memory
 from dotenv import load_dotenv
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
+from server.domain.service.TriggerService import TriggerService
 
 load_dotenv()
 
@@ -61,9 +62,11 @@ class RememberService:
             You will help the user remember every event and thing they talk about.
             Do not display memory explicitly to the user.
             Do not display memory that is not requested. 
+            Include this string if user wants to create notification or reminder, example: 
+            '{"action": [{"type":"notification", "title":"Reminder", "body":"Meeting at 10am","at":"2024-07-26T09:00:00"}]}'
             """,
         )
-        self.app_id = "app-1"
+        self.app_id = "remembear-app"
         self.messages = [
             {
                 "role": "user",
@@ -104,6 +107,8 @@ class RememberService:
         ])
 
         answer = response.text
+        # parse action
+        action = TriggerService.parse(response.text)
         self.messages.append({
             "role": "user",
             "parts": [
@@ -122,7 +127,9 @@ class RememberService:
         self.memory.add(question, user_id=user_id)
 
         return dict({
-            "message": answer
+            "message": answer,
+            "action": action,
+            "code": 200
         })
 
     def get_memories(self, user_id):

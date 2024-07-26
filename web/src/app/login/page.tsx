@@ -1,7 +1,8 @@
-import Image from "next/image";
+'use client'
+
+import React from 'react'
 import Link from "next/link";
-import {Button, buttonVariants} from "@/components/ui/button";
-import {Textarea} from "@/components/ui/textarea";
+import {buttonVariants} from "@/components/ui/button";
 
 export default function Login() {
   return (

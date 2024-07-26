@@ -1,7 +1,10 @@
+'use client';
+
+import React from 'react'
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 
-export default function Login() {
+export default function Integration() {
   return (
       <form>
         <main className="flex min-h-screen flex-col items-center p-2">
