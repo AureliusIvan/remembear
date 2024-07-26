@@ -1,21 +1,40 @@
+import {Notify} from "@/services/NotificationService";
+
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
 
-interface askPayload {
-  message: string
+interface actionType {
+  type?: string,
+  title?: string,
+  body?: string,
+  at?: string
+}
+
+interface askPayloadType {
+  message: string,
+  action?: actionType[]
 }
 
 async function ask(prompt: string) {
   try {
-    let response = await fetch(`${SERVER_URL}/ask/${prompt}`, {
+    const response = await fetch(`${SERVER_URL}/ask/${prompt}`, {
       method: 'GET',
       mode: "cors",
     });
-    console.log(response)
+
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
-    let payload = await response.json();
-    return payload as askPayload;
+
+    // parse payload to json
+    const payload: askPayloadType = await response.json();
+
+    if (payload.action) {
+      for (const action of payload.action) {
+        Notify(action.title, action.body);
+      }
+    }
+    return payload;
+
   } catch (error) {
     console.error("Fetch error: ", error);
   }
@@ -23,7 +42,8 @@ async function ask(prompt: string) {
 }
 
 export type {
-  askPayload
+  askPayloadType,
+  actionType
 }
 
 export {

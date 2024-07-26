@@ -1,10 +1,11 @@
 import os
-from openai import OpenAI
 from mem0 import Memory
 from dotenv import load_dotenv
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-from server.domain.service.TriggerService import TriggerService
+from google.ai.generativelanguage_v1beta.types import content
+import re
+import json
 
 load_dotenv()
 
@@ -15,7 +16,36 @@ generation_config = {
     "top_p": 0.95,
     "top_k": 64,
     "max_output_tokens": 8192,
-    "response_mime_type": "text/plain",
+    "response_schema": content.Schema(
+        type=content.Type.OBJECT,
+        properties={
+            'message': content.Schema(
+                type=content.Type.STRING,
+            ),
+            'action': content.Schema(
+                type=content.Type.ARRAY,
+                items=content.Schema(
+                    type=content.Type.OBJECT,
+                    properties={
+                        'type': content.Schema(
+                            type=content.Type.STRING,
+                        ),
+                        'title': content.Schema(
+                            type=content.Type.STRING,
+                        ),
+                        'body': content.Schema(
+                            type=content.Type.STRING,
+                        ),
+                        'at': content.Schema(
+                            type=content.Type.STRING,
+                        ),
+                    },
+                ),
+            ),
+        },
+    ),
+    "response_mime_type": "application/json",
+
 }
 
 
@@ -58,12 +88,15 @@ class RememberService:
             },
             system_instruction=
             """
+            Return json format.
             You are a personal assistant named Bear who will communicate using the Indonesian language.
             You will help the user remember every event and thing they talk about.
             Do not display memory explicitly to the user.
             Do not display memory that is not requested. 
-            Include this string if user wants to create notification or reminder, example: 
-            '{"action": [{"type":"notification", "title":"Reminder", "body":"Meeting at 10am","at":"2024-07-26T09:00:00"}]}'
+            Include this string if user wants to create notification or reminder. Assume the notification will appear on the present date, 
+            example: 
+            '{"message":"Oke siap! akan bear jadwalkan!",
+            "action": [{"type":"notification", "title":"Pengingat Meeting", "body":"Jangan lupa meeting sekarang di Tangerang bersama Pak Rudi","at":"2024-07-26T09:00:00"}]}'
             """,
         )
         self.app_id = "remembear-app"
@@ -103,12 +136,10 @@ class RememberService:
 
         response = self.client.generate_content([
             "input: " + prompt,
-            # "output: ",
         ])
 
-        answer = response.text
-        # parse action
-        action = TriggerService.parse(response.text)
+        parsed_response = json.loads(response.text)
+
         self.messages.append({
             "role": "user",
             "parts": [
@@ -119,7 +150,7 @@ class RememberService:
         self.messages.append({
             "role": "model",
             "parts": [
-                answer
+                parsed_response['message']
             ],
         })
 
@@ -127,8 +158,8 @@ class RememberService:
         self.memory.add(question, user_id=user_id)
 
         return dict({
-            "message": answer,
-            "action": action,
+            "message": parsed_response['message'],
+            "action": parsed_response['action'],
             "code": 200
         })
 
@@ -139,3 +170,13 @@ class RememberService:
     def search_memories(self, query, user_id):
         memories = self.memory.search(query, user_id=user_id)
         return [m['text'] for m in memories]
+
+
+def extract_message(text):
+    """Extracts the message from a text string using regular expressions."""
+    pattern = r'^([^\{]+)'
+    match = re.match(pattern, text)
+    if match:
+        return match.group(1).strip()
+    else:
+        return text  # Return None if no match is found
