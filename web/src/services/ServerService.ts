@@ -30,7 +30,9 @@ async function ask(prompt: string) {
 
     if (payload.action) {
       for (const action of payload.action) {
-        Notify(action.title, action.body);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        Notify(action.title, action.body, new Date(action.at));
       }
     }
     return payload;

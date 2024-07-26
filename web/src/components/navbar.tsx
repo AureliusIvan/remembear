@@ -1,10 +1,23 @@
-import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
+'use client';
+
+import React from 'react'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/ui/sheet";
 import {LuMenu} from "react-icons/lu";
-import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
 function Navbar() {
-  return <div
+  const router = useRouter()
+
+  return <form
       className={"w-full p-6"}
   >
     {/* side menu */}
@@ -19,27 +32,41 @@ function Navbar() {
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Remembear</SheetTitle>
-          {/*<SheetDescription>*/}
-          {/*</SheetDescription>*/}
-          <Link
-              href={"/"}
-              className={buttonVariants({variant: "outline"})}>
-            Home
-          </Link>
-          <Link
-              href={"/setting"}
-              className={buttonVariants({variant: "outline"})}>
-            Setting
-          </Link>
-          <Link
-              href={"/integration"}
-              className={buttonVariants({variant: "outline"})}>
-            Integration
-          </Link>
+          <SheetDescription>
+            List of menu
+          </SheetDescription>
+          <SheetClose asChild>
+            <Button
+                onClick={() => router.push('/')}
+                type={'submit'}
+                variant={'outline'}
+            >
+              Home
+            </Button>
+          </SheetClose>
+          <SheetClose asChild>
+            <Button
+                onClick={() => router.push('/integration')}
+                type={'submit'}
+                variant={'outline'}
+            >
+              Integration
+            </Button>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <Button
+                onClick={() => router.push('/setting')}
+                type={'submit'}
+                variant={'outline'}
+            >
+              Setting
+            </Button>
+          </SheetClose>
         </SheetHeader>
       </SheetContent>
     </Sheet>
-  </div>
+  </form>
 }
 
 
