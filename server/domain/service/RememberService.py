@@ -72,6 +72,7 @@ class RememberService:
             one or more parts representing the content of the message.
 
     """
+
     def __init__(self):
         """
         Initialize the PersonalAI with memory configuration and Gemini client.
@@ -170,7 +171,7 @@ class RememberService:
         self.messages.append({
             "role": "model",
             "parts": [
-                parsed_response['message']
+                parsed_response.get('message', "")
             ],
         })
 
@@ -178,8 +179,8 @@ class RememberService:
         self.memory.add(question, user_id=user_id)
 
         return dict({
-            "message": parsed_response['message'],
-            "action": parsed_response['action'],
+            "message": parsed_response.get('message', ""),
+            "action": parsed_response.get('action', []),
             "code": 200
         })
 
