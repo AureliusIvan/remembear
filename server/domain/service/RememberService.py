@@ -99,7 +99,7 @@ class RememberService:
 
         self.memory = Memory.from_config(config)
         self.client = genai.GenerativeModel(
-            model_name="gemini-1.5-pro",
+            model_name="gemini-1.5-flash",
             generation_config=generation_config,
             safety_settings={
                 HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
