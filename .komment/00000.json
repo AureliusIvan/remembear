@@ -4,20 +4,20 @@
     "path": "server/main.py",
     "content": {
       "structured": {
-        "description": "A web server using FastAPI and initializes database schema from models. It includes two routers for handling user and remember routes respectively. The server allows CORS requests from specified origins and returns a \"hello world!\" message when accessing the root URL.",
+        "description": "A FastAPI application with CORS support and establishes a connection to a database using SQLAlchemy. It loads environment variables from a .env file, creates the database tables specified by the models, and sets up two routers for users and remember functionality.",
         "items": [
           {
-            "id": "86dd10b9-6c75-dca9-9e40-036760cf7a6c",
+            "id": "5c9be086-ff33-2989-ce4e-e7de5674988c",
             "ancestors": [],
-            "description": "Returns a JSON object with the message \"hello world!\" when accessed via an HTTP GET request to the root URL (\"/\") of a web application. This suggests that it serves as a simple, default endpoint for the application.",
+            "description": "Maps an HTTP GET request to the root URL (`\"/\"`) and returns a JSON response with a message `\"hello world!\"`. It is asynchronous, allowing it to run concurrently with other tasks.",
             "params": [],
             "returns": {
               "type_name": "Dict[str,str]",
-              "description": "A Python dictionary containing two key-value pairs: 'message' mapped to the string \"hello world!\"."
+              "description": "A dictionary containing a single key-value pair, where the key is 'message' and the value is the string 'hello world!'. This response will be returned as the HTTP response to GET requests made to the root URL."
             },
             "usage": {
               "language": "python",
-              "code": "import webbrowser\nwebbrowser.open('http://localhost:8000/')",
+              "code": "import webbrowser\nwebbrowser.open(\"http://localhost:8000/\")",
               "description": ""
             },
             "name": "root",

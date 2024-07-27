@@ -36,13 +36,14 @@ app.include_router(remember)
 @app.get("/")
 async def root():
     """
-    Returns a JSON object with the message "hello world!" when accessed via an
-    HTTP GET request to the root URL ("/") of a web application. This suggests
-    that it serves as a simple, default endpoint for the application.
+    Maps an HTTP GET request to the root URL (`"/"`) and returns a JSON response
+    with a message `"hello world!"`. It is asynchronous, allowing it to run
+    concurrently with other tasks.
 
     Returns:
-        Dict[str,str]: A Python dictionary containing two key-value pairs: 'message'
-        mapped to the string "hello world!".
+        Dict[str,str]: A dictionary containing a single key-value pair, where the
+        key is 'message' and the value is the string 'hello world!'. This response
+        will be returned as the HTTP response to GET requests made to the root URL.
 
     """
     return {"message": "hello world!"}
