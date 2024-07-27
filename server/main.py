@@ -1,13 +1,18 @@
 import os
-import httpx
-import backoff
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from server.domain.service.RememberService import RememberService
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
+from server import models
+from server.database import engine
 
-load_dotenv()
+from server.routers import users
+from server.routers import remember
+
+load_dotenv(find_dotenv())
+
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 origins = [
@@ -24,21 +29,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(users)
+app.include_router(remember)
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello!"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
-
-@backoff.on_exception(backoff.expo, httpx.RequestError, max_time=60)
-@app.get("/ask/{prompt}")
-async def ask(prompt: str):
-    ai = RememberService()
-    response = await ai.ask(prompt)
-    return response
+    return {"message": "hello world!"}

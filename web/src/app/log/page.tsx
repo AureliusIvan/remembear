@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Log() {
+export default function Log(): React.ReactElement {
   return (
       <section>
 
