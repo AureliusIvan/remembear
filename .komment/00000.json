@@ -292,5 +292,42 @@
         ]
       }
     }
+  },
+  {
+    "name": "main.py",
+    "path": "server/main.py",
+    "content": {
+      "structured": {
+        "description": "A web application using FastAPI framework and connects it to a database. The app is configured for CORS (Cross-Origin Resource Sharing) to allow communication with a frontend running on different origins. It includes multiple routers handling different routes and returns a \"hello world!\" message when the root route is accessed.",
+        "items": [
+          {
+            "id": "e649a1f3-9a19-e4ac-6745-7dcd15956095",
+            "ancestors": [],
+            "description": "Handles GET requests to the root URL (\"/\") and returns a JSON response with the message \"hello world!\".",
+            "params": [],
+            "returns": {
+              "type_name": "Dict[str,str]",
+              "description": "A dictionary with a single key-value pair, where the key is `\"message\"` and the value is the string `\"hello world!\"`."
+            },
+            "usage": {
+              "language": "python",
+              "code": "import webbrowser\n\nwebbrowser.open(\"http://localhost:8000/\")",
+              "description": ""
+            },
+            "name": "root",
+            "location": {
+              "start": 36,
+              "insert": 38,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 3,
+            "docLength": null
+          }
+        ]
+      }
+    }
   }
 ]
