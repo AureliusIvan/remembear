@@ -19,10 +19,10 @@ async function ask(prompt: string) {
     const response = await fetch(
         `${SERVER_URL}/ask/${prompt} + ", current_datetime: " + ${new Date(Date.now()).toISOString()}`,
         {
-          method: 'GET',
-          mode: "cors",
+          method: 'GET'
         }
     );
+
 
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
@@ -33,15 +33,16 @@ async function ask(prompt: string) {
 
     if (payload.action) {
       for (const action of payload.action) {
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        Notify(action.title, action.body, new Date(action.at));
+        if (action.at) {
+          await Notify(action.title,
+              action.body,
+              new Date(action.at.toString())
+          );
+        }
       }
     }
 
     return payload;
-
   } catch (error) {
     console.error("Fetch error: ", error);
   }
@@ -52,8 +53,7 @@ async function ask(prompt: string) {
 async function getMemories() {
   try {
     const response = await fetch(`${SERVER_URL}/memory/get`, {
-      method: 'GET',
-      mode: "cors",
+      method: 'GET'
     });
 
     if (!response.ok) {
@@ -61,8 +61,10 @@ async function getMemories() {
     }
 
     // parse payload to json
-    const payload: askPayloadType = await response.json();
-    return payload as unknown as string[];
+    const payload: string[] = await response.json();
+
+    // reverse
+    return payload.reverse();
 
   } catch (error) {
     console.error("Fetch error: ", error);

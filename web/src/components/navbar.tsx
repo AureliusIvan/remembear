@@ -19,62 +19,77 @@ import {BiMemoryCard} from "react-icons/bi";
 function Navbar(): React.ReactElement {
   const router = useRouter()
 
-  return <div
-      className={"w-full px-6 pt-5 pb-[10px] flex flex-row"}
-  >
-    {/* side menu */}
-    <Sheet>
+  return (
+      <div
+          className={"w-full px-6 pt-5 pb-[10px] flex flex-row gap-1.5 justify-between items-center"}>
+        {/* side menu */}
+        <Sheet>
 
-      {/* side menu trigger */}
-      <SheetTrigger className={"h-[1.5rem] w-[2rem]"}>
-        <LuMenu width={10}/>
-      </SheetTrigger>
+          {/* side menu trigger */}
+          <SheetTrigger
+              className={buttonVariants({variant: 'ghost'})}>
+            <LuMenu width={10}/>
+          </SheetTrigger>
 
-      {/* side menu panel */}
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Remembear</SheetTitle>
-          <SheetDescription>
-            List of menu
-          </SheetDescription>
-          <SheetClose asChild>
-            <Button
-                onClick={() => router.push('/')}
-                type={'submit'}
-                variant={'outline'}
-            >
-              Home
-            </Button>
-          </SheetClose>
-          <SheetClose asChild>
-            <Button
-                onClick={() => router.push('/integration')}
-                type={'submit'}
-                variant={'outline'}
-            >
-              Integration
-            </Button>
-          </SheetClose>
+          {/* side menu panel */}
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Remembear</SheetTitle>
+              <SheetDescription>
+                Version {process.env.NEXT_PUBLIC_VERSION}
+              </SheetDescription>
+              <SheetClose asChild>
+                <Button
+                    onClick={() => router.push('/')}
+                    type={'submit'}
+                    variant={'outline'}
+                >
+                  Home
+                </Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button
+                    onClick={() => router.push('/integration')}
+                    type={'submit'}
+                    variant={'outline'}
+                >
+                  Integration
+                </Button>
+              </SheetClose>
 
-          <SheetClose asChild>
-            <Button
-                onClick={() => router.push('/setting')}
-                type={'submit'}
-                variant={'outline'}
-            >
-              Setting
-            </Button>
-          </SheetClose>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
+              <SheetClose asChild>
+                <Button
+                    onClick={() => router.push('/setting')}
+                    type={'submit'}
+                    variant={'outline'}
+                >
+                  Setting
+                </Button>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Button
+                    onClick={() => router.push('/login')}
+                    type={'submit'}
+                    variant={'outline'}
+                >
+                  Login
+                </Button>
+              </SheetClose>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
 
 
-    <Link href={"/memory"} className={buttonVariants({variant: "default"})}>
-      <BiMemoryCard/>
-    </Link>
+        <h1 className={'font-bold'}>
+          Bear
+        </h1>
 
-  </div>
+        <Link href={"/memory"} className={buttonVariants({variant: "ghost"})}>
+          <BiMemoryCard/>
+        </Link>
+
+      </div>)
 }
 
 

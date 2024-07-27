@@ -124,7 +124,7 @@ class RememberService:
             Include this string if user wants to create notification or reminder. Assume the notification will appear on the present date, 
             example: 
             '{"message":"Oke siap! akan bear jadwalkan!",
-            "action": [{"type":"notification", "title":"Pengingat Meeting", "body":"Jangan lupa meeting sekarang di Tangerang bersama Pak Rudi","at":"2024-07-26T09:00:00"}]}'
+            "action": [{"type":"notification", "title":"Pengingat Meeting", "body":"Jangan lupa meeting di Tangerang bersama Pak Rudi!","at":"2024-07-26T09:00:00"}]}'
             """,
         )
         self.app_id = "remembear-app"
