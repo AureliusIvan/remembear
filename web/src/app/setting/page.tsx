@@ -11,11 +11,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import {Button} from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import {ActionPerformed, PushNotifications, PushNotificationSchema} from "@capacitor/push-notifications";
 import {useToast} from "@/components/ui/use-toast"
 import {Capacitor} from "@capacitor/core";
 import {Notify} from "@/services/NotificationService";
+import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
+import {cn} from "@/lib/utils";
 
 
 /**
@@ -24,10 +26,10 @@ import {Notify} from "@/services/NotificationService";
  * with Apple/Google, and listens for registration success/failure, push notification
  * receipt, and action performed events.
  *
- * @returns {JSX.Element} A React component consisting of various HTML elements such
+ * @returns {React.ReactElement} A React component consisting of various HTML elements such
  * as `main`, `h1`, `Drawer`, `Button`, etc.
  */
-export default function Setting() {
+export default function Setting(): React.ReactElement {
   const {toast} = useToast()
   const nullEntry: unknown[] = []
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -35,6 +37,8 @@ export default function Setting() {
 
 
   React.useEffect(() => {
+    // Registers push notifications.
+
     // Initializes and registers push notifications if available.
 
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
@@ -45,8 +49,12 @@ export default function Setting() {
     PushNotifications.checkPermissions().then((res) => {
       // Handles push notifications permissions.
 
+      // Handles push notifications permissions.
+
       if (res.receive !== 'granted') {
         PushNotifications.requestPermissions().then((res) => {
+          // Handles push notification permissions.
+
           // Handles push notification permissions.
 
           if (res.receive === 'denied') {
@@ -87,6 +95,8 @@ export default function Setting() {
         (
             // token: Token
         ) => {
+          // Listens for push notification registration.
+
           // Listens for push notifications and displays a toast message on successful registration.
 
           toast({
@@ -98,6 +108,8 @@ export default function Setting() {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
+          // Handles push notification errors.
+
           // Handles errors.
 
           alert('Error on registration: ' + JSON.stringify(error));
@@ -107,6 +119,8 @@ export default function Setting() {
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
+          // Listens for push notifications.
+
           // Handles push notifications.
 
           setnotifications(notifications => [...notifications, {
@@ -121,6 +135,9 @@ export default function Setting() {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
+          // Handles push notifications by adding new notification data to an array and updating
+          // the UI.
+
           // Handles push notifications.
 
           setnotifications(notifications => [...notifications, {
@@ -134,15 +151,56 @@ export default function Setting() {
   }
 
   return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>
-          Setting
-        </h1>
+      <main className="flex flex-col items-center justify-between p-6 gap-6 w-full">
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Account</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>
+                Update your account settings here. You can also add custom end point here! (data will saved locally)
+              </p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'} variant={'secondary'}>
+                Logout
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Theme</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>Connect your Notion account to Remembear</p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'}>
+                Save
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
 
 
         {/*Drawer*/}
         <Drawer>
-          <DrawerTrigger>Open</DrawerTrigger>
+          <DrawerTrigger
+              className={buttonVariants({variant: 'default', size: 'lg', className: 'w-full'})}
+          >Save!</DrawerTrigger>
           <DrawerContent>
             <DrawerHeader>
               <DrawerTitle>Are you absolutely sure?</DrawerTitle>

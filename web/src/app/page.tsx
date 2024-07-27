@@ -9,6 +9,8 @@ import {useForm, SubmitHandler} from "react-hook-form"
 import {getObject, setObject} from "@/services/HistoryService";
 import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
+import {BiSolidSend} from "react-icons/bi";
+import {Keyboard} from "@capacitor/keyboard";
 
 ``
 type Inputs = {
@@ -30,7 +32,7 @@ type Chat = {
  * @returns {React.ReactElement} A JSX element representing the home page component
  * with a chat interface and a form to send messages.
  */
-export default function Home() {
+export default function Home(): React.ReactElement {
   const {toast} = useToast()
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -38,7 +40,20 @@ export default function Home() {
     register,
     handleSubmit,
     reset,
+    formState: {errors},
   } = useForm<Inputs>()
+  const chatHistoryRef = React.useRef<HTMLDivElement>(null)
+
+  /**
+   * @description Scrolls a scrollable element into view at its bottom position with a
+   * smooth animation, ensuring the content is fully visible to the user. It uses the
+   * `scrollIntoView` method and the `behavior: "smooth"` option for a seamless scrolling
+   * experience.
+   */
+  const scrollToBottom = () => {
+    chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
+  }
+
 
   /**
    * @description Handles user prompts by setting the UI to loading state, resetting
@@ -48,10 +63,11 @@ export default function Home() {
    *
    * @param {string} prompt - Used to send a message to be answered by the model.
    *
-   * @returns {undefined} Implicitly returned when the function completes its execution
+   * @returns {Promise<void>} Implicitly returned when the function completes its execution
    * without explicitly returning a value.
    */
-  const handleAsk = async (prompt: string) => {
+  const handleAsk = async (prompt: string): Promise<void> => {
+    scrollToBottom()
     setIsLoading(true)
     reset()
     setChat(prevChat => [...prevChat,
@@ -61,6 +77,8 @@ export default function Home() {
       const reply = await ask(prompt)
       if (reply) {
         setChat(prevChat => {
+          // Updates an array by appending a new object.
+
           // Appends new chat item.
 
           return [...prevChat, {role: "model", message: reply.message}];
@@ -81,6 +99,8 @@ export default function Home() {
   useEffect(() => {
     // Initializes and updates chat history state.
 
+    // Initializes and updates chat history state.
+
     if (chat.length > 0) {
       setObject("chat-history",
           {
@@ -91,11 +111,13 @@ export default function Home() {
        * @description Asynchronously retrieves chat history from storage, parses it as a
        * JSON object, and updates the `chat` state with the retrieved data.
        *
-       * @returns {undefined} Assigned to the state variable 'chat' after parsing JSON data
+       * @returns {Promise<void>} Assigned to the state variable 'chat' after parsing JSON data
        * into an array of objects conforming to the `Chat` interface.
        */
-      const fetchHistory = async () => {
+      const fetchHistory = async (): Promise<void> => {
         const data = await getObject("chat-history").then(data => {
+          // Retrieves and parses chat history.
+
           // Retrieves and parses chat history.
 
           return JSON.parse(data.data) as Chat[]
@@ -107,17 +129,39 @@ export default function Home() {
     }
   }, [chat]);
 
+
+  useEffect(() => {
+    // Displays a toasting message when errors exist.
+
+    if (errors.prompt) {
+      toast({
+        title: "Please enter a prompt"
+      })
+    }
+  }, [errors.prompt]);
+
+  useEffect(() => {
+    // Sets keyboard accessory bar visibility.
+
+    // check if keyboard is in web
+
+    // Keyboard.setAccessoryBarVisible({isVisible: true});
+  }, [Keyboard]);
+
+
   const onSubmit: SubmitHandler<Inputs> = (data) => handleAsk(data.prompt)
 
   return (
       <form
           onSubmit={handleSubmit(onSubmit)}
       >
-        <main className="flex h-full flex-col items-center justify-between p-6">
+        <main className="flex h-[80vh] flex-col items-center justify-between">
 
           {/* chat bubble */}
-          <ScrollArea className={"w-full h-[75vh]"}>
+          <ScrollArea className={"w-full h-[120vh] px-6"}>
             {chat.map((data: Chat, index: number) => {
+              // Renders chat messages.
+
               // Maps over a chat array and renders a message for each item.
 
               const isUser = data.role === "user"; // Check if the message is from the user
@@ -136,31 +180,44 @@ export default function Home() {
                   </div>
               );
             })}
+
+
+            {/* status loading */}
+            {isLoading && (
+                <div className={""}>
+                  Loading...
+                </div>
+            )}
+
+            {/*spacer*/}
+            <div
+                className={'m-[10vh]'}/>
+
+            {/* mark bottom chat */}
+            <div
+                ref={chatHistoryRef}
+            />
           </ScrollArea>
 
-          {/* status loading */}
-          {isLoading && (
-              <div className={""}>
-                Loading...
-              </div>
-          )}
 
-          <div className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
+          {/* type area */}
+          <section className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
             <Textarea
-                {...register("prompt")}
-                name={"prompt"}
+                id={"prompt"}
                 className={"w-full"}
-                placeholder={"Enter message here"}>
+                placeholder={"Enter message here"}
+                cols={20}
+                aria-invalid={errors.prompt ? "true" : "false"}
+                {...register("prompt", {required: true, maxLength: 250})}
+            >
             </Textarea>
+
             <Button
-                onClick={() => {
-                  setIsLoading(true)
-                }}
                 type={"submit"}
             >
-              send
+              <BiSolidSend/>
             </Button>
-          </div>
+          </section>
 
         </main>
       </form>

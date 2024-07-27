@@ -1,13 +1,14 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-27T17:25:53.064Z",
+    "updated_at": "2024-07-27T20:17:24.150Z",
     "created_at": "2024-07-26T12:36:31.817Z",
     "pipelines": [
       "acbdd4d4-6b90-4370-ada5-4009b94674bf",
       "22ba0bc7-42cb-4d21-a711-9c8ac1922e39",
       "3a980873-81f6-467b-a876-70823182e3b8",
-      "f09507ef-f7de-4aa6-aff7-671fdc5df4e4"
+      "f09507ef-f7de-4aa6-aff7-671fdc5df4e4",
+      "0168ec75-fe76-4103-9ecf-ba33004ac110"
     ]
   },
   "lookup": [
@@ -23,7 +24,20 @@
       "web/src/stories/Page.stories.ts",
       "web/src/stories/Page.tsx",
       "web/src/components/navbar.tsx",
-      "server/main.py"
+      "server/main.py",
+      "web/src/services/integration/Calendar.ts",
+      "web/src/services/integration/Cloudinary.ts",
+      "web/src/services/integration/Firebase.ts",
+      "web/src/services/integration/Line.ts",
+      "web/src/services/integration/Notion.ts",
+      "web/src/services/integration/Telegram.ts",
+      "web/src/services/integration/Whatsapp.ts",
+      "server/models.py",
+      "web/src/app/integration/page.tsx",
+      "web/src/app/memory/page.tsx",
+      "web/src/app/page.tsx",
+      "web/src/app/setting/page.tsx",
+      "web/src/services/ServerService.ts"
     ]
   ]
 }

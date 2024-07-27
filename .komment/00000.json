@@ -4,7 +4,7 @@
     "path": "server/domain/service/RememberService.py",
     "content": {
       "structured": {
-        "description": "A class called RememberService that provides a conversational AI assistant named Bear to help users remember events and things they discuss. It uses a generative model from Google's generative ai package to respond to user questions and stores user conversations using a memory storage component. The service also allows searching of stored memories based on queries.",
+        "description": "A class called RememberService which provides a conversational AI assistant named Bear that helps users remember events and things they discuss. The service uses a generative model from Google's Gemini API to respond to user questions, stores user conversations using MemoryClient or Memory from configuration, and allows searching of stored memories.",
         "items": []
       }
     }
@@ -261,32 +261,32 @@
     "path": "web/src/components/navbar.tsx",
     "content": {
       "structured": {
-        "description": "A React component called Navbar that renders a navigation bar with multiple options. The component utilizes React's useNavigation hook from Next.js and Iconify library's LuMenu icon. The navigation bar includes a toggle button for displaying a side menu, which contains links to different routes in the application, including home, integration, and settings pages.",
+        "description": "A React component named `Navbar` that renders a navigation bar with various links and options. The component uses Next.js's `useRouter` hook to navigate between pages. It also employs `Sheet` component from \"react-sheets\" library to create a side menu with multiple sections, including title, description, close buttons, and navigation links to different routes.",
         "items": [
           {
-            "id": "91e74bf5-50c6-218f-b94b-ac1f74be25cd",
+            "id": "be30350a-b518-5bbe-a647-f8edd641ed06",
             "ancestors": [],
-            "description": "Renders a navigation bar containing a side menu, triggered by a button with an icon. The side menu includes a title, description, and close buttons leading to different routes ('/', '/integration', '/setting') using the `useRouter` hook from React Router.",
+            "description": "Generates a responsive navigation bar with a side menu, featuring buttons to navigate between different routes of an application, as well as a logo and a link to another route.",
             "params": [],
             "returns": {
               "type_name": "React.ReactElement",
-              "description": "A JSX element that represents a div with various child elements including a Sheet component, a SheetTrigger component, and other components such as LuMenu, Button, and Text."
+              "description": "A JSX element representing a container div with various child components including a side menu panel, navigation links and a title."
             },
             "usage": {
               "language": "typescript",
-              "code": "function App() {\n  return <Navbar />;\n}\n",
-              "description": "\nThis code renders the `Navbar` component within the `App` component."
+              "code": "function App(): React.ReactElement {\n  return <Navbar/>;\n}\n",
+              "description": ""
             },
             "name": "Navbar",
             "location": {
-              "start": 17,
-              "insert": 17,
+              "start": 19,
+              "insert": 19,
               "offset": " ",
               "indent": 0,
               "comment": null
             },
             "item_type": "function",
-            "length": 54,
+            "length": 75,
             "docLength": null
           }
         ]
@@ -324,6 +324,684 @@
             },
             "item_type": "function",
             "length": 3,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "Calendar.ts",
+    "path": "web/src/services/integration/Calendar.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint that interacts with a calendar API for managing calendar events. It allows users to create, update, and delete events using HTTP requests. The API utilizes RESTful architecture and is built upon the Express.js framework, leveraging its routing capabilities to handle incoming requests.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Cloudinary.ts",
+    "path": "web/src/services/integration/Cloudinary.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint in a backend application that interacts with the Cloudinary API for managing images. The endpoint handles create, update and delete operations on cloud-based image storage. It likely utilizes the Cloudinary SDK and HTTP requests to communicate with the Cloudinary service. The endpoint is expected to be integrated into a larger web application or RESTful API.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Firebase.ts",
+    "path": "web/src/services/integration/Firebase.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint that interacts with Firebase API to perform CRUD (create, read, update, delete) operations. It utilizes Firebase's SDK for interacting with its backend services. The endpoint is responsible for executing these operations and handling their respective responses.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Line.ts",
+    "path": "web/src/services/integration/Line.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint in a backend application that executes API calls for creating, updating, and deleting data. The endpoint is likely implemented using a web framework such as Express.js or Spring Boot, possibly utilizing RESTful APIs and HTTP methods like POST, PUT, and DELETE.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Notion.ts",
+    "path": "web/src/services/integration/Notion.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint in the backend that interacts with the Notion API. The endpoint enables create, update, and delete operations on Notion databases. It utilizes the notion-fetch library for interacting with the Notion API.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Telegram.ts",
+    "path": "web/src/services/integration/Telegram.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint that integrates with the Telegram API for creating, updating, and deleting entities. The integration is likely facilitated through a library such as telegrafjs, allowing for seamless communication between the application and the Telegram servers.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "Whatsapp.ts",
+    "path": "web/src/services/integration/Whatsapp.ts",
+    "content": {
+      "structured": {
+        "description": "An endpoint that interacts with WhatsApp API. It handles create, update, and delete operations for WhatsApp messages. The code utilizes RESTful architecture, utilizing HTTP requests and responses to manage communication with the WhatsApp API.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "models.py",
+    "path": "server/models.py",
+    "content": {
+      "structured": {
+        "description": "Two database tables using SQLAlchemy ORM. The first table represents a User entity with unique email and hashed password, while the second table represents a Token entity associated with a User. The association between the two entities is established through foreign key relationships. This setup allows for efficient retrieval of user-specific tokens in the database.",
+        "items": [
+          {
+            "id": "a09cfe24-7b69-229d-2b46-2f471d7e100b",
+            "ancestors": [],
+            "description": "Represents a user entity with unique fields such as email, hashed password, and an activity status. It has a one-to-many relationship with the `Token` class, allowing multiple tokens to be associated with each user.",
+            "attributes": [
+              {
+                "name": "__tablename__",
+                "type_name": "str",
+                "description": "Used to specify the name of the table where this class's instances will be stored. In this case, it is set to `\"users\"`, indicating that instances of the `User` class will be stored in a database table named \"users\"."
+              },
+              {
+                "name": "id",
+                "type_name": "Mapped[int]",
+                "description": "Mapped to a column named \"id\" in the table \"users\". It is declared as primary key, indicating that it uniquely identifies each row in the table."
+              },
+              {
+                "name": "email",
+                "type_name": "Mapped[str]",
+                "description": "Mapped to a column named \"email\" in the \"users\" table. It has two constraints: uniqueness and indexing, ensuring that each email address is unique and can be efficiently queried."
+              },
+              {
+                "name": "hashed_password",
+                "type_name": "Mapped[str]",
+                "description": "Mapped to a column in the \"users\" table. The hashed_password is not unique, does not have an index, and defaults to None when no value is provided."
+              },
+              {
+                "name": "is_active",
+                "type_name": "Mapped[bool]",
+                "description": "Initialized with a default value of True, indicating that the user account is active by default."
+              },
+              {
+                "name": "token",
+                "type_name": "Mapped[List[\"Token\"]]",
+                "description": "Referenced by a relationship with the \"Token\" class, indicating that a user has multiple tokens associated with them, and each token belongs to one specific user."
+              }
+            ],
+            "name": "User",
+            "location": {
+              "start": 11,
+              "insert": 12,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "class",
+            "length": 8,
+            "docLength": null
+          },
+          {
+            "id": "53ee44a9-e02f-7daf-f64f-4073f2daf2fd",
+            "ancestors": [],
+            "description": "Defines a table for storing authentication tokens in a database, with unique access token and type, foreign key referencing the `users.id`, and a relationship with the `User` model for bidirectional linking.",
+            "attributes": [
+              {
+                "name": "__tablename__",
+                "type_name": "str",
+                "description": "Set to `\"tokens\"`, which specifies the name of the table in the database that this class represents."
+              },
+              {
+                "name": "id",
+                "type_name": "Mapped[int]",
+                "description": "Mapped to a column named \"id\" in the \"tokens\" table. It serves as the primary key for the table, ensuring each token has a unique identifier."
+              },
+              {
+                "name": "access_token",
+                "type_name": "Mapped[str]",
+                "description": "Mapped to a column named \"access_token\" in the \"tokens\" table, with unique constraint enforced on it."
+              },
+              {
+                "name": "token_type",
+                "type_name": "Mapped[str]",
+                "description": "Mapped to a column in the \"tokens\" table. It stores a string value without any constraints or defaults."
+              },
+              {
+                "name": "user_id",
+                "type_name": "Mapped[int]",
+                "description": "Mapped to a column in the database table named \"tokens\". It is a foreign key that references the \"id\" column in the \"users\" table."
+              },
+              {
+                "name": "user",
+                "type_name": "Mapped[\"User\"]",
+                "description": "Established through a relationship with the \"User\" class, using the foreign key \"id\" of the \"users\" table and populating it from the other side (\"back_populates\")."
+              }
+            ],
+            "name": "Token",
+            "location": {
+              "start": 21,
+              "insert": 22,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "class",
+            "length": 8,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "page.tsx",
+    "path": "web/src/app/integration/page.tsx",
+    "content": {
+      "structured": {
+        "description": "A reusable React component called \"Integration\" that renders a form containing a main section with an \"Integration\" heading and a list of links to external platforms (calendar, Whatsapp, Notion) wrapped in buttons. The links are styled using the `buttonVariants` function from the `@/components/ui/button` package.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "page.tsx",
+    "path": "web/src/app/memory/page.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component called Memory that fetches memories from a server using ServerService and renders them as an alert list with delete functionality. The component uses React Hooks for state management and useEffect for handling asynchronous operations. It also utilizes UI components like Alert, Button, and BiMemoryCard to render the memory cards.",
+        "items": [
+          {
+            "id": "8b9c2a4c-ca25-4a8f-6644-7333c30b0e20",
+            "ancestors": [],
+            "description": "Renders a form to display a list of memories and provide an option to delete them all. It fetches memories from an API, displaying a loading message while waiting for the response, and displays an error message if no memories are found or if there is an error during fetching.",
+            "params": [],
+            "returns": {
+              "type_name": "ReactNode",
+              "description": "A JSX element that represents a form with various sections including memory cards and buttons for deletion."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "function main() {\n  const App = () => <Memory />;\n  ReactDOM.render(<App />, document.getElementById(\"root\"));\n}\nmain();\n",
+              "description": "\n\nPlease note that this example uses React DOM library."
+            },
+            "name": "Memory",
+            "location": {
+              "start": 9,
+              "insert": 9,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 66,
+            "docLength": null
+          },
+          {
+            "id": "9630a409-17a4-f8a6-be4f-64bd812200b4",
+            "ancestors": [
+              "8b9c2a4c-ca25-4a8f-6644-7333c30b0e20"
+            ],
+            "description": "Fetches and sets memories.",
+            "name": null,
+            "location": {
+              "start": 13,
+              "insert": 14,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 13,
+            "docLength": null
+          },
+          {
+            "id": "756e9808-cc29-86b2-ca4d-7d5858cc64ad",
+            "ancestors": [
+              "8b9c2a4c-ca25-4a8f-6644-7333c30b0e20",
+              "9630a409-17a4-f8a6-be4f-64bd812200b4"
+            ],
+            "description": "Loads memories asynchronously, sets a loading state to true before making the request, and then updates the memory list with the received result if it is not empty. Finally, it sets the loading state back to false once the operation is complete.",
+            "params": [],
+            "usage": {
+              "language": "typescript",
+              "code": "fetch()\n",
+              "description": ""
+            },
+            "name": "fetch",
+            "location": {
+              "start": 14,
+              "insert": 14,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 9,
+            "docLength": null
+          },
+          {
+            "id": "fa3742cd-c178-0395-474e-17d5774d1732",
+            "ancestors": [
+              "8b9c2a4c-ca25-4a8f-6644-7333c30b0e20"
+            ],
+            "description": "Transforms memories array into React components.",
+            "name": null,
+            "location": {
+              "start": 33,
+              "insert": 34,
+              "offset": " ",
+              "indent": 16,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 13,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "page.tsx",
+    "path": "web/src/app/page.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component named Home that renders a real-time chat interface. The user can submit prompts and receive responses from a model in real-time. The UI updates dynamically as new messages are added or fetched from local storage using React Hook Form, Toast notifications, and Capacitor's Keyboard service.",
+        "items": [
+          {
+            "id": "7e64754e-b2da-8a9d-7748-f0c8d4bfaae9",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+            ],
+            "description": "Scrolls a scrollable element into view at its bottom position with a smooth animation, ensuring the content is fully visible to the user. It uses the `scrollIntoView` method and the `behavior: \"smooth\"` option for a seamless scrolling experience.",
+            "params": [],
+            "usage": {
+              "language": "typescript",
+              "code": "scrollToBottom()\n",
+              "description": "\nThis code snippet simply triggers the `scrollToBottom` function, scrolling the chat history to its bottom with a smooth animation."
+            },
+            "name": "scrollToBottom",
+            "location": {
+              "start": 47,
+              "insert": 47,
+              "offset": " ",
+              "indent": 2,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 3,
+            "docLength": null
+          },
+          {
+            "id": "54a87585-50ad-0dbb-6c4c-2c8cd1f4a0e7",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42",
+              "03e7b770-9b12-c9b3-d142-581e196a55b7"
+            ],
+            "description": "Updates an array by appending a new object.",
+            "name": null,
+            "location": {
+              "start": 73,
+              "insert": 74,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 5,
+            "docLength": null
+          },
+          {
+            "id": "ed868f75-cc5f-bda0-d645-b06ffa113be1",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+            ],
+            "description": "Initializes and updates chat history state.",
+            "name": null,
+            "location": {
+              "start": 91,
+              "insert": 92,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 28,
+            "docLength": null
+          },
+          {
+            "id": "f1810aca-53a9-3e88-d64c-36ae2b4bf5cb",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42",
+              "ed868f75-cc5f-bda0-d645-b06ffa113be1",
+              "57cb2aa7-6d9f-5fa9-f54c-63bab1ba6301"
+            ],
+            "description": "Retrieves and parses chat history.",
+            "name": null,
+            "location": {
+              "start": 108,
+              "insert": 109,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 5,
+            "docLength": null
+          },
+          {
+            "id": "d31f2586-320c-50af-a543-cbdbaf27f1b8",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+            ],
+            "description": "Displays a toasting message when errors exist.",
+            "name": null,
+            "location": {
+              "start": 121,
+              "insert": 122,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 7,
+            "docLength": null
+          },
+          {
+            "id": "76ba274f-9901-93be-d94c-07bc6e26edb8",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+            ],
+            "description": "Sets keyboard accessory bar visibility.",
+            "name": null,
+            "location": {
+              "start": 129,
+              "insert": 130,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 5,
+            "docLength": null
+          },
+          {
+            "id": "6a6860fa-fc9b-b7bb-2c40-7bf29e3ba061",
+            "ancestors": [
+              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+            ],
+            "description": "Renders chat messages.",
+            "name": null,
+            "location": {
+              "start": 146,
+              "insert": 147,
+              "offset": " ",
+              "indent": 14,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 19,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "page.tsx",
+    "path": "web/src/app/setting/page.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component, Setting, which manages and initializes push notifications for an application. It checks permissions, requests permission if necessary, registers with Apple/Google, listens for registration success/failure, push notification receipt, and action performed events using Capacitor's PushNotifications plugin. The component also displays various UI elements such as Drawer, Card, and Button.",
+        "items": [
+          {
+            "id": "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc"
+            ],
+            "description": "Registers push notifications.",
+            "name": null,
+            "location": {
+              "start": 39,
+              "insert": 40,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 31,
+            "docLength": null
+          },
+          {
+            "id": "a7a2aa7c-6f13-c98e-7e47-fa8673737b68",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2"
+            ],
+            "description": "Handles push notifications permissions.",
+            "name": null,
+            "location": {
+              "start": 47,
+              "insert": 48,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 22,
+            "docLength": null
+          },
+          {
+            "id": "66a5e7fb-7a81-7bbd-b146-6679fda630bf",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2",
+              "a7a2aa7c-6f13-c98e-7e47-fa8673737b68"
+            ],
+            "description": "Handles push notification permissions.",
+            "name": null,
+            "location": {
+              "start": 51,
+              "insert": 52,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 14,
+            "docLength": null
+          },
+          {
+            "id": "a29e321a-5e1a-288a-ad42-93b50c55530c",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "823b32d5-f338-7bac-9346-96e97236f2d8"
+            ],
+            "description": "Listens for push notification registration.",
+            "name": null,
+            "location": {
+              "start": 88,
+              "insert": 92,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 11,
+            "docLength": null
+          },
+          {
+            "id": "e6f0bd35-452b-75a7-a648-ef29feb31e60",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "823b32d5-f338-7bac-9346-96e97236f2d8"
+            ],
+            "description": "Handles push notification errors.",
+            "name": null,
+            "location": {
+              "start": 101,
+              "insert": 103,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 7,
+            "docLength": null
+          },
+          {
+            "id": "6ca9713a-b322-e987-a546-60eb12fdf188",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "823b32d5-f338-7bac-9346-96e97236f2d8"
+            ],
+            "description": "Listens for push notifications.",
+            "name": null,
+            "location": {
+              "start": 110,
+              "insert": 112,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 12,
+            "docLength": null
+          },
+          {
+            "id": "8b450f79-b5ba-2f92-4549-26504b6630bf",
+            "ancestors": [
+              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
+              "823b32d5-f338-7bac-9346-96e97236f2d8"
+            ],
+            "description": "Handles push notifications by adding new notification data to an array and updating the UI.",
+            "name": null,
+            "location": {
+              "start": 124,
+              "insert": 126,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 12,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ServerService.ts",
+    "path": "web/src/services/ServerService.ts",
+    "content": {
+      "structured": {
+        "description": "Two asynchronous functions: `ask` and `getMemories`. The `ask` function sends a GET request to a server, retrieves a JSON payload, and parses it into an `askPayloadType` object. It then uses the `Notify` service from the `NotificationService` package to display notifications based on the action items in the payload. The `getMemories` function fetches a list of memories from the server and returns them in reverse order.",
+        "items": [
+          {
+            "id": "b5175117-beea-29aa-0645-fe7e67be2aaf",
+            "ancestors": [],
+            "description": "Defines a set of optional properties for an object, namely: \n\ntype: A string property that can be optionally provided.\ntitle: A string property that can be optionally provided.\nbody: A string property that can be optionally provided.\nat: A string property that can be optionally provided.",
+            "name": "actionType",
+            "location": {
+              "start": 5,
+              "insert": 5,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 6,
+            "docLength": null
+          },
+          {
+            "id": "62c006d9-4f7f-e6b5-8149-b12f7c2b32ed",
+            "ancestors": [],
+            "description": "Defines an object with two properties: `message` and `action`. \n\nThe `message` property is required and has a type of `string`, which means it must be a string value.\n\nThe `action` property is optional (denoted by the `?`) and has a type of `actionType[]`, which implies that it can either be an empty array or an array of values of type `actionType`.",
+            "name": "askPayloadType",
+            "location": {
+              "start": 12,
+              "insert": 12,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 4,
+            "docLength": null
+          },
+          {
+            "id": "7bb4628f-3d95-8fac-db4d-e19b250ce196",
+            "ancestors": [],
+            "description": "Sends a GET request to a server with a given prompt and current date/time, parses the response as JSON, and if successful, executes notifications for any actions specified in the payload.",
+            "params": [
+              {
+                "name": "prompt",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Used to send a request to a server."
+              }
+            ],
+            "returns": {
+              "type_name": "object",
+              "description": "An instance of `askPayloadType`. The returned payload may include information such as notification actions and their corresponding dates."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "ask(\"What is your name?\");\n",
+              "description": ""
+            },
+            "name": "ask",
+            "location": {
+              "start": 17,
+              "insert": 17,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 34,
+            "docLength": null
+          },
+          {
+            "id": "abefec69-18c1-7dac-3a45-3b2d0ebe3ead",
+            "ancestors": [],
+            "description": "Makes a GET request to a server to retrieve memories, parses the response payload as JSON, and reverses the resulting array if successful; it catches and logs any errors that occur during the process.",
+            "params": [],
+            "returns": {
+              "type_name": "string[]",
+              "description": "Reversed version of the response payload received from the server after a successful GET request."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "getMemories().then((memories) => { \n    memories.forEach(memory => console.log(memory)); \n});\n",
+              "description": ""
+            },
+            "name": "getMemories",
+            "location": {
+              "start": 53,
+              "insert": 53,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 20,
             "docLength": null
           }
         ]
