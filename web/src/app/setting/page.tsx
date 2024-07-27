@@ -11,11 +11,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import {Button} from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import {ActionPerformed, PushNotifications, PushNotificationSchema} from "@capacitor/push-notifications";
 import {useToast} from "@/components/ui/use-toast"
 import {Capacitor} from "@capacitor/core";
 import {Notify} from "@/services/NotificationService";
+import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
+import {cn} from "@/lib/utils";
 
 
 /**
@@ -134,15 +136,56 @@ export default function Setting(): React.ReactElement {
   }
 
   return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>
-          Setting
-        </h1>
+      <main className="flex flex-col items-center justify-between p-6 gap-6 w-full">
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Account</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>
+                Update your account settings here. You can also add custom end point here! (data will saved locally)
+              </p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'} variant={'secondary'}>
+                Logout
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Theme</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>Connect your Notion account to Remembear</p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'}>
+                Save
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
 
 
         {/*Drawer*/}
         <Drawer>
-          <DrawerTrigger>Open</DrawerTrigger>
+          <DrawerTrigger
+              className={buttonVariants({variant: 'default', size: 'lg', className: 'w-full'})}
+          >Save!</DrawerTrigger>
           <DrawerContent>
             <DrawerHeader>
               <DrawerTitle>Are you absolutely sure?</DrawerTitle>
