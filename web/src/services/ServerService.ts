@@ -16,7 +16,42 @@ interface askPayloadType {
 
 async function ask(prompt: string) {
   try {
-    const response = await fetch(`${SERVER_URL}/ask/${prompt} + ", current_datetime: " + ${new Date(Date.now()).toISOString()}`, {
+    const response = await fetch(
+        `${SERVER_URL}/ask/${prompt} + ", current_datetime: " + ${new Date(Date.now()).toISOString()}`,
+        {
+          method: 'GET',
+          mode: "cors",
+        }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    // parse payload to json
+    const payload: askPayloadType = await response.json();
+
+    if (payload.action) {
+      for (const action of payload.action) {
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        Notify(action.title, action.body, new Date(action.at));
+      }
+    }
+
+    return payload;
+
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+
+}
+
+
+async function getMemories() {
+  try {
+    const response = await fetch(`${SERVER_URL}/memory/get`, {
       method: 'GET',
       mode: "cors",
     });
@@ -27,23 +62,13 @@ async function ask(prompt: string) {
 
     // parse payload to json
     const payload: askPayloadType = await response.json();
-
-    if (payload.action) {
-      console.log("date now is ", new Date(Date.now()).toISOString())
-      for (const action of payload.action) {
-        console.log("date at is ", action.at)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        Notify(action.title, action.body, new Date(action.at));
-      }
-    }
-    return payload;
+    return payload as unknown as string[];
 
   } catch (error) {
     console.error("Fetch error: ", error);
   }
-
 }
+
 
 export type {
   askPayloadType,
@@ -51,5 +76,6 @@ export type {
 }
 
 export {
-  ask
+  ask,
+  getMemories
 }

@@ -100,3 +100,9 @@ litellm==1.42.1
 grpcio==1.65.1
 grpcio-status==1.62.2
 grpcio-tools==1.62.2
+psycopg2==2.9.9
+pyjwt==2.8.0
+sqlalchemy==2.0.31
+passlib==1.7.4
+fastapi-limiter==0.1.6
+redis==5.0.7

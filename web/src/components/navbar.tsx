@@ -11,14 +11,16 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import {LuMenu} from "react-icons/lu";
-import {Button} from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
+import {BiMemoryCard} from "react-icons/bi";
 
-function Navbar() {
+function Navbar(): React.ReactElement {
   const router = useRouter()
 
   return <div
-      className={"w-full p-6"}
+      className={"w-full px-6 pt-5 pb-[10px] flex flex-row"}
   >
     {/* side menu */}
     <Sheet>
@@ -66,6 +68,12 @@ function Navbar() {
         </SheetHeader>
       </SheetContent>
     </Sheet>
+
+
+    <Link href={"/memory"} className={buttonVariants({variant: "default"})}>
+      <BiMemoryCard/>
+    </Link>
+
   </div>
 }
 
