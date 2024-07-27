@@ -13,11 +13,12 @@ export const metadata: Metadata = {
   description: "An app for short term memory",
 };
 
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(
+    {
+      children,
+    }: Readonly<{
+      children: React.ReactNode;
+    }>) {
   return (
       <>
         <StrictMode>

@@ -24,10 +24,10 @@ import {Notify} from "@/services/NotificationService";
  * with Apple/Google, and listens for registration success/failure, push notification
  * receipt, and action performed events.
  *
- * @returns {JSX.Element} A React component consisting of various HTML elements such
+ * @returns {React.ReactElement} A React component consisting of various HTML elements such
  * as `main`, `h1`, `Drawer`, `Button`, etc.
  */
-export default function Setting() {
+export default function Setting(): React.ReactElement {
   const {toast} = useToast()
   const nullEntry: unknown[] = []
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
