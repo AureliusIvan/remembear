@@ -10,9 +10,11 @@ async function setObject(key: string, object: object) {
 // JSON "get" example
 const getObject = async (keyValue: string) => {
   const ret = await Preferences.get({key: keyValue});
+
   if (ret.value != null) {
     return JSON.parse(ret.value);
   }
+
   return {}
 }
 

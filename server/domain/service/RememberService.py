@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from google.ai.generativelanguage_v1beta.types import content
-import re
 import json
 
 load_dotenv()
@@ -147,7 +146,7 @@ class RememberService:
             },
         ]
 
-    async def ask(self, question, user_id=1):
+    async def ask(self, question, user_id="1"):
         """
         Generate response based on prompt. Will invoke qdrant and LLM
 
