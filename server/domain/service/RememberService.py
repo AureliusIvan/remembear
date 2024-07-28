@@ -210,8 +210,7 @@ class RememberService:
         print(memories)
         if self.memoryType == 'memory-client':
             return [m['memory'] for m in memories]
-        else:
-            return [m['text'] for m in memories]
+        return [m['text'] for m in memories]
 
     def search_memories(self, query, user_id):
         """
@@ -234,5 +233,4 @@ class RememberService:
         memories = self.memory.search(query, user_id=user_id)
         if self.memoryType == 'memory-client':
             return [m['memory'] for m in memories]
-        else:
-            return [m['text'] for m in memories]
+        return [m['text'] for m in memories]

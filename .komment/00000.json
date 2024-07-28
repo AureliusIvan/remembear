@@ -4,7 +4,7 @@
     "path": "server/domain/service/RememberService.py",
     "content": {
       "structured": {
-        "description": "A class called RememberService which provides a conversational AI assistant named Bear that helps users remember events and things they discuss. The service uses a generative model from Google's Gemini API to respond to user questions, stores user conversations using MemoryClient or Memory from configuration, and allows searching of stored memories.",
+        "description": "A conversational AI assistant named Bear that helps users remember events and things they discuss. It uses the Gemini generative model to respond to user questions, stores user conversations in memory, and allows searching of stored memories. The service initializes with configuration files for memory storage and Gemini client, which provides functionality to store and retrieve user memories and generate human-like responses to user input.",
         "items": []
       }
     }
