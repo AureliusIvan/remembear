@@ -46,7 +46,7 @@ nbclient==0.10.0
 nbconvert==7.16.4
 nbformat==5.10.4
 numpy==2.0.1
-openai==1.37.0
+openai==1.37.1
 packaging==24.1
 pandocfilters==1.5.1
 parso==0.8.4
@@ -98,7 +98,7 @@ google-ai-generativelanguage==0.6.7
 google-generativeai==0.7.2
 litellm==1.42.5
 grpcio==1.65.1
-grpcio-status==1.62.2
+grpcio-status==1.65.1
 grpcio-tools==1.62.2
 psycopg2==2.9.9
 pyjwt==2.8.0
