@@ -1,4 +1,6 @@
 import {LocalNotifications, PermissionStatus} from "@capacitor/local-notifications";
+import {Capacitor} from "@capacitor/core";
+import {useEffect} from "react";
 
 /**
  * @description Defines a set of properties that an object must have in order to be
@@ -35,7 +37,14 @@ async function Notify(
     body = "Remembear to wash your hand",
     at = new Date(Date.now() + 1000 * 10)
 ) {
-  let localNotificationPermission: PermissionStatus = await LocalNotifications.checkPermissions()
+  const isPlatformAvailable = Capacitor.getPlatform()
+  console.log(isPlatformAvailable)
+  if (isPlatformAvailable !== "web") {
+    console.log("LocalNotifications not available")
+    return
+  }
+
+  let localNotificationPermission: PermissionStatus = await LocalNotifications.checkPermissions().then()
 
   // make sure permission for notification is granted
   if (localNotificationPermission.display !== "granted") {
@@ -44,8 +53,6 @@ async function Notify(
       return
     }
   }
-
-  console.log("notification was triggered")
 
   await LocalNotifications.createChannel({
     id: "1234",
@@ -60,16 +67,19 @@ async function Notify(
   return await LocalNotifications.schedule({
     notifications: [
       {
+        // TODO: add more appropriate id
+        id: Math.floor(Math.random() * 101),
         channelId: "1234",
         title: title,
         body: body,
-        id: 1,
         schedule: {
           at: at,
-          allowWhileIdle: true
+          allowWhileIdle: true,
         },
         actionTypeId: '1234',
-        extra: null,
+        extra: (at.getTime() - Date.now()).toString(),
+        summaryText: 'You have %n% notifications',
+        sound: "nyah.wav"
       }
     ]
   });
