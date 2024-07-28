@@ -160,6 +160,27 @@ export default function Setting(): React.ReactElement {
           </Card>
         </form>
 
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Conversation</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>Delete all conversation data</p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'}>
+                Delete
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
+
         <form>
           <Card className={cn("w-full")}>
 

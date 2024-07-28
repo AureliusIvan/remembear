@@ -23,7 +23,6 @@ async function ask(prompt: string) {
         }
     );
 
-
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
@@ -31,10 +30,12 @@ async function ask(prompt: string) {
     // parse payload to json
     const payload: askPayloadType = await response.json();
 
+    // execute actions
     if (payload.action) {
       for (const action of payload.action) {
         if (action.at) {
-          await Notify(action.title,
+          // leave it without wait, or else the notif won't work
+          Notify(action.title,
               action.body,
               new Date(action.at.toString())
           );
@@ -46,7 +47,6 @@ async function ask(prompt: string) {
   } catch (error) {
     console.error("Fetch error: ", error);
   }
-
 }
 
 

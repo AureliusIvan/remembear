@@ -1,0 +1,14 @@
+version = 1
+exclude_patterns = [
+    "bin/**",
+    "**/node_modules/",
+    "js/**/*.min.js"
+]
+
+[[analyzers]]
+name = "python"
+enabled = true
+dependency_file_paths = [
+    "requirements.txt",
+    "Pipfile"
+]
