@@ -2,7 +2,6 @@
 
 import React from 'react'
 import {Button} from "@/components/ui/button";
-import {Textarea} from "@/components/ui/textarea";
 import {ask} from "@/services/ServerService";
 import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
@@ -11,15 +10,22 @@ import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
 import {Keyboard} from "@capacitor/keyboard";
+import {Input} from "@/components/ui/input";
 
 ``
 type Inputs = {
   prompt: string
 }
 
+type Action = {
+  actionType: 'reminder' | 'notion'
+  description: string
+}
+
 type Chat = {
   role: "user" | "model"
   message: string
+  action?: Action[]
 }
 
 
@@ -33,6 +39,7 @@ type Chat = {
  * with a chat interface and a form to send messages.
  */
 export default function Home(): React.ReactElement {
+  // Register All the hooks
   const {toast} = useToast()
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -44,16 +51,14 @@ export default function Home(): React.ReactElement {
   } = useForm<Inputs>()
   const chatHistoryRef = React.useRef<HTMLDivElement>(null)
 
+  // function to scroll to bottom (used to scroll to the bottom of the chat)
   /**
-   * @description Scrolls a scrollable element into view at its bottom position with a
-   * smooth animation, ensuring the content is fully visible to the user. It uses the
-   * `scrollIntoView` method and the `behavior: "smooth"` option for a seamless scrolling
-   * experience.
+   * @description Scrolls a HTML element, referenced by `chatHistoryRef`, into view
+   * from its current position to the bottom of the viewport, with smooth animation behavior.
    */
   const scrollToBottom = () => {
     chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
   }
-
 
   /**
    * @description Handles user prompts by setting the UI to loading state, resetting
@@ -67,23 +72,45 @@ export default function Home(): React.ReactElement {
    * without explicitly returning a value.
    */
   const handleAsk = async (prompt: string): Promise<void> => {
+    /**
+     * @description Scrolls to the bottom of the chat history, sets the loading state to
+     * `true`, resets the form, and adds the user chat to the chat history. It then invokes
+     * the model, and updates the chat history with the model's response or an error message,
+     * and sets the loading state back to `false`.
+     *
+     * @returns {Promise<void>} Implicitly returned when the function completes its execution
+     * without explicitly returning a value.
+     */
     scrollToBottom()
     setIsLoading(true)
     reset()
+
+    // add user chat to the chat history
     setChat(prevChat => [...prevChat,
       {role: "user", message: prompt}]
     );
+
+    // invoke the model
     try {
       const reply = await ask(prompt)
       if (reply) {
-        setChat(prevChat => {
-          // Updates an array by appending a new object.
+        setChat((prevChat: Chat[]) => {
+          // Concatenates chat items.
 
           // Appends new chat item.
-
-          return [...prevChat, {role: "model", message: reply.message}];
+          return [...prevChat,
+            {
+              role: "model",
+              message: reply.message,
+              action: [{
+                actionType: 'reminder',
+                description: 'reminder to do something'
+              }]
+            }
+          ];
         });
       }
+
     } catch (Error) {
       console.error(Error)
       toast({
@@ -95,16 +122,33 @@ export default function Home(): React.ReactElement {
     }
   }
 
+  // useEffect List
+  useEffect(() => {
+    // Scrolls to the bottom on initialization.
+
+    // scroll to bottom when chat at initial loads
+    scrollToBottom()
+  }, []);
 
   useEffect(() => {
-    // Initializes and updates chat history state.
+    // Saves or retrieves chat history state.
 
     // Initializes and updates chat history state.
-
     if (chat.length > 0) {
-      setObject("chat-history",
+      setObject(
+          "chat-history",
           {
             data: JSON.stringify(chat)
+          })
+          .then(() => {
+            // Logs "chat saved" to the console.
+
+            console.log("chat saved")
+          })
+          .catch((error) => {
+            // Logs error to console.
+
+            console.error(error)
           })
     } else {
       /**
@@ -131,7 +175,7 @@ export default function Home(): React.ReactElement {
 
 
   useEffect(() => {
-    // Displays a toasting message when errors exist.
+    // Displays a Toast notification.
 
     if (errors.prompt) {
       toast({
@@ -141,14 +185,16 @@ export default function Home(): React.ReactElement {
   }, [errors.prompt]);
 
   useEffect(() => {
-    // Sets keyboard accessory bar visibility.
+    // Runs after each dependency changes.
 
+    // TODO: implement keyboard resize screen
     // check if keyboard is in web
 
     // Keyboard.setAccessoryBarVisible({isVisible: true});
   }, [Keyboard]);
 
 
+  // submit handler
   const onSubmit: SubmitHandler<Inputs> = (data) => handleAsk(data.prompt)
 
   return (
@@ -168,12 +214,13 @@ export default function Home(): React.ReactElement {
 
               return (
                   <div key={index} className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}>
-                    <div className={`
-            ${isUser ? 'bg-blue-500' : 'bg-gray-200'} 
-            ${isUser ? 'text-white' : 'text-gray-800'}
-            p-2 rounded-lg max-w-xs
-            ${isUser ? 'rounded-br-none' : 'rounded-bl-none'}
-          `}
+                    <div
+                        className={`
+                        ${isUser ? 'bg-blue-500' : 'bg-gray-200'} 
+                        ${isUser ? 'text-white' : 'text-gray-800'} 
+                        p-2 rounded-lg max-w-xs
+                        ${isUser ? 'rounded-br-none' : 'rounded-bl-none'}
+                        `}
                     >
                       {data.message}
                     </div>
@@ -181,11 +228,19 @@ export default function Home(): React.ReactElement {
               );
             })}
 
-
             {/* status loading */}
             {isLoading && (
-                <div className={""}>
-                  Loading...
+                <div className={`flex 'justify-start my-2`}>
+                  <div
+                      className={`
+                      bg-gray-200 
+                      text-gray-800
+                      p-2 rounded-lg max-w-xs
+                      rounded-bl-none
+                      `}
+                  >
+                    Loading...
+                  </div>
                 </div>
             )}
 
@@ -200,18 +255,24 @@ export default function Home(): React.ReactElement {
           </ScrollArea>
 
 
-          {/* type area */}
+          {/**
+           * @description Renders a text area for user input and a button to submit the
+           * message. The text area is registered with the `react-hook-form` library and
+           * displays an error message if the user does not enter a prompt.
+           */}
           <section className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
-            <Textarea
+            <Input
+                type={"text"}
+                onFocusCapture={scrollToBottom}
                 id={"prompt"}
-                className={"w-full"}
+                className={"w-full h-fit resize-y"}
                 placeholder={"Enter message here"}
-                cols={20}
                 aria-invalid={errors.prompt ? "true" : "false"}
                 {...register("prompt", {required: true, maxLength: 250})}
             >
-            </Textarea>
+            </Input>
 
+            {/* Submit Button */}
             <Button
                 type={"submit"}
             >

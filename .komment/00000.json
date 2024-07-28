@@ -620,24 +620,24 @@
     "path": "web/src/app/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component named Home that renders a real-time chat interface. The user can submit prompts and receive responses from a model in real-time. The UI updates dynamically as new messages are added or fetched from local storage using React Hook Form, Toast notifications, and Capacitor's Keyboard service.",
+        "description": "A React functional component called Home that renders a chat interface. It allows users to submit prompts and receive responses from a model. The component uses React Hook Form for form management and Toast UI for displaying error messages.",
         "items": [
           {
-            "id": "7e64754e-b2da-8a9d-7748-f0c8d4bfaae9",
+            "id": "e574610d-8240-28ae-434c-6624db761c0c",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
             ],
-            "description": "Scrolls a scrollable element into view at its bottom position with a smooth animation, ensuring the content is fully visible to the user. It uses the `scrollIntoView` method and the `behavior: \"smooth\"` option for a seamless scrolling experience.",
+            "description": "Scrolls a HTML element, referenced by `chatHistoryRef`, into view from its current position to the bottom of the viewport, with smooth animation behavior.",
             "params": [],
             "usage": {
               "language": "typescript",
-              "code": "scrollToBottom()\n",
-              "description": "\nThis code snippet simply triggers the `scrollToBottom` function, scrolling the chat history to its bottom with a smooth animation."
+              "code": "scrollToBottom();\n",
+              "description": ""
             },
             "name": "scrollToBottom",
             "location": {
-              "start": 47,
-              "insert": 47,
+              "start": 55,
+              "insert": 55,
               "offset": " ",
               "indent": 2,
               "comment": null
@@ -647,54 +647,111 @@
             "docLength": null
           },
           {
-            "id": "54a87585-50ad-0dbb-6c4c-2c8cd1f4a0e7",
+            "id": "4faed42f-a9c6-f79b-0f41-dbd76539c8a8",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42",
-              "03e7b770-9b12-c9b3-d142-581e196a55b7"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba",
+              "259e06c3-16b2-16bf-b541-173485688a42"
             ],
-            "description": "Updates an array by appending a new object.",
+            "description": "Concatenates chat items.",
             "name": null,
             "location": {
-              "start": 73,
-              "insert": 74,
+              "start": 93,
+              "insert": 94,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 5,
+            "length": 13,
             "docLength": null
           },
           {
-            "id": "ed868f75-cc5f-bda0-d645-b06ffa113be1",
+            "id": "50aa7bf6-3a0f-2cbc-6f44-eb94e3a75619",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
             ],
-            "description": "Initializes and updates chat history state.",
+            "description": "Scrolls to the bottom on initialization.",
             "name": null,
             "location": {
-              "start": 91,
-              "insert": 92,
+              "start": 120,
+              "insert": 121,
               "offset": " ",
               "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 28,
+            "length": 4,
             "docLength": null
           },
           {
-            "id": "f1810aca-53a9-3e88-d64c-36ae2b4bf5cb",
+            "id": "8fba4322-9375-32a9-e844-2ec75569c788",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42",
-              "ed868f75-cc5f-bda0-d645-b06ffa113be1",
-              "57cb2aa7-6d9f-5fa9-f54c-63bab1ba6301"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
+            ],
+            "description": "Saves or retrieves chat history state.",
+            "name": null,
+            "location": {
+              "start": 125,
+              "insert": 126,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 34,
+            "docLength": null
+          },
+          {
+            "id": "efdeff66-e305-6d85-874a-4e3d5d549693",
+            "ancestors": [
+              "ced6d0a8-83e3-0098-b348-26670475e5ba",
+              "8fba4322-9375-32a9-e844-2ec75569c788",
+              "c8863b7b-544f-8fb1-c745-a4b8720f439a"
+            ],
+            "description": "Logs \"chat saved\" to the console.",
+            "name": null,
+            "location": {
+              "start": 128,
+              "insert": 134,
+              "offset": " ",
+              "indent": 12,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 8,
+            "docLength": null
+          },
+          {
+            "id": "c8863b7b-544f-8fb1-c745-a4b8720f439a",
+            "ancestors": [
+              "ced6d0a8-83e3-0098-b348-26670475e5ba",
+              "8fba4322-9375-32a9-e844-2ec75569c788"
+            ],
+            "description": "Logs error to console.",
+            "name": null,
+            "location": {
+              "start": 128,
+              "insert": 137,
+              "offset": " ",
+              "indent": 12,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 11,
+            "docLength": null
+          },
+          {
+            "id": "cf6d1d07-4f0e-8bb9-954d-f23716763a4b",
+            "ancestors": [
+              "ced6d0a8-83e3-0098-b348-26670475e5ba",
+              "8fba4322-9375-32a9-e844-2ec75569c788",
+              "1c3663f0-ccde-d4a4-b241-a448c4b946ac"
             ],
             "description": "Retrieves and parses chat history.",
             "name": null,
             "location": {
-              "start": 108,
-              "insert": 109,
+              "start": 148,
+              "insert": 149,
               "offset": " ",
               "indent": 10,
               "comment": null
@@ -704,15 +761,15 @@
             "docLength": null
           },
           {
-            "id": "d31f2586-320c-50af-a543-cbdbaf27f1b8",
+            "id": "924a921b-adeb-fc94-1742-5fa504d6492e",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
             ],
-            "description": "Displays a toasting message when errors exist.",
+            "description": "Displays a Toast notification.",
             "name": null,
             "location": {
-              "start": 121,
-              "insert": 122,
+              "start": 161,
+              "insert": 162,
               "offset": " ",
               "indent": 4,
               "comment": null
@@ -722,39 +779,39 @@
             "docLength": null
           },
           {
-            "id": "76ba274f-9901-93be-d94c-07bc6e26edb8",
+            "id": "283994b5-e87c-36ad-d94a-8fb6ad04a207",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
             ],
-            "description": "Sets keyboard accessory bar visibility.",
+            "description": "Runs after each dependency changes.",
             "name": null,
             "location": {
-              "start": 129,
-              "insert": 130,
+              "start": 169,
+              "insert": 170,
               "offset": " ",
               "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 5,
+            "length": 6,
             "docLength": null
           },
           {
-            "id": "6a6860fa-fc9b-b7bb-2c40-7bf29e3ba061",
+            "id": "45b10cb2-95fa-088c-7847-c8677582159f",
             "ancestors": [
-              "59428a82-2999-80ad-8945-b3d07e5e3e42"
+              "ced6d0a8-83e3-0098-b348-26670475e5ba"
             ],
             "description": "Renders chat messages.",
             "name": null,
             "location": {
-              "start": 146,
-              "insert": 147,
+              "start": 188,
+              "insert": 189,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 19,
+            "length": 20,
             "docLength": null
           }
         ]
@@ -766,14 +823,14 @@
     "path": "web/src/app/setting/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component, Setting, which manages and initializes push notifications for an application. It checks permissions, requests permission if necessary, registers with Apple/Google, listens for registration success/failure, push notification receipt, and action performed events using Capacitor's PushNotifications plugin. The component also displays various UI elements such as Drawer, Card, and Button.",
+        "description": "A React component that handles push notifications in an application using the Capacitor and PushNotifications plugins. It initializes and registers for push notifications, listens for registration success/failure, push notification receipt, and action performed events, and updates local notifications state accordingly. The component also includes various HTML elements such as main, h1, Drawer, Button, etc., and utilizes other packages like Toast, NotificationService, Card, and more to provide a comprehensive user interface.",
         "items": [
           {
-            "id": "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2",
+            "id": "a67c321d-8c30-ffa6-1d43-6559f5a3a096",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3"
             ],
-            "description": "Registers push notifications.",
+            "description": "Initializes and registers push notifications.",
             "name": null,
             "location": {
               "start": 39,
@@ -787,10 +844,10 @@
             "docLength": null
           },
           {
-            "id": "a7a2aa7c-6f13-c98e-7e47-fa8673737b68",
+            "id": "660a1765-2460-0e9b-7b48-deb51a5cffaa",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "a67c321d-8c30-ffa6-1d43-6559f5a3a096"
             ],
             "description": "Handles push notifications permissions.",
             "name": null,
@@ -806,11 +863,11 @@
             "docLength": null
           },
           {
-            "id": "66a5e7fb-7a81-7bbd-b146-6679fda630bf",
+            "id": "74954504-ec9a-14bd-704c-0201daf662f8",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "0b6ad8c1-1605-7c92-a84b-3b2a831de1d2",
-              "a7a2aa7c-6f13-c98e-7e47-fa8673737b68"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "a67c321d-8c30-ffa6-1d43-6559f5a3a096",
+              "660a1765-2460-0e9b-7b48-deb51a5cffaa"
             ],
             "description": "Handles push notification permissions.",
             "name": null,
@@ -826,12 +883,12 @@
             "docLength": null
           },
           {
-            "id": "a29e321a-5e1a-288a-ad42-93b50c55530c",
+            "id": "15c8d6cc-9328-6bbd-7846-9844bf9812f7",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "823b32d5-f338-7bac-9346-96e97236f2d8"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
             ],
-            "description": "Listens for push notification registration.",
+            "description": "Listens to push notification registrations.",
             "name": null,
             "location": {
               "start": 88,
@@ -845,12 +902,12 @@
             "docLength": null
           },
           {
-            "id": "e6f0bd35-452b-75a7-a648-ef29feb31e60",
+            "id": "e7610f3b-d50a-578a-024b-ea6a79f14bab",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "823b32d5-f338-7bac-9346-96e97236f2d8"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
             ],
-            "description": "Handles push notification errors.",
+            "description": "Handles registration errors.",
             "name": null,
             "location": {
               "start": 101,
@@ -864,12 +921,12 @@
             "docLength": null
           },
           {
-            "id": "6ca9713a-b322-e987-a546-60eb12fdf188",
+            "id": "05da43f4-2919-638b-434d-87b8fefe1c9d",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "823b32d5-f338-7bac-9346-96e97236f2d8"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
             ],
-            "description": "Listens for push notifications.",
+            "description": "Listens for push notifications and updates state.",
             "name": null,
             "location": {
               "start": 110,
@@ -883,12 +940,12 @@
             "docLength": null
           },
           {
-            "id": "8b450f79-b5ba-2f92-4549-26504b6630bf",
+            "id": "c2e4c319-cf00-fa9f-c444-1b63c14b493b",
             "ancestors": [
-              "48787a8e-7d4b-6c97-da4e-6dbde396a1dc",
-              "823b32d5-f338-7bac-9346-96e97236f2d8"
+              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
+              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
             ],
-            "description": "Handles push notifications by adding new notification data to an array and updating the UI.",
+            "description": "Handles push notifications by updating a notifications array.",
             "name": null,
             "location": {
               "start": 124,
@@ -910,12 +967,12 @@
     "path": "web/src/services/ServerService.ts",
     "content": {
       "structured": {
-        "description": "Two asynchronous functions: `ask` and `getMemories`. The `ask` function sends a GET request to a server, retrieves a JSON payload, and parses it into an `askPayloadType` object. It then uses the `Notify` service from the `NotificationService` package to display notifications based on the action items in the payload. The `getMemories` function fetches a list of memories from the server and returns them in reverse order.",
+        "description": "Two asynchronous functions, ask and getMemories, that interact with a server through HTTP requests using the fetch API. The ask function retrieves a payload from the server and executes actions defined in the payload by displaying notifications. The getMemories function retrieves an array of memory items from the server and reverses it before returning the result.",
         "items": [
           {
-            "id": "b5175117-beea-29aa-0645-fe7e67be2aaf",
+            "id": "6af35b10-bf8b-06aa-274f-bffbc7e98765",
             "ancestors": [],
-            "description": "Defines a set of optional properties for an object, namely: \n\ntype: A string property that can be optionally provided.\ntitle: A string property that can be optionally provided.\nbody: A string property that can be optionally provided.\nat: A string property that can be optionally provided.",
+            "description": "Defines a set of properties that can be used to describe an action. \n\nThe properties are:\n\n- `type`: optional, allows a string value;\n- `title`: optional, allows a string value;\n- `body`: optional, allows a string value;\n- `at`: optional, allows a string value;\n\nThis interface is designed to provide a structure for actions that require additional information beyond just the type of action. The presence or absence of these properties can be controlled by using optional types.",
             "name": "actionType",
             "location": {
               "start": 5,
@@ -929,9 +986,9 @@
             "docLength": null
           },
           {
-            "id": "62c006d9-4f7f-e6b5-8149-b12f7c2b32ed",
+            "id": "1ef7913d-e010-2199-3343-5c0e509be741",
             "ancestors": [],
-            "description": "Defines an object with two properties: `message` and `action`. \n\nThe `message` property is required and has a type of `string`, which means it must be a string value.\n\nThe `action` property is optional (denoted by the `?`) and has a type of `actionType[]`, which implies that it can either be an empty array or an array of values of type `actionType`.",
+            "description": "Defines a type that consists of two properties: `message` and `action`. \n\nThe `message` property is a string that represents the payload's message.\n\nThe `action` property, which is optional (indicated by the `?` symbol), is an array of `actionType` objects.",
             "name": "askPayloadType",
             "location": {
               "start": 12,
@@ -945,25 +1002,25 @@
             "docLength": null
           },
           {
-            "id": "7bb4628f-3d95-8fac-db4d-e19b250ce196",
+            "id": "4ffef678-7184-8694-be46-00f89718f253",
             "ancestors": [],
-            "description": "Sends a GET request to a server with a given prompt and current date/time, parses the response as JSON, and if successful, executes notifications for any actions specified in the payload.",
+            "description": "Sends a GET request to a server, retrieves a JSON response, and parses it into a payload. It then executes actions specified in the payload, which may include notifications with specific titles, bodies, and timestamps. If an error occurs, it logs the error to the console.",
             "params": [
               {
                 "name": "prompt",
                 "default_value": null,
                 "optional": false,
                 "type_name": "string",
-                "description": "Used to send a request to a server."
+                "description": "Used as part of the URL query."
               }
             ],
             "returns": {
               "type_name": "object",
-              "description": "An instance of `askPayloadType`. The returned payload may include information such as notification actions and their corresponding dates."
+              "description": "Parsed payload from JSON response if parsing was successful and no error occurred. If an error occurs during fetching, parsing or execution, it will return null."
             },
             "usage": {
               "language": "typescript",
-              "code": "ask(\"What is your name?\");\n",
+              "code": "ask(\"What is your name?\")\n",
               "description": ""
             },
             "name": "ask",
@@ -979,17 +1036,17 @@
             "docLength": null
           },
           {
-            "id": "abefec69-18c1-7dac-3a45-3b2d0ebe3ead",
+            "id": "12a190b5-c5c2-27a6-4442-8879676440f2",
             "ancestors": [],
-            "description": "Makes a GET request to a server to retrieve memories, parses the response payload as JSON, and reverses the resulting array if successful; it catches and logs any errors that occur during the process.",
+            "description": "Retrieves memories from a server, checks for network errors, parses the response payload to JSON, and reverses the resulting array before returning it. If an error occurs during this process, it logs the error to the console.",
             "params": [],
             "returns": {
               "type_name": "string[]",
-              "description": "Reversed version of the response payload received from the server after a successful GET request."
+              "description": "A reverse order array of JSON-parsed payload received from the server."
             },
             "usage": {
               "language": "typescript",
-              "code": "getMemories().then((memories) => { \n    memories.forEach(memory => console.log(memory)); \n});\n",
+              "code": "getMemories().then((memories) => { \n  console.table(memories); \n}).catch((error) => {\n  // handle error\n});\n",
               "description": ""
             },
             "name": "getMemories",
@@ -1005,6 +1062,71 @@
             "docLength": null
           }
         ]
+      }
+    }
+  },
+  {
+    "name": "not-found.tsx",
+    "path": "web/src/app/not-found.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component named \"NotFound\" that renders an HTML section with three child elements: an h2 heading, a paragraph of text, and a link to the home page using Next.js's Link component. The component is rendered when a requested resource cannot be found, displaying a brief description and providing navigation back to the home page.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "utils.ts",
+    "path": "web/src/lib/utils.ts",
+    "content": {
+      "structured": {
+        "description": "A function cn that merges multiple class values from different inputs using Tailwind Merge (twMerge) and clsx library. The function takes a variable number of arguments and returns a merged class string. The clsx library is used to create a class value object from the input array, which is then passed to twMerge for merging and formatting the classes.",
+        "items": [
+          {
+            "id": "299fbcee-50f5-4292-db42-e5e653cf48f6",
+            "ancestors": [],
+            "description": "Merges multiple class values into a single value using the `twMerge` function, which is applied to the result of `clsx`, an array-like object created from the input arguments. The merged class value can be used for styling purposes.",
+            "params": [
+              {
+                "name": "inputs",
+                "default_value": null,
+                "optional": false,
+                "type_name": "ClassValue[]",
+                "description": "Expected to be one or more class values."
+              }
+            ],
+            "returns": {
+              "type_name": "TwMergeResult",
+              "description": "A result of merging class values using the twMerge function."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "cn('text-lg', 'text-bold');\n",
+              "description": ""
+            },
+            "name": "cn",
+            "location": {
+              "start": 4,
+              "insert": 4,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 3,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "NotificationService.ts",
+    "path": "web/src/services/NotificationService.ts",
+    "content": {
+      "structured": {
+        "description": "An interface `Notify` and a function `Notify` that schedules local notifications using the `@capacitor/local-notifications` package. The function checks for permission to schedule notifications on platforms other than web, requests permission if necessary, creates a notification channel, and then schedules a single notification at a specified time.",
+        "items": []
       }
     }
   }

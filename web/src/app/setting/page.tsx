@@ -37,7 +37,7 @@ export default function Setting(): React.ReactElement {
 
 
   React.useEffect(() => {
-    // Registers push notifications.
+    // Initializes and registers push notifications.
 
     // Initializes and registers push notifications if available.
 
@@ -95,7 +95,7 @@ export default function Setting(): React.ReactElement {
         (
             // token: Token
         ) => {
-          // Listens for push notification registration.
+          // Listens to push notification registrations.
 
           // Listens for push notifications and displays a toast message on successful registration.
 
@@ -108,7 +108,7 @@ export default function Setting(): React.ReactElement {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
-          // Handles push notification errors.
+          // Handles registration errors.
 
           // Handles errors.
 
@@ -119,7 +119,7 @@ export default function Setting(): React.ReactElement {
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
-          // Listens for push notifications.
+          // Listens for push notifications and updates state.
 
           // Handles push notifications.
 
@@ -135,8 +135,7 @@ export default function Setting(): React.ReactElement {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
-          // Handles push notifications by adding new notification data to an array and updating
-          // the UI.
+          // Handles push notifications by updating a notifications array.
 
           // Handles push notifications.
 
@@ -169,6 +168,27 @@ export default function Setting(): React.ReactElement {
             <CardFooter>
               <Button type={'submit'} variant={'secondary'}>
                 Logout
+              </Button>
+            </CardFooter>
+
+          </Card>
+        </form>
+
+
+        <form>
+          <Card className={cn("w-full")}>
+
+            <CardHeader className={'inline-flex flex-row justify-center items-center'}>
+              <h1 className={"text-2xl font-bold"}>Conversation</h1>
+            </CardHeader>
+
+            <CardContent>
+              <p>Delete all conversation data</p>
+            </CardContent>
+
+            <CardFooter>
+              <Button type={'submit'}>
+                Delete
               </Button>
             </CardFooter>
 

@@ -3,12 +3,18 @@ import {Notify} from "@/services/NotificationService";
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
 
 /**
- * @description Defines a set of optional properties for an object, namely:
+ * @description Defines a set of properties that can be used to describe an action.
  * 
- * type: A string property that can be optionally provided.
- * title: A string property that can be optionally provided.
- * body: A string property that can be optionally provided.
- * at: A string property that can be optionally provided.
+ * The properties are:
+ * 
+ * - `type`: optional, allows a string value;
+ * - `title`: optional, allows a string value;
+ * - `body`: optional, allows a string value;
+ * - `at`: optional, allows a string value;
+ * 
+ * This interface is designed to provide a structure for actions that require additional
+ * information beyond just the type of action. The presence or absence of these
+ * properties can be controlled by using optional types.
  */
 interface actionType {
   type?: string,
@@ -18,14 +24,12 @@ interface actionType {
 }
 
 /**
- * @description Defines an object with two properties: `message` and `action`.
+ * @description Defines a type that consists of two properties: `message` and `action`.
  * 
- * The `message` property is required and has a type of `string`, which means it must
- * be a string value.
+ * The `message` property is a string that represents the payload's message.
  * 
- * The `action` property is optional (denoted by the `?`) and has a type of `actionType[]`,
- * which implies that it can either be an empty array or an array of values of type
- * `actionType`.
+ * The `action` property, which is optional (indicated by the `?` symbol), is an array
+ * of `actionType` objects.
  */
 interface askPayloadType {
   message: string,
@@ -33,14 +37,16 @@ interface askPayloadType {
 }
 
 /**
- * @description Sends a GET request to a server with a given prompt and current
- * date/time, parses the response as JSON, and if successful, executes notifications
- * for any actions specified in the payload.
+ * @description Sends a GET request to a server, retrieves a JSON response, and parses
+ * it into a payload. It then executes actions specified in the payload, which may
+ * include notifications with specific titles, bodies, and timestamps. If an error
+ * occurs, it logs the error to the console.
  * 
- * @param {string} prompt - Used to send a request to a server.
+ * @param {string} prompt - Used as part of the URL query.
  * 
- * @returns {object} An instance of `askPayloadType`. The returned payload may include
- * information such as notification actions and their corresponding dates.
+ * @returns {object} Parsed payload from JSON response if parsing was successful and
+ * no error occurred. If an error occurs during fetching, parsing or execution, it
+ * will return null.
  */
 async function ask(prompt: string) {
   try {
@@ -51,7 +57,6 @@ async function ask(prompt: string) {
         }
     );
 
-
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
@@ -59,10 +64,12 @@ async function ask(prompt: string) {
     // parse payload to json
     const payload: askPayloadType = await response.json();
 
+    // execute actions
     if (payload.action) {
       for (const action of payload.action) {
         if (action.at) {
-          await Notify(action.title,
+          // leave it without wait, or else the notif won't work
+          Notify(action.title,
               action.body,
               new Date(action.at.toString())
           );
@@ -74,17 +81,16 @@ async function ask(prompt: string) {
   } catch (error) {
     console.error("Fetch error: ", error);
   }
-
 }
 
 
 /**
- * @description Makes a GET request to a server to retrieve memories, parses the
- * response payload as JSON, and reverses the resulting array if successful; it catches
- * and logs any errors that occur during the process.
+ * @description Retrieves memories from a server, checks for network errors, parses
+ * the response payload to JSON, and reverses the resulting array before returning
+ * it. If an error occurs during this process, it logs the error to the console.
  * 
- * @returns {string[]} Reversed version of the response payload received from the
- * server after a successful GET request.
+ * @returns {string[]} A reverse order array of JSON-parsed payload received from the
+ * server.
  */
 async function getMemories() {
   try {
