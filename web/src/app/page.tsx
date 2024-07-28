@@ -42,6 +42,12 @@ export default function Home(): React.ReactElement {
     reset,
     formState: {errors},
   } = useForm<Inputs>()
+  const chatHistoryRef = React.useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
+  }
+
 
   /**
    * @description Handles user prompts by setting the UI to loading state, resetting
@@ -55,6 +61,7 @@ export default function Home(): React.ReactElement {
    * without explicitly returning a value.
    */
   const handleAsk = async (prompt: string): Promise<void> => {
+    scrollToBottom()
     setIsLoading(true)
     reset()
     setChat(prevChat => [...prevChat,
@@ -132,10 +139,10 @@ export default function Home(): React.ReactElement {
       <form
           onSubmit={handleSubmit(onSubmit)}
       >
-        <main className="flex h-full flex-col items-center justify-between">
+        <main className="flex h-[80vh] flex-col items-center justify-between">
 
           {/* chat bubble */}
-          <ScrollArea className={"w-full h-[75vh] pb-[1vh] px-6"}>
+          <ScrollArea className={"w-full h-[120vh] px-6"}>
             {chat.map((data: Chat, index: number) => {
               // Maps over a chat array and renders a message for each item.
 
@@ -155,21 +162,33 @@ export default function Home(): React.ReactElement {
                   </div>
               );
             })}
+
+
+            {/* status loading */}
+            {isLoading && (
+                <div className={""}>
+                  Loading...
+                </div>
+            )}
+
+            {/*spacer*/}
+            <div
+                className={'m-[10vh]'}/>
+
+            {/* mark bottom chat */}
+            <div
+                ref={chatHistoryRef}
+            />
           </ScrollArea>
 
-          {/* status loading */}
-          {isLoading && (
-              <div className={""}>
-                Loading...
-              </div>
-          )}
 
+          {/* type area */}
           <section className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
-
             <Textarea
                 id={"prompt"}
                 className={"w-full"}
                 placeholder={"Enter message here"}
+                cols={20}
                 aria-invalid={errors.prompt ? "true" : "false"}
                 {...register("prompt", {required: true, maxLength: 250})}
             >
