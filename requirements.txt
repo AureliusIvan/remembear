@@ -99,7 +99,7 @@ google-generativeai==0.7.2
 litellm==1.42.5
 grpcio==1.65.1
 grpcio-status==1.65.1
-grpcio-tools==1.62.2
+grpcio-tools==1.65.1
 psycopg2==2.9.9
 pyjwt==2.8.0
 sqlalchemy==2.0.31
