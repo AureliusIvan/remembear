@@ -14,10 +14,10 @@
     "path": "web/src/components/ui/carousel.tsx",
     "content": {
       "structured": {
-        "description": "A carousel component using React and Embla Carousel library. It provides a customizable carousel with options for orientation, plugins, and set API. The component includes navigation buttons for previous and next slides, handling keyboard events, and registering event listeners.",
+        "description": "A carousel component using Embla Carousel library for React. The carousel allows for customizable options such as orientation, plugins, and keyboard navigation. It also provides APIs for scrolling and checking scroll availability. The component uses React Context API to manage state and provide props to its children components.",
         "items": [
           {
-            "id": "aa67bf60-7392-78a5-0846-819d3cd9e536",
+            "id": "b0975068-38dc-b7aa-e74c-0a3e1dac2838",
             "ancestors": [],
             "description": "Defines a Carousel component with customizable options and keyboard navigation.",
             "name": null,
@@ -29,105 +29,87 @@
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 120,
+            "length": 134,
             "docLength": null
           },
           {
-            "id": "1922539f-a758-2988-f14a-8cac68fe0855",
+            "id": "85b646d0-8eb8-1a9e-1e45-be3a37dbbf7c",
             "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
             ],
-            "description": "Updates scroll availability based on API response.",
+            "description": "Updates scroll availability based on Carousel API response.",
             "name": null,
             "location": {
-              "start": 80,
-              "insert": 81,
+              "start": 82,
+              "insert": 83,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 10,
+            "length": 12,
             "docLength": null
           },
           {
-            "id": "9932c042-625a-1abb-2642-d63938b7ff36",
+            "id": "92b36d1b-2310-e2a3-0441-fab40233c0e8",
             "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
             ],
-            "description": "Scrolls previous items through an API.",
+            "description": "Scrolls to previous items using an API.",
             "name": null,
             "location": {
-              "start": 91,
-              "insert": 92,
+              "start": 95,
+              "insert": 96,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 5,
+            "length": 7,
             "docLength": null
           },
           {
-            "id": "f3ee5d7d-3d91-65ae-3545-fd03308c9295",
+            "id": "d0bfad60-6c84-9b88-4c4f-cdd37ac9170b",
             "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
             ],
-            "description": "Scrolls to the next item using an API.",
+            "description": "Scrolls to next item.",
             "name": null,
             "location": {
-              "start": 97,
-              "insert": 98,
+              "start": 103,
+              "insert": 104,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 5,
+            "length": 7,
             "docLength": null
           },
           {
-            "id": "6f77b05d-c580-13ac-1445-3193ea0ac6a9",
+            "id": "cecc2ce0-592c-68b5-9c4e-2c267f3a89a0",
             "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
             ],
             "description": "Handles keyboard arrow events to navigate content.",
             "name": null,
             "location": {
-              "start": 103,
-              "insert": 105,
+              "start": 111,
+              "insert": 113,
               "offset": " ",
               "indent": 8,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 14,
+            "length": 16,
             "docLength": null
           },
           {
-            "id": "b5a1d46f-dc3e-6781-174d-ae20bb9dd4d2",
+            "id": "d7aff537-55cd-e997-e643-db394dd7a85a",
             "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
             ],
             "description": "Updates API state.",
-            "name": null,
-            "location": {
-              "start": 118,
-              "insert": 119,
-              "offset": " ",
-              "indent": 6,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 9,
-            "docLength": null
-          },
-          {
-            "id": "963a86c9-75cb-7993-8343-5b0356c10aae",
-            "ancestors": [
-              "aa67bf60-7392-78a5-0846-819d3cd9e536"
-            ],
-            "description": "Registers event listeners.",
             "name": null,
             "location": {
               "start": 128,
@@ -137,71 +119,89 @@
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 15,
+            "length": 11,
             "docLength": null
           },
           {
-            "id": "c943280f-49ec-268d-2947-2fbfab701706",
-            "ancestors": [],
-            "description": "Defines a React component with carousel content and a forward reference.",
+            "id": "15265054-d478-1380-3549-d008f6333b21",
+            "ancestors": [
+              "b0975068-38dc-b7aa-e74c-0a3e1dac2838"
+            ],
+            "description": "Handles API events and cleanup.",
             "name": null,
             "location": {
-              "start": 174,
-              "insert": 178,
+              "start": 140,
+              "insert": 141,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 17,
+            "docLength": null
+          },
+          {
+            "id": "fbb1a1f9-19cc-fb96-c149-77e80fc98388",
+            "ancestors": [],
+            "description": "Defines a React component.",
+            "name": null,
+            "location": {
+              "start": 188,
+              "insert": 192,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 22,
+            "length": 24,
             "docLength": null
           },
           {
-            "id": "1f165cde-5a58-b6bb-fa45-a8e76829fe38",
+            "id": "53ef0fe2-7bc2-8084-5645-8d577b854277",
             "ancestors": [],
-            "description": "Wraps a React component with forwardRef.",
+            "description": "Wraps components.",
             "name": null,
             "location": {
-              "start": 198,
-              "insert": 202,
+              "start": 214,
+              "insert": 218,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 22,
+            "length": 24,
             "docLength": null
           },
           {
-            "id": "c33eeb3a-82de-67bc-e747-873443baf169",
+            "id": "61a08edb-3ee6-958d-9047-03fb58294244",
             "ancestors": [],
             "description": "Creates a carousel navigation button.",
             "name": null,
             "location": {
-              "start": 222,
-              "insert": 226,
+              "start": 240,
+              "insert": 244,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 29,
+            "length": 31,
             "docLength": null
           },
           {
-            "id": "3a31bca5-57b3-9e9f-e84e-964fe7b94056",
+            "id": "f83a7304-f737-c1a8-a841-a7441c6a8dd0",
             "ancestors": [],
-            "description": "Returns a React component with customizable button properties.",
+            "description": "Defines a React component.",
             "name": null,
             "location": {
-              "start": 253,
-              "insert": 257,
+              "start": 273,
+              "insert": 277,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 29,
+            "length": 31,
             "docLength": null
           }
         ]

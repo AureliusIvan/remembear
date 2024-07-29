@@ -67,6 +67,8 @@ const Carousel = React.forwardRef<
   ) => {
     // Defines a Carousel component with customizable options and keyboard navigation.
 
+    // Defines a Carousel component with customizable options and keyboard navigation.
+
     // Creates a Carousel component with customizable options.
 
     const [carouselRef, api] = useEmblaCarousel(
@@ -80,6 +82,8 @@ const Carousel = React.forwardRef<
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
     const onSelect = React.useCallback((api: CarouselApi) => {
+      // Updates scroll availability based on Carousel API response.
+
       // Updates scroll availability based on API response.
 
       // Updates scroll availability based on API response.
@@ -93,6 +97,8 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
+      // Scrolls to previous items using an API.
+
       // Scrolls previous items through an API.
 
       // Scrolls previous items via API.
@@ -101,6 +107,8 @@ const Carousel = React.forwardRef<
     }, [api])
 
     const scrollNext = React.useCallback(() => {
+      // Scrolls to next item.
+
       // Scrolls to the next item using an API.
 
       // Scrolls to the next item.
@@ -110,6 +118,8 @@ const Carousel = React.forwardRef<
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
+        // Handles keyboard arrow events to navigate content.
+
         // Handles keyboard arrow events to navigate content.
 
         // Handles keyboard arrow events to navigate content.
@@ -128,6 +138,8 @@ const Carousel = React.forwardRef<
     React.useEffect(() => {
       // Updates API state.
 
+      // Updates API state.
+
       // Updates api state when api changes.
 
       if (!api || !setApi) {
@@ -138,6 +150,8 @@ const Carousel = React.forwardRef<
     }, [api, setApi])
 
     React.useEffect(() => {
+      // Handles API events and cleanup.
+
       // Registers event listeners.
 
       // Registers event listeners and cleanup.
@@ -189,6 +203,8 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
+  // Defines a React component.
+
   // Defines a React component with carousel content and a forward reference.
 
   // Wraps carousel content.
@@ -215,6 +231,8 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
+  // Wraps components.
+
   // Wraps a React component with forwardRef.
 
   // Returns a React component.
@@ -241,6 +259,8 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  // Creates a carousel navigation button.
+
   // Creates a carousel navigation button.
 
   // Creates a React button component for carousel navigation.
@@ -274,6 +294,8 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  // Defines a React component.
+
   // Returns a React component with customizable button properties.
 
   // Forwards references to a custom carousel button component.
