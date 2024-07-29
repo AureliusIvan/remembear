@@ -16,6 +16,10 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
+    /**
+     * Retrieves the context of an application under test and asserts that its package
+     * name is "com.getcapacitor.app".
+     */
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.

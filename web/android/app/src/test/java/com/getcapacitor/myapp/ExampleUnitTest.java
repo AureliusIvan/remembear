@@ -11,6 +11,12 @@ import org.junit.Test;
  */
 public class ExampleUnitTest {
 
+    /**
+     * Verifies whether the result of adding two numbers is correct. It uses the
+     * `assertEquals` method to compare the expected output (4) with the actual output
+     * (2 + 2). If the outputs match, the test passes; otherwise, it fails and reports
+     * an error.
+     */
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
