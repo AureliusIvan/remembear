@@ -9,10 +9,9 @@ import {getObject, setObject} from "@/services/HistoryService";
 import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
-import {Keyboard} from "@capacitor/keyboard";
 import {Input} from "@/components/ui/input";
 
-``
+
 type Inputs = {
   prompt: string
 }
@@ -39,7 +38,14 @@ type Chat = {
  * with a chat interface and a form to send messages.
  */
 export default function Home(): React.ReactElement {
-  // Register All the hooks
+  /**
+   * @description Constants
+   */
+  const CHAT_HISTORY_OBJ_KEY = "chat-history"
+
+  /**
+   * @description State variables
+   */
   const {toast} = useToast()
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -53,8 +59,9 @@ export default function Home(): React.ReactElement {
 
   // function to scroll to bottom (used to scroll to the bottom of the chat)
   /**
-   * @description Scrolls a HTML element, referenced by `chatHistoryRef`, into view
-   * from its current position to the bottom of the viewport, with smooth animation behavior.
+   * @description Scrolls the element referenced by `chatHistoryRef` into view, ensuring
+   * that it is visible at the bottom of the viewport. The scrolling operation occurs
+   * smoothly.
    */
   const scrollToBottom = () => {
     chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
@@ -86,16 +93,38 @@ export default function Home(): React.ReactElement {
     reset()
 
     // add user chat to the chat history
-    setChat(prevChat => [...prevChat,
-      {role: "user", message: prompt}]
-    );
+    setChat(prevChat =>
+        [...prevChat,
+          {
+            role: "user",
+            message: prompt
+          }]
+    )
 
-    // invoke the model
+    const userNewChatHistory = [...chat, {role: 'user', message: prompt}]
+    setObject(
+        CHAT_HISTORY_OBJ_KEY,
+        {
+          data: JSON.stringify(userNewChatHistory)
+        })
+        .then(() => {
+          // Logs "chat saved" to the console.
+
+          console.log("chat saved")
+        })
+        .catch((error) => {
+          // Logs error message to the console.
+
+          console.error(error)
+        })
+
+    // invoke the model and save the response to the chat history
     try {
       const reply = await ask(prompt)
       if (reply) {
+        const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
         setChat((prevChat: Chat[]) => {
-          // Concatenates chat items.
+          // Appends new chat item.
 
           // Appends new chat item.
           return [...prevChat,
@@ -109,6 +138,22 @@ export default function Home(): React.ReactElement {
             }
           ];
         });
+
+        setObject(
+            CHAT_HISTORY_OBJ_KEY,
+            {
+              data: JSON.stringify(modelNewChatHistory)
+            })
+            .then(() => {
+              // Logs "chat saved" to the console after a promise resolves.
+
+              console.log("chat saved")
+            })
+            .catch((error) => {
+              // Logs error messages to the console.
+
+              console.error(error)
+            })
       }
 
     } catch (Error) {
@@ -131,51 +176,40 @@ export default function Home(): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    // Saves or retrieves chat history state.
-
     // Initializes and updates chat history state.
-    if (chat.length > 0) {
-      setObject(
-          "chat-history",
-          {
-            data: JSON.stringify(chat)
-          })
-          .then(() => {
-            // Logs "chat saved" to the console.
 
-            console.log("chat saved")
-          })
-          .catch((error) => {
-            // Logs error to console.
+    /**
+     * Initializes and updates chat history state.
+     * @description Asynchronously retrieves chat history from storage, parses it as a
+     * JSON object, and updates the `chat` state with the retrieved data.
+     *
+     * @returns {Promise<void>} Assigned to the state variable 'chat' after parsing JSON data
+     * into an array of objects conforming to the `Chat` interface.
+     */
+    const fetchHistory = async (): Promise<void> => {
+      const data = await getObject(CHAT_HISTORY_OBJ_KEY).then(data => {
+        // Retrieves and parses chat history.
 
-            console.error(error)
-          })
-    } else {
-      /**
-       * @description Asynchronously retrieves chat history from storage, parses it as a
-       * JSON object, and updates the `chat` state with the retrieved data.
-       *
-       * @returns {Promise<void>} Assigned to the state variable 'chat' after parsing JSON data
-       * into an array of objects conforming to the `Chat` interface.
-       */
-      const fetchHistory = async (): Promise<void> => {
-        const data = await getObject("chat-history").then(data => {
-          // Retrieves and parses chat history.
+        // Retrieves and parses chat history.
+        try {
+          if (data && data.data) {
+            return JSON.parse(data.data) as Chat[]
+          }
+          return []
+        } catch (e) {
+          console.error(e);
+          return []
+        }
+      })
+      setChat(data)
+    };
 
-          // Retrieves and parses chat history.
+    fetchHistory()
+  }, []);
 
-          return JSON.parse(data.data) as Chat[]
-        })
-        setChat(data)
-      };
-
-      fetchHistory()
-    }
-  }, [chat]);
-
-
+  // handler for input errors
   useEffect(() => {
-    // Displays a Toast notification.
+    // Displays an error message when a prompt is empty.
 
     if (errors.prompt) {
       toast({
@@ -184,17 +218,8 @@ export default function Home(): React.ReactElement {
     }
   }, [errors.prompt]);
 
-  useEffect(() => {
-    // Runs after each dependency changes.
 
-    // TODO: implement keyboard resize screen
-    // check if keyboard is in web
-
-    // Keyboard.setAccessoryBarVisible({isVisible: true});
-  }, [Keyboard]);
-
-
-  // submit handler
+  // form submit handler
   const onSubmit: SubmitHandler<Inputs> = (data) => handleAsk(data.prompt)
 
   return (

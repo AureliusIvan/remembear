@@ -17,12 +17,11 @@ import Link from "next/link";
 import {BiMemoryCard} from "react-icons/bi";
 
 /**
- * @description Generates a responsive navigation bar with a side menu, featuring
- * buttons to navigate between different routes of an application, as well as a logo
- * and a link to another route.
+ * @description Generates a navigation bar with a side menu and main content area.
+ * It includes buttons for routing to different pages, including home, integration,
+ * settings, and login. The side menu is triggered by clicking on a button.
  * 
- * @returns {React.ReactElement} A JSX element representing a container div with
- * various child components including a side menu panel, navigation links and a title.
+ * @returns {React.ReactElement} A JSX element that represents an HTML document fragment.
  */
 function Navbar(): React.ReactElement {
   const router = useRouter()
@@ -44,7 +43,7 @@ function Navbar(): React.ReactElement {
             <SheetHeader>
               <SheetTitle>Remembear</SheetTitle>
               <SheetDescription>
-                Version {process.env.NEXT_PUBLIC_VERSION}
+                Version 0.1.0
               </SheetDescription>
               <SheetClose asChild>
                 <Button
