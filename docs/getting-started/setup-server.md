@@ -3,7 +3,6 @@
 ## Table of Contents 📚
 
 - [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
 - [Setup](#setup)
     - [Docker setup](#docker-setup)
     - [Manual setup](#manual-setup)
