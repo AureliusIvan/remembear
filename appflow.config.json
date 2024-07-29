@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "appId": "6bfc1456",
+      "root": "web",
+      "dependencyInstallCommand": "pnpm install",
+      "webBuildCommand": "pnpm build",
+      "androidPath": "web/android"
+    }
+  ]
+}
