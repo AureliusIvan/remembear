@@ -1135,73 +1135,8 @@
     "path": "web/src/components/ui/badge.tsx",
     "content": {
       "structured": {
-        "description": "A React component called `Badge` that is styled using the `class-variance-authority` package. The component's appearance can be customized through variant props such as `variant`, which determines the background color and text color of the badge. The `badgeVariants` function generates CSS classes based on these variants, allowing for a flexible and maintainable styling approach.",
-        "items": [
-          {
-            "id": "338320c4-40f3-c8b8-d444-af03cc702342",
-            "ancestors": [],
-            "description": "Extends  `React.HTMLAttributes<HTMLDivElement>` and `VariantProps<typeof badgeVariants>`. \n\nIt inherits properties from both interfaces. \n\n1. `React.HTMLAttributes<HTMLDivElement>` provides basic HTML attributes that can be applied to an HTML element, such as `className`, `style`, `id`, etc.\n\n2. `VariantProps<typeof badgeVariants>` is a type inferred from the value of the `badgeVariants` variable. It likely represents different variants of badges and their corresponding properties.",
-            "name": "BadgeProps",
-            "location": {
-              "start": 26,
-              "insert": 26,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "interface",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "4ebf6995-a251-adb7-ec45-5d87b01696bb",
-            "ancestors": [],
-            "description": "Creates a customizable badge component, taking `className`, `variant`, and other props as arguments. It returns a `div` element with the specified class name and variant-specific styles applied, allowing for flexible customization of the badge's appearance.",
-            "params": [
-              {
-                "name": "obj",
-                "default_value": null,
-                "optional": false,
-                "type_name": "object",
-                "description": "Destructured from an interface `BadgeProps`. It contains two properties: `className` of type string, and `variant` of type string or other supported variant types."
-              },
-              {
-                "name": "obj.className",
-                "default_value": null,
-                "optional": false,
-                "type_name": "BadgeProps",
-                "description": "Used to specify additional CSS classes for the component."
-              },
-              {
-                "name": "obj.variant",
-                "default_value": null,
-                "optional": false,
-                "type_name": "BadgeProps",
-                "description": "Optional, used to specify different styles for the badge."
-              }
-            ],
-            "returns": {
-              "type_name": "ReactElement",
-              "description": "A JSX element represented by the div tag with its className property set to the result of calling `cn` function and passing `badgeVariants({ variant })` and `className` as arguments."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const badge = <Badge variant=\"primary\">Hello!</Badge>;\n",
-              "description": ""
-            },
-            "name": "Badge",
-            "location": {
-              "start": 30,
-              "insert": 30,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 5,
-            "docLength": null
-          }
-        ]
+        "description": "A reusable React component called `Badge` that renders an HTML div element with dynamic styling based on provided props. It utilizes the `class-variance-authority` package to define and use custom CSS variants. The `Badge` component inherits properties from both standard HTML attributes for a div element and specific variant props defined by `badgeVariants`.",
+        "items": []
       }
     }
   },
@@ -1210,74 +1145,30 @@
     "path": "web/src/components/ui/carousel.tsx",
     "content": {
       "structured": {
-        "description": "A carousel component using Embla Carousel React library and provides a context API for handling carousel state and events. The component allows for customizable options such as orientation, plugins, and callback functions for scrolling and selecting slides. It also includes reusable components for carousel content, items, previous and next buttons, which can be used to create custom carousels.",
+        "description": "A carousel component using Embla Carousel React library for creating responsive and interactive carousels. It provides various props and context for customizing the carousel's behavior, such as orientation, scroll control, and navigation. The component uses hooks like `useEmblaCarousel` to initialize and manage the carousel's state and API.",
         "items": [
           {
-            "id": "35686b6b-42c3-01ab-174f-94c45d9761ae",
+            "id": "f9d65ed2-e481-d5b9-c540-cb42f43abe52",
             "ancestors": [],
-            "description": "Retrieves and returns the current carousel context from the React context API. If called outside a `<Carousel/>`, it throws an error, ensuring that the component is used within its intended scope.",
-            "params": [],
-            "returns": {
-              "type_name": "object",
-              "description": "Obtained from `React.useContext(CarouselContext)`. The returned object represents a context value associated with the `<Carousel />` component."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const carousel = useCarousel()\n// Use the carousel object here\n",
-              "description": ""
-            },
-            "name": "useCarousel",
-            "location": {
-              "start": 35,
-              "insert": 35,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 9,
-            "docLength": null
-          },
-          {
-            "id": "e8a026e9-f39a-4ca0-d748-ce92d44ef288",
-            "ancestors": [],
-            "description": "Wraps React Carousel component.",
+            "description": "Defines a Carousel component for React.",
             "name": null,
             "location": {
-              "start": 45,
-              "insert": 61,
+              "start": 52,
+              "insert": 68,
               "offset": " ",
               "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 106,
+            "length": 120,
             "docLength": null
           },
           {
-            "id": "d7e0b1f8-42a2-838b-1a4a-81aa6f9505fc",
+            "id": "2e6b469a-de10-0a82-1c47-f1ed74194e0c",
             "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
             ],
-            "description": "Updates carousel states.",
-            "name": null,
-            "location": {
-              "start": 71,
-              "insert": 72,
-              "offset": " ",
-              "indent": 6,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 8,
-            "docLength": null
-          },
-          {
-            "id": "69b4de16-ec50-9d8c-7747-61dad39ed454",
-            "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
-            ],
-            "description": "Scrolls to previous page using `api` when available.",
+            "description": "Updates scroll states when a carousel item is selected.",
             "name": null,
             "location": {
               "start": 80,
@@ -1287,143 +1178,161 @@
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 3,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "3fda82a5-f3e2-a19d-5f49-d6fffd7aa9de",
+            "id": "d5584fe8-f9b0-adaa-a142-65b095c01803",
             "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
             ],
-            "description": "Scrolls to the next item.",
+            "description": "Scrolls backward using API.",
             "name": null,
             "location": {
-              "start": 84,
-              "insert": 85,
+              "start": 91,
+              "insert": 92,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 3,
+            "length": 5,
             "docLength": null
           },
           {
-            "id": "d6457542-9cf0-109b-084d-55add218d336",
+            "id": "c97309fc-4c7d-7bba-874e-bbce5f0936b4",
             "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
             ],
-            "description": "Handles keyboard events.",
+            "description": "Scrolls to the next item.",
             "name": null,
             "location": {
-              "start": 88,
-              "insert": 90,
+              "start": 97,
+              "insert": 98,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 5,
+            "docLength": null
+          },
+          {
+            "id": "0608051d-11ce-e89e-234c-e840dd2f6e47",
+            "ancestors": [
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
+            ],
+            "description": "Scrolls on arrow key press.",
+            "name": null,
+            "location": {
+              "start": 103,
+              "insert": 105,
               "offset": " ",
               "indent": 8,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 12,
+            "length": 14,
             "docLength": null
           },
           {
-            "id": "781bab30-a454-1e89-9b41-26a6f02a4682",
+            "id": "81506c00-28b1-ab9b-ea4d-a518e4a52241",
             "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
             ],
-            "description": "Updates `setApi` with `api` state.",
+            "description": "Updates local state.",
             "name": null,
             "location": {
-              "start": 101,
-              "insert": 102,
+              "start": 118,
+              "insert": 119,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 7,
+            "length": 9,
             "docLength": null
           },
           {
-            "id": "6c137abd-f08e-1fac-8649-392e9a53e123",
+            "id": "0ddb3912-d730-3c9e-8d4c-2c36f788dfc5",
             "ancestors": [
-              "e8a026e9-f39a-4ca0-d748-ce92d44ef288"
+              "f9d65ed2-e481-d5b9-c540-cb42f43abe52"
             ],
-            "description": "Registers and Unregisters event listeners for an API.",
+            "description": "Handles API selection and updates.",
             "name": null,
             "location": {
-              "start": 109,
-              "insert": 110,
+              "start": 128,
+              "insert": 129,
               "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 13,
+            "length": 15,
             "docLength": null
           },
           {
-            "id": "9fc8367a-80bc-ea88-2b4d-bfd99b0bab54",
+            "id": "89a088a3-1fca-7d9e-4245-db67261f2e6c",
             "ancestors": [],
-            "description": "Wraps carousel content.",
+            "description": "Returns a React component.",
             "name": null,
             "location": {
-              "start": 153,
-              "insert": 157,
+              "start": 174,
+              "insert": 178,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 20,
+            "length": 22,
             "docLength": null
           },
           {
-            "id": "50504afd-621b-89ab-144e-ba4a0bb631a8",
+            "id": "3a6af136-e36a-1b93-524d-5efe6efb62ec",
             "ancestors": [],
-            "description": "Defines a custom React component.",
+            "description": "Wraps React component with forward reference support and carousel orientation handling.",
             "name": null,
             "location": {
-              "start": 175,
-              "insert": 179,
+              "start": 198,
+              "insert": 202,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 20,
+            "length": 22,
             "docLength": null
           },
           {
-            "id": "6dd796f5-1856-2ab9-5a4e-c230febafae2",
+            "id": "915ba07a-3396-c0ac-e640-6fea251196e7",
             "ancestors": [],
-            "description": "Forwards a ref to a Button component.",
+            "description": "Defines a custom React button component with navigation control.",
             "name": null,
             "location": {
-              "start": 197,
-              "insert": 201,
+              "start": 222,
+              "insert": 226,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 27,
+            "length": 29,
             "docLength": null
           },
           {
-            "id": "931d5289-63dd-b3b6-624e-4a40b704fc06",
+            "id": "14d28041-2371-5cba-5342-394b179088af",
             "ancestors": [],
-            "description": "Defines a Carousel Next button.",
+            "description": "Defines a CarouselNext component with forwardRef.",
             "name": null,
             "location": {
-              "start": 226,
-              "insert": 230,
+              "start": 253,
+              "insert": 257,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 27,
+            "length": 29,
             "docLength": null
           }
         ]

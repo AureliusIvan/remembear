@@ -33,12 +33,11 @@ type CarouselContextProps = {
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
 /**
- * @description Retrieves and returns the current carousel context from the React
- * context API. If called outside a `<Carousel/>`, it throws an error, ensuring that
- * the component is used within its intended scope.
+ * @description Retrieves and returns the CarouselContext, which is a React Context
+ * that stores data related to a carousel component. If the component is not within
+ * a <Carousel />, it throws an error.
  * 
- * @returns {object} Obtained from `React.useContext(CarouselContext)`. The returned
- * object represents a context value associated with the `<Carousel />` component.
+ * @returns {object} Provided by `CarouselContext`.
  */
 function useCarousel() {
   const context = React.useContext(CarouselContext)
@@ -66,7 +65,9 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
-    // Wraps React Carousel component.
+    // Defines a Carousel component for React.
+
+    // Defines a Carousel component.
 
     const [carouselRef, api] = useEmblaCarousel(
       {
@@ -79,7 +80,9 @@ const Carousel = React.forwardRef<
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
     const onSelect = React.useCallback((api: CarouselApi) => {
-      // Updates carousel states.
+      // Updates scroll states when a carousel item is selected.
+
+      // Sets scroll states on carousel selection.
 
       if (!api) {
         return
@@ -90,7 +93,9 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
-      // Scrolls to previous page using `api` when available.
+      // Scrolls backward using API.
+
+      // Scrolls back.
 
       api?.scrollPrev()
     }, [api])
@@ -98,12 +103,16 @@ const Carousel = React.forwardRef<
     const scrollNext = React.useCallback(() => {
       // Scrolls to the next item.
 
+      // Scrolls to next item.
+
       api?.scrollNext()
     }, [api])
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
-        // Handles keyboard events.
+        // Scrolls on arrow key press.
+
+        // Handles keydown events for scrolling.
 
         if (event.key === "ArrowLeft") {
           event.preventDefault()
@@ -117,7 +126,9 @@ const Carousel = React.forwardRef<
     )
 
     React.useEffect(() => {
-      // Updates `setApi` with `api` state.
+      // Updates local state.
+
+      // Updates local state when API changes.
 
       if (!api || !setApi) {
         return
@@ -127,7 +138,9 @@ const Carousel = React.forwardRef<
     }, [api, setApi])
 
     React.useEffect(() => {
-      // Registers and Unregisters event listeners for an API.
+      // Handles API selection and updates.
+
+      // Handles API selection and updates.
 
       if (!api) {
         return
@@ -176,7 +189,9 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  // Wraps carousel content.
+  // Returns a React component.
+
+  // Returns React component.
 
   const { carouselRef, orientation } = useCarousel()
 
@@ -200,7 +215,9 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  // Defines a custom React component.
+  // Wraps React component with forward reference support and carousel orientation handling.
+
+  // Wraps React component.
 
   const { orientation } = useCarousel()
 
@@ -224,7 +241,9 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  // Forwards a ref to a Button component.
+  // Defines a custom React button component with navigation control.
+
+  // Creates a React component with navigation control.
 
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
@@ -255,7 +274,9 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  // Defines a Carousel Next button.
+  // Defines a CarouselNext component with forwardRef.
+
+  // Defines a CarouselNext component.
 
   const { orientation, scrollNext, canScrollNext } = useCarousel()
 
