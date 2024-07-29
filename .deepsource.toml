@@ -18,5 +18,3 @@ enabled = true
 dependency_file_paths = [
     "./web/package.json",
 ]
-
-[[analyzers]]
