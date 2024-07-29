@@ -9,10 +9,9 @@ import {getObject, setObject} from "@/services/HistoryService";
 import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
-import {Keyboard} from "@capacitor/keyboard";
 import {Input} from "@/components/ui/input";
 
-``
+
 type Inputs = {
   prompt: string
 }
@@ -82,8 +81,12 @@ export default function Home(): React.ReactElement {
     reset()
 
     // add user chat to the chat history
-    setChat(prevChat => [...prevChat,
-      {role: "user", message: prompt}]
+    setChat(prevChat =>
+        [...prevChat,
+          {
+            role: "user",
+            message: prompt
+          }]
     );
 
     // invoke the model
@@ -147,8 +150,15 @@ export default function Home(): React.ReactElement {
       const fetchHistory = async (): Promise<void> => {
         const data = await getObject("chat-history").then(data => {
           // Retrieves and parses chat history.
-
-          return JSON.parse(data.data) as Chat[]
+          try {
+            if (data && data.data) {
+              return JSON.parse(data.data) as Chat[]
+            }
+            return []
+          } catch (e) {
+            console.error(e);
+            return []
+          }
         })
         setChat(data)
       };
@@ -165,13 +175,6 @@ export default function Home(): React.ReactElement {
       })
     }
   }, [errors.prompt]);
-
-  useEffect(() => {
-    // TODO: implement keyboard resize screen
-    // check if keyboard is in web
-
-    // Keyboard.setAccessoryBarVisible({isVisible: true});
-  }, [Keyboard]);
 
 
   // submit handler
