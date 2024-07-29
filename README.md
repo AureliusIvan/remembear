@@ -3,8 +3,8 @@
 ![Remembear-Banner.png](./assets/Remembear-Banner.png)
 
 <div>
-    <a href="https://mem0.ai/discord">
-    <img src="https://dcbadge.vercel.app/api/server/h3NbgQ5G" alt="Mem0 Discord">
+    <a href="https://discord.gg/h3NbgQ5G">
+    <img src="https://dcbadge.vercel.app/api/server/h3NbgQ5G" alt="Remembear Discord">
     </a>
 </div>
 
@@ -23,6 +23,10 @@
 Remembear is an app that helps you to remember things in short term memory. It's a simple app that can be used in daily
 life to remember things like shopping list, to-do list, or any other things that you want to remember in short term.
 
+> [!NOTE]
+> The Remembear repository now also depends on the Mem0AI project. We continue to maintain and support Mem0AI ❤️. You
+> can find the Mem0AI repository in the [Mem0AI](https://github.com/mem0ai/mem0).
+
 ## Special Thanks 💖
 
 Thanks for all your contributions and efforts towards improving this project 🙏
@@ -32,10 +36,6 @@ Thanks for all your contributions and efforts towards improving this project �
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
-
-> [!NOTE]
-> The Remembear repository now also depends on the Mem0AI project. We continue to maintain and support Mem0AI ❤️. You
-> can find the Mem0AI repository in the [Mem0AI](https://github.com/mem0ai/mem0).
 
 ## Demo 🎥
 
@@ -88,7 +88,7 @@ There are some technologies that used in this project:
 - [Vercel](https://vercel.com/)
     - Current frontend hosting option for this project.
 - [Firebase](https://firebase.google.com/)
-    - Cloud Messaging / Push Notification
+    - Cloud Messaging / Push Notification.
 
 ## Links
 
