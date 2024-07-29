@@ -1,190 +1,64 @@
 [
   {
-    "name": "not-found.tsx",
-    "path": "web/src/app/not-found.tsx",
+    "name": "badge.tsx",
+    "path": "web/src/components/ui/badge.tsx",
     "content": {
       "structured": {
-        "description": "A React component called \"NotFound\". The component renders an HTML structure consisting of a heading, a paragraph, and a link. It uses Next.js' \"Link\" component to create a link that navigates back to the root route \"/\".",
+        "description": "A reusable React component called Badge that can be customized with different variants and styles. The badge component is built using the class-variance-authority library to define its styles and the cn utility from the lib/utils module to compose these styles with additional classes passed as props. The badge variant styles are defined as part of the badgeVariants object, which uses the cva function to create a reusable set of CSS styles that can be customized through props.",
         "items": [
           {
-            "id": "eab989d2-cc0e-4bbc-314e-63f59ca349dc",
+            "id": "fdabce17-edc0-03b4-094e-270159befe3f",
             "ancestors": [],
-            "description": "Renders a UI component that displays a \"Not Found\" message with a brief description and a link to return to the home page when a requested resource is not found.",
-            "params": [],
-            "returns": {
-              "type_name": "ReactNode",
-              "description": "A JSX element that consists of a `<div>` element with three child elements: an `<h2>` element, a `<p>` element, and a `<Link>` element."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "ReactDOM.render(<NotFound />, document.getElementById('root'));\n",
-              "description": ""
-            },
-            "name": "NotFound",
+            "description": "Exports an extension of two types: `React.HTMLAttributes<HTMLDivElement>` and `VariantProps<typeof badgeVariants>`. It inherits the properties from both types, effectively merging them into a single type.\n\nThis means that `BadgeProps` can accept all the HTML attributes applicable to an HTML element (`React.HTMLAttributes<HTMLDivElement>`), as well as any properties defined in the `badgeVariants` object. The resulting interface provides a flexible set of props for a badge component, allowing it to be customized and styled according to its variant.",
+            "name": "BadgeProps",
             "location": {
-              "start": 6,
-              "insert": 6,
+              "start": 26,
+              "insert": 26,
               "offset": " ",
               "indent": 0,
               "comment": null
             },
-            "item_type": "function",
-            "length": 9,
+            "item_type": "interface",
+            "length": 3,
             "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "sonner.tsx",
-    "path": "web/src/components/ui/sonner.tsx",
-    "content": {
-      "structured": {
-        "description": "A reusable toaster component using React and Next.js themes. The toaster component uses the `useTheme` hook from \"next-themes\" package to retrieve the current theme and applies it to the toaster's styles. The component also includes custom CSS classes for toast, description, action button, and cancel button elements based on the current theme.",
-        "items": [
+          },
           {
-            "id": "c81607fc-9bd1-f8a3-4e47-99af7a0c6b03",
+            "id": "d2cd187b-81a0-82b8-714e-1ab57b95869e",
             "ancestors": [],
-            "description": "Renders a `Sonner` component with customized styles based on the current theme. It uses the `useTheme` hook to get the theme and passes it as a prop to `Sonner`. The function also accepts additional props, which are spread onto the `Sonner` component.",
+            "description": "Generates a component with a dynamic class name based on the provided `variant`. It takes an object `BadgeProps` as its argument, and spreads its properties into the returned JSX element using the spread operator.",
             "params": [
               {
                 "name": "obj",
                 "default_value": null,
                 "optional": false,
                 "type_name": "object",
-                "description": "Used to customize the appearance of the toaster based on different themes. The property names are used as CSS class names to style the toaster's components."
+                "description": "Destructured from a props interface named `BadgeProps`. It consists of two properties: `className` and `variant`, along with any other properties not explicitly listed (`...props`)."
+              },
+              {
+                "name": "obj.className",
+                "default_value": null,
+                "optional": false,
+                "type_name": "BadgeProps",
+                "description": "Used to specify additional CSS classes for the badge element."
+              },
+              {
+                "name": "obj.variant",
+                "default_value": null,
+                "optional": false,
+                "type_name": "BadgeProps",
+                "description": "Used to specify the appearance of the badge."
               }
             ],
             "returns": {
-              "type_name": "JSX.Element",
-              "description": "A React component that wraps its children with additional props and styles based on the theme provided by `useTheme`."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "<Toaster theme=\"dark\" title=\"This is a toaster\">\n  <p>This is some text</p>\n  <button>Cancel</button>\n  <button>Ok</button>\n</Toaster>\n",
-              "description": ""
-            },
-            "name": "Toaster",
-            "location": {
-              "start": 9,
-              "insert": 9,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 22,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "toast.tsx",
-    "path": "web/src/components/ui/toast.tsx",
-    "content": {
-      "structured": {
-        "description": "Reusable React components for displaying toast notifications with customizable styles and actions. It utilizes packages such as \"@radix-ui/react-toast\" for toast functionality and \"lucide-react\" for icons. The code includes components for the toast provider, viewport, root, action, title, description, and close buttons, which can be composed together to create various types of notifications with different appearances and behaviors.",
-        "items": [
-          {
-            "id": "7a547b6b-9c83-10bf-3248-2dc57928bab4",
-            "ancestors": [],
-            "description": "Forwards ref and props to ToastPrimitives.Root component.",
-            "name": null,
-            "location": {
-              "start": 43,
-              "insert": 48,
-              "offset": " ",
-              "indent": 2,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 13,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "toaster.tsx",
-    "path": "web/src/components/ui/toaster.tsx",
-    "content": {
-      "structured": {
-        "description": "A reusable React component called Toaster that renders a list of toast notifications. It uses the useToast hook from the ui package to retrieve an array of toasts and then maps over it to render each toast with its title, description, action button, and close button. The rendered toast is wrapped in a ToastProvider component which provides a viewport for the toast.",
-        "items": [
-          {
-            "id": "f50af2e5-447e-83bc-ab4d-e68641fff2e8",
-            "ancestors": [],
-            "description": "Renders a list of toast notifications provided by `useToast()`. Each toast contains title, description and action if available. It also includes a close button. The toasts are wrapped around a `ToastProvider` component which provides a viewport for the toast notifications.",
-            "params": [],
-            "returns": {
               "type_name": "ReactNode",
-              "description": "A JSX element that contains a list of toast notifications wrapped with a `ToastProvider` and a `ToastViewport`."
+              "description": "A JSX element, specifically a `div` element with two attributes: `className` and `{...props}`, where `className` is set by merging the result of `badgeVariants({ variant })` with the provided `className`, and `props` are propagated from the outer component."
             },
             "usage": {
               "language": "typescript",
-              "code": "<Toaster>\n  <Toast id=\"1\" title=\"Success!\" description=\"Your action was successful.\"/>\n  <Toast id=\"2\" title=\"Error!\" description=\"An error occurred. Please try again.\"/>\n</Toaster>",
+              "code": "<Badge variant=\"success\">Success</Badge>\n",
               "description": ""
             },
-            "name": "Toaster",
-            "location": {
-              "start": 14,
-              "insert": 14,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 23,
-            "docLength": null
-          },
-          {
-            "id": "2056ed9e-93e1-a3b4-8443-139188a527d2",
-            "ancestors": [
-              "f50af2e5-447e-83bc-ab4d-e68641fff2e8"
-            ],
-            "description": "Renders a toast list.",
-            "name": null,
-            "location": {
-              "start": 19,
-              "insert": 20,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 14,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "use-toast.ts",
-    "path": "web/src/components/ui/use-toast.ts",
-    "content": {
-      "structured": {
-        "description": "A toast notification system inspired by React Hot Toast library, utilizing React hooks for state management and providing a reusable `useToast` hook for displaying and managing notifications in React applications. The system uses an immutable reducer function to manage the list of toasts and dispatch actions to update or remove notifications.",
-        "items": [
-          {
-            "id": "8fd957af-9677-ebb3-8843-8becc65556b0",
-            "ancestors": [],
-            "description": "Generates a unique identifier as a string by incrementing a counter modulo the maximum safe integer value, preventing overflow, and converting the result to a string. This ensures uniqueness within a specific range while avoiding arithmetic overflow issues.",
-            "params": [],
-            "returns": {
-              "type_name": "string",
-              "description": "A representation of an integer incremented by one modulo the maximum safe integer."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "let count = 0;\nlet id1 = genId();\nlet id2 = genId();\n",
-              "description": "\nGenerates a unique identifier."
-            },
-            "name": "genId",
+            "name": "Badge",
             "location": {
               "start": 30,
               "insert": 30,
@@ -193,1002 +67,128 @@
               "comment": null
             },
             "item_type": "function",
-            "length": 4,
-            "docLength": null
-          },
-          {
-            "id": "c5382641-9aff-0194-b540-2782088bc1b1",
-            "ancestors": [],
-            "description": "Defines a type for an object that has a property called `toasts`, which is an array of elements that conform to the `ToasterToast` type.",
-            "name": "State",
-            "location": {
-              "start": 55,
-              "insert": 55,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "interface",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "b54307f3-8191-f1b8-ef42-d25a27c12a12",
-            "ancestors": [],
-            "description": "Schedules a timeout for a specified `toastId`. If no existing timeout is found, it sets a new one with the `TOAST_REMOVE_DELAY` value and stores the ID and associated timeout in the `toastTimeouts` set. When the timeout expires, it removes the corresponding toast from the store.",
-            "params": [
-              {
-                "name": "toastId",
-                "default_value": null,
-                "optional": false,
-                "type_name": "string",
-                "description": "Used to identify a toast to be removed from the queue."
-              }
-            ],
-            "usage": {
-              "language": "typescript",
-              "code": "addToRemoveQueue(\"toast-1\");\n",
-              "description": "\n\nThis example illustrates adding a toast with id \"toast-1\" to the removal queue."
-            },
-            "name": "addToRemoveQueue",
-            "location": {
-              "start": 61,
-              "insert": 61,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 15,
-            "docLength": null
-          },
-          {
-            "id": "08202711-9725-d08d-6c4c-1ee6983b9c21",
-            "ancestors": [
-              "b54307f3-8191-f1b8-ef42-d25a27c12a12"
-            ],
-            "description": "Deletes and removes a toast after a delay.",
-            "name": null,
-            "location": {
-              "start": 66,
-              "insert": 67,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 7,
-            "docLength": null
-          },
-          {
-            "id": "25813090-92e4-398a-854d-d13519180d3f",
-            "ancestors": [],
-            "description": "Manages a list of toast notifications based on three actions: ADD_TOAST, UPDATE_TOAST, and DISMISS_TOAST/REMOVE_TOAST. It updates the state accordingly, handling tasks such as adding, updating, dismissing, or removing toasts, while also enforcing a limit on the number of displayed toasts.",
-            "params": [
-              {
-                "name": "state",
-                "default_value": null,
-                "optional": false,
-                "type_name": "State",
-                "description": "Used to store the application's current state."
-              },
-              {
-                "name": "action",
-                "default_value": null,
-                "optional": false,
-                "type_name": "Action",
-                "description": "Used to determine how to update the state."
-              }
-            ],
-            "returns": {
-              "type_name": "State",
-              "description": "An object representing the current state of toasts. The exact structure and content of this object depend on the action taken."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const initialState: State = {\n  toasts: []\n};\n\nconst state = reducer(initialState, { type: \"ADD_TOAST\", toast: { id: 1, message: 'Hello!' } });\n",
-              "description": ""
-            },
-            "name": "reducer",
-            "location": {
-              "start": 77,
-              "insert": 77,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 54,
-            "docLength": null
-          },
-          {
-            "id": "a9e313ab-11c0-eab0-eb4c-88da174d73b6",
-            "ancestors": [
-              "25813090-92e4-398a-854d-d13519180d3f"
-            ],
-            "description": "Adds toasts ID to remove queue.",
-            "name": null,
-            "location": {
-              "start": 101,
-              "insert": 102,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "a181f11e-3b61-bb9b-4f4b-d73337d05954",
-            "ancestors": [],
-            "description": "Applies a given `action` to the current `memoryState` using a `reducer`, and then calls each registered `listener` function with the updated `memoryState`. This updates the state and notifies any subscribers of changes.",
-            "params": [
-              {
-                "name": "action",
-                "default_value": null,
-                "optional": false,
-                "type_name": "Action",
-                "description": "Used for triggering state changes."
-              }
-            ],
-            "usage": {
-              "language": "typescript",
-              "code": "dispatch({type: 'ADD_ITEM', payload: {id: 1, name: 'Item 1'}})\ndispatch({type: 'UPDATE_ITEM', payload: {id: 1, name: 'Updated Item 1'}})",
-              "description": ""
-            },
-            "name": "dispatch",
-            "location": {
-              "start": 136,
-              "insert": 136,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 6,
-            "docLength": null
-          },
-          {
-            "id": "73de95f5-8084-19bb-ed4e-af971d69468a",
-            "ancestors": [
-              "a181f11e-3b61-bb9b-4f4b-d73337d05954"
-            ],
-            "description": "Calls back with a callback.",
-            "name": null,
-            "location": {
-              "start": 138,
-              "insert": 139,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "7df87e3c-84b9-a9bd-8c41-21cea8bb3394",
-            "ancestors": [],
-            "description": "Generates a unique ID for a toast and dispatches actions to add, update, and dismiss the toast based on props provided. It returns an object containing the ID, a function to dismiss the toast, and a function to update its properties.",
-            "params": [
-              {
-                "name": "obj",
-                "default_value": null,
-                "optional": false,
-                "type_name": "object",
-                "description": "Spread into a `Toast` type, denoted by `{...props}: Toast`. This means it accepts an object with properties that match the `Toast` type."
-              }
-            ],
-            "returns": {
-              "type_name": "object",
-              "description": "Composed of two properties: `id`, a string representing the ID of the toast; and `dismiss` and `update`, two functions to respectively dismiss and update the toast."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "toast({\n  title: \"Hello, world!\",\n  message: \"This is a toast\",\n});\n",
-              "description": "\ndismiss and update methods can then be used on the returned object."
-            },
-            "name": "toast",
-            "location": {
-              "start": 145,
-              "insert": 145,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 28,
-            "docLength": null
-          },
-          {
-            "id": "1d87c2f3-6dda-0993-dc4a-df0e88aff965",
-            "ancestors": [
-              "7df87e3c-84b9-a9bd-8c41-21cea8bb3394"
-            ],
-            "description": "Updates the state of a toaster toast by sending an action to the reducer with type \"UPDATE_TOAST\". The updated toast is created by merging the incoming `props` with an existing `id`. This action triggers the reducer to modify the application state accordingly.",
-            "params": [
-              {
-                "name": "props",
-                "default_value": null,
-                "optional": false,
-                "type_name": "ToasterToast",
-                "description": "Used to update a toast with new properties."
-              }
-            ],
-            "usage": {
-              "language": "typescript",
-              "code": "update({ title: 'Error', message: 'Failed to load data' });\n",
-              "description": ""
-            },
-            "name": "update",
-            "location": {
-              "start": 148,
-              "insert": 148,
-              "offset": " ",
-              "indent": 2,
-              "comment": null
-            },
-            "item_type": "function",
             "length": 5,
             "docLength": null
-          },
-          {
-            "id": "4abc0043-a397-41ba-4843-c91e8cbabed0",
-            "ancestors": [
-              "7df87e3c-84b9-a9bd-8c41-21cea8bb3394"
-            ],
-            "description": "Monitors a state variable `open`. When the `open` state changes to false, it triggers the `dismiss()` function to perform an action likely related to dismissing or closing something. The exact behavior depends on the context and definition of `dismiss()`.",
-            "params": [
-              {
-                "name": "open",
-                "default_value": null,
-                "optional": false,
-                "type_name": "boolean",
-                "description": "True if the file or folder is open, false otherwise."
-              }
-            ],
-            "usage": {
-              "language": "typescript",
-              "code": "const component = <div onOpenChange={(open) => {\n  if (!open) dismiss()\n}}>\n  <!-- component content -->\n</div>\n",
-              "description": "\nDismiss function not shown."
-            },
-            "name": "onOpenChange",
-            "location": {
-              "start": 161,
-              "insert": 161,
-              "offset": " ",
-              "indent": 6,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "0c5bb6bf-ba78-54bb-654f-4dda64d94fcc",
-            "ancestors": [],
-            "description": "Manages a toast state and its listeners using React's `useState` and `useEffect`. It initializes the state from the `memoryState`, adds itself as a listener to any changes, and provides methods for updating the state and dismissing toasts.",
-            "params": [],
-            "returns": {
-              "type_name": "any",
-              "description": "An object with three properties: state (an object), toast, and dismiss. The state property contains a nested object structure representing the current application state."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "function App() {\n  const toast = useToast();\n  return (\n    <div>\n      <button onClick={() => toast.dismiss('toast-1')}>Dismiss Toast</button>\n    </div>\n  );\n}\n",
-              "description": ""
-            },
-            "name": "useToast",
-            "location": {
-              "start": 174,
-              "insert": 174,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 19,
-            "docLength": null
-          },
-          {
-            "id": "f33ccdcd-d6e3-3098-b346-5dcd6f3140f9",
-            "ancestors": [
-              "0c5bb6bf-ba78-54bb-654f-4dda64d94fcc"
-            ],
-            "description": "Registers and unregisters a state update listener.",
-            "name": null,
-            "location": {
-              "start": 177,
-              "insert": 178,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 9,
-            "docLength": null
           }
         ]
       }
     }
   },
   {
-    "name": "RememberService.py",
-    "path": "server/domain/service/RememberService.py",
+    "name": "carousel.tsx",
+    "path": "web/src/components/ui/carousel.tsx",
     "content": {
       "structured": {
-        "description": "A personal assistant named Bear that uses Natural Language Processing (NLP) and machine learning techniques to help users remember events and things they discuss. It utilizes OpenAI's Gemini client for generating responses based on user input. The assistant integrates with Qdrant, a vector database, and LLM, a large language model, to store and retrieve memories.",
+        "description": "A carousel component using the Embla Carousel React library, allowing for horizontal and vertical scrolling with optional plugins. The component provides context to its children via a CarouselContext, enabling them to access carousel-related state and functionality such as scrolling and selecting slides. It also includes custom components for carousel items, previous/next buttons, and content.",
         "items": [
           {
-            "id": "09188aa2-b74a-af83-414f-2d75f7ca5ae4",
+            "id": "ffc6b205-6a73-0b80-f44c-4ca862a120e8",
             "ancestors": [],
-            "description": "Provides a conversational AI assistant named Bear that helps users remember events and things they discuss. It uses a generative model to respond to user questions, stores user conversations, and allows searching of stored memories.",
-            "attributes": [
-              {
-                "name": "memory",
-                "type_name": "Memory",
-                "description": "Initialized from a configuration dictionary. It provides functionality to store and retrieve user memories, allowing the service to keep track of previous conversations and events."
-              },
-              {
-                "name": "client",
-                "type_name": "genaiGenerativeModel",
-                "description": "Initialized with a specific model name, generation configuration, and safety settings. It represents a generative AI model that can generate human-like responses to user input."
-              },
-              {
-                "name": "app_id",
-                "type_name": "str",
-                "description": "Assigned the value \"remembear-app\". Its purpose is not explicitly stated, but it could be used to identify the application or service within a larger system."
-              },
-              {
-                "name": "messages",
-                "type_name": "List[Dict[str,List[str]]]",
-                "description": "Used to store chat messages between a user and Bear, with each message having a role (user or model) and one or more parts representing the content of the message."
-              }
-            ],
-            "name": "RememberService",
-            "location": {
-              "start": 24,
-              "insert": 25,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "class",
-            "length": 105,
-            "docLength": null
-          },
-          {
-            "id": "9b004434-82c6-b793-ac42-08fbb7cbb09a",
-            "ancestors": [
-              "09188aa2-b74a-af83-414f-2d75f7ca5ae4"
-            ],
-            "description": "Retrieves all memories associated with a specified user ID from the memory storage and returns them as a list of text strings, filtered from the original data structure.",
-            "params": [
-              {
-                "name": "user_id",
-                "type_name": "str",
-                "description": "Required, as it determines which user's memories are retrieved from the memory storage."
-              }
-            ],
-            "returns": {
-              "type_name": "List[str]",
-              "description": "A list of memory text strings, each string representing a single memory retrieved from the database using the provided user ID."
-            },
-            "usage": {
-              "language": "python",
-              "code": "remember_service = RememberService()\nuser_id = 12345\nmemories = remember_service.get_memories(user_id)\n",
-              "description": "\nThis code snippet creates a new instance of `RememberService`, then uses it to retrieve memories for a user with ID `12345`."
-            },
-            "name": "get_memories",
-            "location": {
-              "start": 135,
-              "insert": 136,
-              "offset": " ",
-              "indent": 8,
-              "comment": null
-            },
-            "item_type": "method",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "d5f017e7-e47d-23a0-4d44-8fa29867e71e",
-            "ancestors": [
-              "09188aa2-b74a-af83-414f-2d75f7ca5ae4"
-            ],
-            "description": "Searches for memories related to a given query and user ID using an internal memory storage component (self.memory). It returns a list of text strings representing the matching memories.",
-            "params": [
-              {
-                "name": "query",
-                "type_name": "str | List[str]",
-                "description": "Used to search for matching memories based on its content, either as a single string or a list of strings."
-              },
-              {
-                "name": "user_id",
-                "type_name": "int | str",
-                "description": "Used to filter the results returned by the `self.memory.search(query)` method, which searches for memories related to the specified user ID."
-              }
-            ],
-            "returns": {
-              "type_name": "List[str]",
-              "description": "A list of strings. Each string represents the text content of a memory retrieved from the database using the query and user_id provided."
-            },
-            "usage": {
-              "language": "python",
-              "code": "service = RememberService()\nmemories = service.search_memories(\"kantor\", 1)\n",
-              "description": "\nThis code instantiates the RememberService class and then uses its search_memories method to retrieve memories related to the query \"kantor\" for a user with id 1."
-            },
-            "name": "search_memories",
-            "location": {
-              "start": 139,
-              "insert": 140,
-              "offset": " ",
-              "indent": 8,
-              "comment": null
-            },
-            "item_type": "method",
-            "length": 3,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "TriggerService.py",
-    "path": "server/domain/service/TriggerService.py",
-    "content": {
-      "structured": {
-        "description": "A class TriggerService with a static method parse that takes a string message as input and returns a list of parsed actions. The parse method extracts JSON data from the input string using regular expressions, then parses the JSON into a Python object.",
-        "items": [
-          {
-            "id": "80646754-d4cd-e3a2-3b4a-3c09adf01bcb",
-            "ancestors": [],
-            "description": "Parses a given message and extracts specific data from it. It checks if the message contains an \"action\" key with a list of actions, then processes each action to extract its type, title, body, and timestamp (if present). The processed actions are returned as a list.",
-            "attributes": [],
-            "name": "TriggerService",
-            "location": {
-              "start": 6,
-              "insert": 7,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "class",
-            "length": 24,
-            "docLength": null
-          },
-          {
-            "id": "616fb271-23de-4485-564c-227213a6fcad",
-            "ancestors": [],
-            "description": "Searches for a JSON string within an input string, decodes it if valid, and returns the decoded JSON as a formatted string with indentation. If the input contains invalid JSON or no JSON at all, it returns an error message accordingly.",
-            "params": [
-              {
-                "name": "input_str",
-                "type_name": "str",
-                "description": "Expected to be a string containing potentially a JSON object within it, possibly with other text or characters around it."
-              }
-            ],
-            "returns": {
-              "type_name": "str|InvalidJSONdetected|NoJSONfoundintheinput",
-              "description": "A) a formatted JSON string if the input contains valid JSON, b) \"Invalid JSON detected.\" if the JSON is invalid, or c) \"No JSON found in the input.\" if no JSON is present."
-            },
-            "usage": {
-              "language": "python",
-              "code": "input_str = '{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}'\noutput = extract_json(input_str)\n",
-              "description": ""
-            },
-            "name": "extract_json",
-            "location": {
-              "start": 36,
-              "insert": 38,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 9,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "capacitor.config.ts",
-    "path": "web/capacitor.config.ts",
-    "content": {
-      "structured": {
-        "description": "The configuration for Capacitor, a set of APIs that enables mobile apps to access native device capabilities from web-based applications. The config specifies the app's identity and plugins including LocalNotifications, BackgroundRunner, and PushNotifications. These plugins enable features such as customizable notifications, background tasks, and push notification presentation options.",
-        "items": []
-      }
-    }
-  },
-  {
-    "name": "background.js",
-    "path": "web/public/background.js",
-    "content": {
-      "structured": {
-        "description": "Event listeners for push notifications and manages permissions. It uses the @capacitor/push-notifications package to interact with the device's notification system. The code adds listeners for registration, error, received, and action performed events, as well as requests permission from the user to receive notifications.",
-        "items": [
-          {
-            "id": "f4832944-993c-aa83-ab4f-b7ce3166acdb",
-            "ancestors": [],
-            "description": "Registers event listeners for push notifications, handling registration, error, received and action performed events by logging information to the console using `console.info`, `console.error`, `console.log`.",
-            "params": [],
-            "usage": {
-              "language": "javascript",
-              "code": "addListeners();\n",
-              "description": ""
-            },
-            "name": "addListeners",
-            "location": {
-              "start": 12,
-              "insert": 12,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 17,
-            "docLength": null
-          },
-          {
-            "id": "595fa706-fae9-5a94-3040-55c5e4675f02",
-            "ancestors": [
-              "f4832944-993c-aa83-ab4f-b7ce3166acdb"
-            ],
-            "description": "Listens for push registration events and logs the received token to the console.",
-            "name": null,
-            "location": {
-              "start": 13,
-              "insert": 14,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "6384c746-ca00-92a7-a14b-1ee622c41f96",
-            "ancestors": [
-              "f4832944-993c-aa83-ab4f-b7ce3166acdb"
-            ],
-            "description": "Listens for registration errors with push notifications and logs them to the console.",
-            "name": null,
-            "location": {
-              "start": 17,
-              "insert": 18,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "b9a04640-8dc5-4f9f-0143-46faece73d2b",
-            "ancestors": [
-              "f4832944-993c-aa83-ab4f-b7ce3166acdb"
-            ],
-            "description": "Subscribes to push notifications.",
-            "name": null,
-            "location": {
-              "start": 21,
-              "insert": 22,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "b01cd2ab-407d-9fa7-fc46-e9941986b69e",
-            "ancestors": [
-              "f4832944-993c-aa83-ab4f-b7ce3166acdb"
-            ],
-            "description": "Listens for push notifications actions and logs them to the console.",
-            "name": null,
-            "location": {
-              "start": 25,
-              "insert": 26,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "56e3c181-d70b-c0b4-914a-34c55674dfea",
-            "ancestors": [],
-            "description": "Checks for push notification permissions, requests them if necessary, and registers the device to receive notifications. If permission is denied, it throws an error.",
-            "params": [],
-            "usage": {
-              "language": "javascript",
-              "code": "registerNotifications();\n",
-              "description": ""
-            },
-            "name": "registerNotifications",
-            "location": {
-              "start": 31,
-              "insert": 31,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 13,
-            "docLength": null
-          },
-          {
-            "id": "f4154470-a793-b082-134f-bca720fcc68b",
-            "ancestors": [],
-            "description": "Retrieves a list of delivered push notifications from an external API, specifically `PushNotifications.getDeliveredNotifications()`, and logs the result to the console.",
-            "params": [],
-            "usage": {
-              "language": "javascript",
-              "code": "getDeliveredNotifications();\n",
-              "description": ""
-            },
-            "name": "getDeliveredNotifications",
-            "location": {
-              "start": 46,
-              "insert": 46,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 4,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "page.tsx",
-    "path": "web/src/app/integration/page.tsx",
-    "content": {
-      "structured": {
-        "description": "A React component called Integration that renders a form with a main section containing an h1 heading and a set of links. The links use Next.js' Link component from \"next/link\" package to navigate to different routes, which are defined as \"/\" in this case. Additionally, the code utilizes button variants from the \"buttonVariants\" function to style the links as buttons with default variant.",
-        "items": [
-          {
-            "id": "078e356b-f092-e4bf-7c41-6403662c4c52",
-            "ancestors": [],
-            "description": "Renders a form containing a main section with an \"Integration\" heading and a list of links to external platforms (calendar, Whatsapp, Notion) wrapped in buttons. The links are styled using the `buttonVariants` function.",
+            "description": "Retrieves and returns the value of the `CarouselContext`. If the context is not provided, it throws an error indicating that the hook must be used within a `<Carousel />` component.",
             "params": [],
             "returns": {
-              "type_name": "React.ReactElement",
-              "description": "A JSX expression containing a form element with various child elements including an h1 heading, a div with links and button variants."
+              "type_name": "object",
+              "description": "Retrieved from the React context using the hook `React.useContext(CarouselContext)`."
             },
             "usage": {
               "language": "typescript",
-              "code": "<Integration />",
+              "code": "const carousel = useCarousel();\ncarousel.next(); // Navigate to the next slide\n",
               "description": ""
             },
-            "name": "Integration",
+            "name": "useCarousel",
             "location": {
-              "start": 7,
-              "insert": 7,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 32,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "page.tsx",
-    "path": "web/src/app/login/page.tsx",
-    "content": {
-      "structured": {
-        "description": "A React functional component called Login that renders a simple login form. The component uses the Next.js Link component to provide a link to the root route (\"/\") with a custom button style. The button is labeled \"Login with google\" and is rendered using the buttonVariants function from the ui/button component.",
-        "items": [
-          {
-            "id": "769fc212-2e3b-5b87-6f49-97f0f832d35b",
-            "ancestors": [],
-            "description": "Returns a JSX element representing an HTML form with a main content area and a heading that says \"Login\". It includes a link to log in with Google, styled according to the `buttonVariants` function.",
-            "params": [],
-            "returns": {
-              "type_name": "JSX.Element",
-              "description": "A form element with its child elements, including an h1 heading and a link, all wrapped in a main element with a specific class name."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "<Login />\n",
-              "description": "\nThis would render a login form with a heading \"Login\" and a button labeled \"Login with Google\"."
-            },
-            "name": "Login",
-            "location": {
-              "start": 7,
-              "insert": 7,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 16,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "page.tsx",
-    "path": "web/src/app/page.tsx",
-    "content": {
-      "structured": {
-        "description": "A React component called Home that provides a chat interface between a user and an AI model. The component uses the React Hook Form library to handle form submissions and the useState hook to manage the state of the chat history. When the user submits a prompt, the component sends it to the server using the ask function from the ServerService, retrieves the response, and updates the chat history accordingly.",
-        "items": [
-          {
-            "id": "45c1c230-f28b-0f96-234f-0a416d20e2fd",
-            "ancestors": [],
-            "description": "Renders a chat interface, allowing users to submit prompts and receive responses from a model. It displays a list of chat messages with user input on the right and model output on the left. The UI updates in real-time as new messages are added or fetched from local storage.",
-            "params": [],
-            "returns": {
-              "type_name": "React.ReactElement",
-              "description": "A JSX element representing the home page component with a chat interface and a form to send messages."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const home = document.getElementById('root');\nReactDOM.render(<Home />, home);\n",
-              "description": "\n\nThe code above renders the Home component to a DOM element with the id 'root'."
-            },
-            "name": "Home",
-            "location": {
-              "start": 23,
-              "insert": 23,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 109,
-            "docLength": null
-          },
-          {
-            "id": "bae80210-44b0-83a0-324c-71ff418fd052",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd"
-            ],
-            "description": "Handles user prompts by setting the UI to loading state, resetting previous chat history, and sending the prompt to a model for response. It then updates the chat history with the response or an error message, and finally sets the UI back to non-loading state.",
-            "params": [
-              {
-                "name": "prompt",
-                "default_value": null,
-                "optional": false,
-                "type_name": "string",
-                "description": "Used to send a message to be answered by the model."
-              }
-            ],
-            "returns": {
-              "type_name": "undefined",
-              "description": "Implicitly returned when the function completes its execution without explicitly returning a value."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "handleAsk(\"What's the weather like today?\")",
-              "description": ""
-            },
-            "name": "handleAsk",
-            "location": {
-              "start": 32,
-              "insert": 32,
-              "offset": " ",
-              "indent": 2,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 20,
-            "docLength": null
-          },
-          {
-            "id": "07e42445-0d9e-fdad-b54a-b26bb68df3b8",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd",
-              "bae80210-44b0-83a0-324c-71ff418fd052"
-            ],
-            "description": "Appends new chat item.",
-            "name": null,
-            "location": {
-              "start": 41,
-              "insert": 42,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "f6c4c10e-b8cf-efb4-aa4b-172c2a66dd80",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd"
-            ],
-            "description": "Initializes and updates chat history state.",
-            "name": null,
-            "location": {
-              "start": 54,
-              "insert": 55,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 16,
-            "docLength": null
-          },
-          {
-            "id": "a940b35a-7c4b-43ac-0940-bd15a8b1c1f3",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd",
-              "f6c4c10e-b8cf-efb4-aa4b-172c2a66dd80"
-            ],
-            "description": "Asynchronously retrieves chat history from storage, parses it as a JSON object, and updates the `chat` state with the retrieved data.",
-            "params": [],
-            "returns": {
-              "type_name": "undefined",
-              "description": "Assigned to the state variable 'chat' after parsing JSON data into an array of objects conforming to the `Chat` interface."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "fetchHistory();\n",
-              "description": ""
-            },
-            "name": "fetchHistory",
-            "location": {
-              "start": 61,
-              "insert": 61,
-              "offset": " ",
-              "indent": 6,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 6,
-            "docLength": null
-          },
-          {
-            "id": "f03f05b9-4a1f-6bbb-2845-f342bcccf0f0",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd",
-              "f6c4c10e-b8cf-efb4-aa4b-172c2a66dd80",
-              "a940b35a-7c4b-43ac-0940-bd15a8b1c1f3"
-            ],
-            "description": "Retrieves and parses chat history.",
-            "name": null,
-            "location": {
-              "start": 62,
-              "insert": 63,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "4936ec87-b4e9-d999-484a-1f5b7d803277",
-            "ancestors": [
-              "45c1c230-f28b-0f96-234f-0a416d20e2fd"
-            ],
-            "description": "Maps over a chat array and renders a message for each item.",
-            "name": null,
-            "location": {
-              "start": 82,
-              "insert": 83,
-              "offset": " ",
-              "indent": 14,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 17,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "page.tsx",
-    "path": "web/src/app/setting/page.tsx",
-    "content": {
-      "structured": {
-        "description": "A React component called Setting that handles push notifications and registration. It uses Capacitor's PushNotifications plugin to register for push notifications and listen for registration success, failure, received notifications, and actions performed on notifications. The component also includes a drawer with buttons to submit and cancel the registration process.",
-        "items": [
-          {
-            "id": "aee4b866-1891-cb8b-2246-603e0d43540a",
-            "ancestors": [],
-            "description": "Initializes and manages push notifications for an application. It checks for available permissions, requests permission if not granted, registers with Apple/Google, and listens for registration success/failure, push notification receipt, and action performed events.",
-            "params": [],
-            "returns": {
-              "type_name": "JSX.Element",
-              "description": "A React component consisting of various HTML elements such as `main`, `h1`, `Drawer`, `Button`, etc."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const App = () => {\n  return <Setting />;\n};\n",
-              "description": ""
-            },
-            "name": "Setting",
-            "location": {
-              "start": 21,
-              "insert": 21,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 121,
-            "docLength": null
-          },
-          {
-            "id": "5e3c3fed-641d-fb8c-1343-90a3e820dbb9",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a"
-            ],
-            "description": "Initializes and registers push notifications if available.",
-            "name": null,
-            "location": {
-              "start": 28,
-              "insert": 29,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 25,
-            "docLength": null
-          },
-          {
-            "id": "1fca41d1-5b22-32a7-7a4f-99fdfaaffe47",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "5e3c3fed-641d-fb8c-1343-90a3e820dbb9"
-            ],
-            "description": "Handles push notifications permissions.",
-            "name": null,
-            "location": {
-              "start": 34,
+              "start": 35,
               "insert": 35,
               "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 9,
+            "docLength": null
+          },
+          {
+            "id": "feb65345-b420-ff9d-0944-585d82575445",
+            "ancestors": [],
+            "description": "Defines a Carousel component for React.",
+            "name": null,
+            "location": {
+              "start": 45,
+              "insert": 61,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 106,
+            "docLength": null
+          },
+          {
+            "id": "c6979499-1634-beaf-5847-9f0c313f02a3",
+            "ancestors": [
+              "feb65345-b420-ff9d-0944-585d82575445"
+            ],
+            "description": "Handles carousel selection.",
+            "name": null,
+            "location": {
+              "start": 71,
+              "insert": 72,
+              "offset": " ",
               "indent": 6,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 18,
+            "length": 8,
             "docLength": null
           },
           {
-            "id": "837342c0-91a6-db89-954a-7b7c7a2b94eb",
+            "id": "545b9450-726e-a083-174e-06ccb2a6b0b1",
             "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "5e3c3fed-641d-fb8c-1343-90a3e820dbb9",
-              "1fca41d1-5b22-32a7-7a4f-99fdfaaffe47"
+              "feb65345-b420-ff9d-0944-585d82575445"
             ],
-            "description": "Handles push notification permissions.",
+            "description": "Scrolls previous data from API.",
             "name": null,
             "location": {
-              "start": 36,
-              "insert": 37,
+              "start": 80,
+              "insert": 81,
               "offset": " ",
-              "indent": 10,
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 3,
+            "docLength": null
+          },
+          {
+            "id": "54e4c68b-36b3-78b2-3049-83e40955ebd9",
+            "ancestors": [
+              "feb65345-b420-ff9d-0944-585d82575445"
+            ],
+            "description": "Scrolls to the next page using API.",
+            "name": null,
+            "location": {
+              "start": 84,
+              "insert": 85,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 3,
+            "docLength": null
+          },
+          {
+            "id": "c93fa89d-0ff6-a0b8-884f-2e716432f01f",
+            "ancestors": [
+              "feb65345-b420-ff9d-0944-585d82575445"
+            ],
+            "description": "Handles keydown events.",
+            "name": null,
+            "location": {
+              "start": 88,
+              "insert": 90,
+              "offset": " ",
+              "indent": 8,
               "comment": null
             },
             "item_type": "higher_order_invocation",
@@ -1196,178 +196,103 @@
             "docLength": null
           },
           {
-            "id": "75f65177-d3c2-66bd-8e45-2d3bb4351319",
+            "id": "bf617d4e-c1e5-c189-2547-597c75a15527",
             "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a"
+              "feb65345-b420-ff9d-0944-585d82575445"
             ],
-            "description": "Initializes and registers for push notifications, listening to registration success, error, received notifications, and action performed on notifications. It updates local notifications state accordingly.",
-            "params": [],
-            "usage": {
-              "language": "typescript",
-              "code": "register();\n",
-              "description": ""
-            },
-            "name": "register",
+            "description": "Updates API when it changes.",
+            "name": null,
             "location": {
-              "start": 54,
-              "insert": 54,
+              "start": 101,
+              "insert": 102,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 7,
+            "docLength": null
+          },
+          {
+            "id": "6f0411f2-29b1-a280-c744-b2b014c3e1be",
+            "ancestors": [
+              "feb65345-b420-ff9d-0944-585d82575445"
+            ],
+            "description": "Sets event listeners and removes them when the component unmounts.",
+            "name": null,
+            "location": {
+              "start": 109,
+              "insert": 110,
+              "offset": " ",
+              "indent": 6,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 13,
+            "docLength": null
+          },
+          {
+            "id": "ef6b3b3f-0815-51b9-484e-fbbe6d75d41f",
+            "ancestors": [],
+            "description": "Wraps Carousel content.",
+            "name": null,
+            "location": {
+              "start": 153,
+              "insert": 157,
               "offset": " ",
               "indent": 2,
               "comment": null
             },
-            "item_type": "function",
-            "length": 53,
+            "item_type": "higher_order_invocation",
+            "length": 20,
             "docLength": null
           },
           {
-            "id": "18bc52f3-ebdd-85ac-7e4a-f1c2f477e0ca",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "75f65177-d3c2-66bd-8e45-2d3bb4351319"
-            ],
-            "description": "Listens for push notifications and displays a toast message on successful registration.",
-            "name": null,
-            "location": {
-              "start": 66,
-              "insert": 70,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 9,
-            "docLength": null
-          },
-          {
-            "id": "56f2d306-24a9-66af-9e40-36d0d1125d06",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "75f65177-d3c2-66bd-8e45-2d3bb4351319"
-            ],
-            "description": "Handles errors.",
-            "name": null,
-            "location": {
-              "start": 77,
-              "insert": 79,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 5,
-            "docLength": null
-          },
-          {
-            "id": "29790dc7-18b4-8db0-494b-016051e99bd2",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "75f65177-d3c2-66bd-8e45-2d3bb4351319"
-            ],
-            "description": "Handles push notifications.",
-            "name": null,
-            "location": {
-              "start": 84,
-              "insert": 86,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 10,
-            "docLength": null
-          },
-          {
-            "id": "bb475b19-e83f-19bc-c945-383607ec603b",
-            "ancestors": [
-              "aee4b866-1891-cb8b-2246-603e0d43540a",
-              "75f65177-d3c2-66bd-8e45-2d3bb4351319"
-            ],
-            "description": "Handles push notifications.",
-            "name": null,
-            "location": {
-              "start": 96,
-              "insert": 98,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 10,
-            "docLength": null
-          }
-        ]
-      }
-    }
-  },
-  {
-    "name": "NotificationService.ts",
-    "path": "web/src/services/NotificationService.ts",
-    "content": {
-      "structured": {
-        "description": "An asynchronous function Notify that schedules local notifications on a mobile device using Capacitor's LocalNotifications package. The function takes three parameters: title, body, and at (a date object), which specify the notification details. It checks for permission to display notifications and requests it if necessary before scheduling a single notification with the specified properties.",
-        "items": [
-          {
-            "id": "ac80a185-091a-bca7-214b-45ec6d1e879e",
+            "id": "daf281cc-061f-cfba-ec47-6afb560f7972",
             "ancestors": [],
-            "description": "Defines a set of properties that an object must have in order to be considered compatible with this interface. The three properties defined are:\n\n*   `title`: A string that represents the title of a notification.\n*   `body`: A string that contains the body or content of the notification.\n*   `at`: A Date that specifies the time at which the notification should be triggered or displayed.",
-            "name": "Notify",
+            "description": "Creates a React component.",
+            "name": null,
             "location": {
-              "start": 3,
-              "insert": 3,
+              "start": 175,
+              "insert": 179,
               "offset": " ",
-              "indent": 0,
+              "indent": 2,
               "comment": null
             },
-            "item_type": "interface",
-            "length": 5,
+            "item_type": "higher_order_invocation",
+            "length": 20,
             "docLength": null
           },
           {
-            "id": "2281610a-ed72-a79b-b940-36bd5c4ac1a5",
+            "id": "d403071a-b471-c699-d749-3d5bf3ef2e18",
             "ancestors": [],
-            "description": "Schedules a local notification to be displayed at a specified time, using the `LocalNotifications` module. It checks for and requests permission before scheduling the notification, and logs a message to the console if the background runner is triggered.",
-            "params": [
-              {
-                "name": "title",
-                "default_value": "\"Remembear\"",
-                "optional": true,
-                "type_name": "string",
-                "description": "Used to set the title of the local notification."
-              },
-              {
-                "name": "body",
-                "default_value": "\"Remembear to wash your hand\"",
-                "optional": true,
-                "type_name": "string",
-                "description": "Used to set the notification body."
-              },
-              {
-                "name": "at",
-                "default_value": "new Date(Date.now() + 1000 * 10)",
-                "optional": true,
-                "type_name": "Date",
-                "description": "Used to specify when the notification should be triggered."
-              }
-            ],
-            "returns": {
-              "type_name": "Promise<LocalNotifications.Notification[]>",
-              "description": "A promise that resolves to an array of scheduled local notifications."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "Notify(\"Title\", \"Body\");\n",
-              "description": ""
-            },
-            "name": "Notify",
+            "description": "Returns a customizable Carousel Previous Button component.",
+            "name": null,
             "location": {
-              "start": 9,
-              "insert": 9,
+              "start": 197,
+              "insert": 201,
               "offset": " ",
-              "indent": 0,
+              "indent": 2,
               "comment": null
             },
-            "item_type": "function",
-            "length": 31,
+            "item_type": "higher_order_invocation",
+            "length": 27,
+            "docLength": null
+          },
+          {
+            "id": "1425721e-1352-8cbc-f146-dab913789383",
+            "ancestors": [],
+            "description": "Renders a carousel next button.",
+            "name": null,
+            "location": {
+              "start": 226,
+              "insert": 230,
+              "offset": " ",
+              "indent": 2,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 27,
             "docLength": null
           }
         ]
