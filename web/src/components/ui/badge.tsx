@@ -23,10 +23,32 @@ const badgeVariants = cva(
   }
 )
 
+/**
+ * @description Extends the `React.HTMLAttributes<HTMLDivElement>` type and merges
+ * with the `VariantProps` type from `badgeVariants`. This means it inherits all
+ * properties from both types, effectively combining their key-value pairs. The
+ * resulting interface can be used to describe props that a React component expects.
+ */
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
+/**
+ * @description Renders a div element with a set of class names and props passed from
+ * its parent component, allowing customization through its `variant` property and
+ * optional additional classes provided by the `className` prop.
+ * 
+ * @param {object} obj - Destructured from an interface called `BadgeProps`. It expects
+ * two properties: `className` and `variant`, along with any additional props passed
+ * through the spread operator (`...props`).
+ * 
+ * @param {BadgeProps} obj.className - Used to add custom classes to the badge component.
+ * 
+ * @param {BadgeProps} obj.variant - Optional.
+ * 
+ * @returns {ReactElement} A JSX element represented as an object with properties
+ * such as "type" and "key", and optionally, additional props and children.
+ */
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
     <div className={cn(badgeVariants({ variant }), className)} {...props} />
