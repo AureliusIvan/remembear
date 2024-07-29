@@ -58,6 +58,11 @@ export default function Home(): React.ReactElement {
   const chatHistoryRef = React.useRef<HTMLDivElement>(null)
 
   // function to scroll to bottom (used to scroll to the bottom of the chat)
+  /**
+   * @description Scrolls a targeted element, referenced by `chatHistoryRef`, into view
+   * at its bottommost position with smooth animation. The element's current scroll
+   * position is updated to ensure it reaches the bottom smoothly.
+   */
   const scrollToBottom = () => {
     chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
   }
@@ -103,9 +108,13 @@ export default function Home(): React.ReactElement {
           data: JSON.stringify(userNewChatHistory)
         })
         .then(() => {
+          // Logs a message to the console.
+
           console.log("chat saved")
         })
         .catch((error) => {
+          // Logs error to console.
+
           console.error(error)
         })
 
@@ -115,6 +124,8 @@ export default function Home(): React.ReactElement {
       if (reply) {
         const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
         setChat((prevChat: Chat[]) => {
+          // Appends new chat item.
+
           // Appends new chat item.
           return [...prevChat,
             {
@@ -134,9 +145,13 @@ export default function Home(): React.ReactElement {
               data: JSON.stringify(modelNewChatHistory)
             })
             .then(() => {
+              // Logs "chat saved" to the console when executed.
+
               console.log("chat saved")
             })
             .catch((error) => {
+              // Logs error messages to the console.
+
               console.error(error)
             })
       }
@@ -154,11 +169,15 @@ export default function Home(): React.ReactElement {
 
   // useEffect List
   useEffect(() => {
+    // Scrolls to the bottom on initial load.
+
     // scroll to bottom when chat at initial loads
     scrollToBottom()
   }, []);
 
   useEffect(() => {
+    // Initializes and updates chat history state by retrieving and parsing data from storage.
+
     /**
      * Initializes and updates chat history state.
      * @description Asynchronously retrieves chat history from storage, parses it as a
@@ -169,6 +188,8 @@ export default function Home(): React.ReactElement {
      */
     const fetchHistory = async (): Promise<void> => {
       const data = await getObject(CHAT_HISTORY_OBJ_KEY).then(data => {
+        // Retrieves and parses chat history.
+
         // Retrieves and parses chat history.
         try {
           if (data && data.data) {
@@ -188,6 +209,8 @@ export default function Home(): React.ReactElement {
 
   // handler for input errors
   useEffect(() => {
+    // Displays a toast notification when a prompt error occurs.
+
     if (errors.prompt) {
       toast({
         title: "Please enter a prompt"
@@ -208,6 +231,8 @@ export default function Home(): React.ReactElement {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[120vh] px-6"}>
             {chat.map((data: Chat, index: number) => {
+              // Renders chat messages.
+
               // Maps over a chat array and renders a message for each item.
 
               const isUser = data.role === "user"; // Check if the message is from the user

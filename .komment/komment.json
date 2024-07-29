@@ -1,16 +1,15 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-29T02:49:03.252Z",
-    "created_at": "2024-07-29T02:49:05.307Z",
+    "updated_at": "2024-07-29T16:31:39.788Z",
+    "created_at": "2024-07-29T16:31:41.436Z",
     "pipelines": [
-      "f9f5d8a0-2486-4e78-a9fc-881de465c7e2"
+      "0ffe285f-b025-4cb4-8ea6-17e9ab36cb2c"
     ]
   },
   "lookup": [
     [
-      "web/src/components/ui/badge.tsx",
-      "web/src/components/ui/carousel.tsx"
+      "web/src/app/page.tsx"
     ]
   ]
 }
