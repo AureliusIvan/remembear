@@ -38,7 +38,14 @@ type Chat = {
  * with a chat interface and a form to send messages.
  */
 export default function Home(): React.ReactElement {
-  // Register All the hooks
+  /**
+   * @description Constants
+   */
+  const CHAT_HISTORY_OBJ_KEY = "chat-history"
+
+  /**
+   * @description State variables
+   */
   const {toast} = useToast()
   const [chat, setChat] = useState<Chat[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -87,12 +94,26 @@ export default function Home(): React.ReactElement {
             role: "user",
             message: prompt
           }]
-    );
+    )
 
-    // invoke the model
+    const userNewChatHistory = [...chat, {role: 'user', message: prompt}]
+    setObject(
+        CHAT_HISTORY_OBJ_KEY,
+        {
+          data: JSON.stringify(userNewChatHistory)
+        })
+        .then(() => {
+          console.log("chat saved")
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
+    // invoke the model and save the response to the chat history
     try {
       const reply = await ask(prompt)
       if (reply) {
+        const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
         setChat((prevChat: Chat[]) => {
           // Appends new chat item.
           return [...prevChat,
@@ -106,6 +127,18 @@ export default function Home(): React.ReactElement {
             }
           ];
         });
+
+        setObject(
+            CHAT_HISTORY_OBJ_KEY,
+            {
+              data: JSON.stringify(modelNewChatHistory)
+            })
+            .then(() => {
+              console.log("chat saved")
+            })
+            .catch((error) => {
+              console.error(error)
+            })
       }
 
     } catch (Error) {
@@ -126,48 +159,34 @@ export default function Home(): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    // Initializes and updates chat history state.
-    if (chat.length > 0) {
-      setObject(
-          "chat-history",
-          {
-            data: JSON.stringify(chat)
-          })
-          .then(() => {
-            console.log("chat saved")
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-    } else {
-      /**
-       * @description Asynchronously retrieves chat history from storage, parses it as a
-       * JSON object, and updates the `chat` state with the retrieved data.
-       *
-       * @returns {Promise<void>} Assigned to the state variable 'chat' after parsing JSON data
-       * into an array of objects conforming to the `Chat` interface.
-       */
-      const fetchHistory = async (): Promise<void> => {
-        const data = await getObject("chat-history").then(data => {
-          // Retrieves and parses chat history.
-          try {
-            if (data && data.data) {
-              return JSON.parse(data.data) as Chat[]
-            }
-            return []
-          } catch (e) {
-            console.error(e);
-            return []
+    /**
+     * Initializes and updates chat history state.
+     * @description Asynchronously retrieves chat history from storage, parses it as a
+     * JSON object, and updates the `chat` state with the retrieved data.
+     *
+     * @returns {Promise<void>} Assigned to the state variable 'chat' after parsing JSON data
+     * into an array of objects conforming to the `Chat` interface.
+     */
+    const fetchHistory = async (): Promise<void> => {
+      const data = await getObject(CHAT_HISTORY_OBJ_KEY).then(data => {
+        // Retrieves and parses chat history.
+        try {
+          if (data && data.data) {
+            return JSON.parse(data.data) as Chat[]
           }
-        })
-        setChat(data)
-      };
+          return []
+        } catch (e) {
+          console.error(e);
+          return []
+        }
+      })
+      setChat(data)
+    };
 
-      fetchHistory()
-    }
-  }, [chat]);
+    fetchHistory()
+  }, []);
 
-
+  // handler for input errors
   useEffect(() => {
     if (errors.prompt) {
       toast({
@@ -177,7 +196,7 @@ export default function Home(): React.ReactElement {
   }, [errors.prompt]);
 
 
-  // submit handler
+  // form submit handler
   const onSubmit: SubmitHandler<Inputs> = (data) => handleAsk(data.prompt)
 
   return (
