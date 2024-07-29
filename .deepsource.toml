@@ -10,5 +10,13 @@ name = "python"
 enabled = true
 dependency_file_paths = [
     "requirements.txt",
-    "Pipfile"
 ]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+dependency_file_paths = [
+    "./web/package.json",
+]
+
+[[analyzers]]
