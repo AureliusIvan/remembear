@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-28T19:45:39.674Z",
+    "updated_at": "2024-07-29T02:48:39.499Z",
     "created_at": "2024-07-26T12:36:31.817Z",
     "pipelines": [
       "acbdd4d4-6b90-4370-ada5-4009b94674bf",
@@ -10,7 +10,8 @@
       "f09507ef-f7de-4aa6-aff7-671fdc5df4e4",
       "0168ec75-fe76-4103-9ecf-ba33004ac110",
       "30c47720-3feb-4ba3-8ec6-c63d5818f401",
-      "0a100122-1eaf-4a44-bfba-d27abd0a89cc"
+      "0a100122-1eaf-4a44-bfba-d27abd0a89cc",
+      "3e3526de-993a-4d96-b6d6-e2c9585c065a"
     ]
   },
   "lookup": [
@@ -42,7 +43,9 @@
       "web/src/services/ServerService.ts",
       "web/src/app/not-found.tsx",
       "web/src/lib/utils.ts",
-      "web/src/services/NotificationService.ts"
+      "web/src/services/NotificationService.ts",
+      "web/src/components/ui/badge.tsx",
+      "web/src/components/ui/carousel.tsx"
     ]
   ]
 }
