@@ -10,23 +10,13 @@ import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
 import {Input} from "@/components/ui/input";
+import {ChatBubble} from "@/components/chat-bubble";
 
+import type {ChatType} from "@/data/interface/chat.interface";
 
 type Inputs = {
   prompt: string
 }
-
-type Action = {
-  actionType: 'reminder' | 'notion'
-  description: string
-}
-
-type Chat = {
-  role: "user" | "model"
-  message: string
-  action?: Action[]
-}
-
 
 /**
  * @description Renders a chat interface, allowing users to submit prompts and receive
@@ -47,7 +37,7 @@ export default function Home(): React.ReactElement {
    * @description State variables
    */
   const {toast} = useToast()
-  const [chat, setChat] = useState<Chat[]>([])
+  const [chat, setChat] = useState<ChatType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
     register,
@@ -109,21 +99,24 @@ export default function Home(): React.ReactElement {
           console.error(error)
         })
 
-    // invoke the model and save the response to the chat history
+    /**
+     * Invoke the model and save the response to the chat history
+     */
     try {
       const reply = await ask(prompt)
       if (reply) {
-        const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
-        setChat((prevChat: Chat[]) => {
+        const modelNewChatHistory = [...userNewChatHistory, {
+          role: 'model',
+          message: reply.message,
+          action: reply.action
+        }]
+        setChat((prevChat: ChatType[]) => {
           // Appends new chat item.
           return [...prevChat,
             {
               role: "model",
               message: reply.message,
-              action: [{
-                actionType: 'reminder',
-                description: 'reminder to do something'
-              }]
+              action: reply.action
             }
           ];
         });
@@ -172,7 +165,7 @@ export default function Home(): React.ReactElement {
         // Retrieves and parses chat history.
         try {
           if (data && data.data) {
-            return JSON.parse(data.data) as Chat[]
+            return JSON.parse(data.data) as ChatType[]
           }
           return []
         } catch (e) {
@@ -207,24 +200,11 @@ export default function Home(): React.ReactElement {
 
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[120vh] px-6"}>
-            {chat.map((data: Chat, index: number) => {
-              // Maps over a chat array and renders a message for each item.
-
+            {/*// Maps over a chat array and renders a message for each item.*/}
+            {chat.map((data: ChatType, index: number) => {
               const isUser = data.role === "user"; // Check if the message is from the user
-
               return (
-                  <div key={index} className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}>
-                    <div
-                        className={`
-                        ${isUser ? 'bg-blue-500' : 'bg-gray-200'} 
-                        ${isUser ? 'text-white' : 'text-gray-800'} 
-                        p-2 rounded-lg max-w-xs
-                        ${isUser ? 'rounded-br-none' : 'rounded-bl-none'}
-                        `}
-                    >
-                      {data.message}
-                    </div>
-                  </div>
+                  <ChatBubble key={index} isUser={isUser} data={data}/>
               );
             })}
 
