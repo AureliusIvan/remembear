@@ -40,4 +40,9 @@ cp .env.example .env
 1. Install PostgreSQL
 2. Install Qdrant
 
+## Docker Compose setup
+
+Please refer to the [Setup with Docker Compose](setup-docker-compose.md) file to see the configuration for the backend
+server.
+
 ## References:
