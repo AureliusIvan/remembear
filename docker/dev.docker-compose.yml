@@ -1,4 +1,15 @@
 services:
+  postgres:
+    image: postgres:14.0
+    container_name: remembear-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: remembeardb_owner
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: remembeardb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   qdrant:
     image: qdrant/qdrant:v1.2.0
     ports:
@@ -10,7 +21,7 @@ services:
   server:
     working_dir: /app
     container_name: remembear-backend
-    image: python:3.12.4-slim-bullseye
+    image: nikolaik/python-nodejs:python3.12-nodejs20-slim
     tty: true
     ports:
       - "8000:8000"
@@ -27,9 +38,14 @@ services:
           pip install -r /app/requirements.txt;
           source /app/.venv/bin/activate;
         fi &&
-        fastapi dev server/main.py --host 0.0.0.0 &
+      
+        fastapi dev server/main.py --host 0.0.0.0 &&
+        cd /app/web &&
+        pnpm install &&
+        pnpm dev &
         sleep infinity
       "
 
 volumes:
   qdrant_storage:
+  postgres_data:
