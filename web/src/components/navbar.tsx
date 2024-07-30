@@ -11,14 +11,17 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import {LuMenu} from "react-icons/lu";
-import {Button, buttonVariants} from "@/components/ui/button";
-import {useRouter} from "next/navigation";
-import Link from "next/link";
+import {buttonVariants} from "@/components/ui/button";
 import {BiMemoryCard} from "react-icons/bi";
+import Link from "next/link";
+
+import {
+  APP_NAME,
+  VERSION
+} from "@/config/version";
+import {badgeVariants} from "@/components/ui/badge";
 
 function Navbar(): React.ReactElement {
-  const router = useRouter()
-
   return (
       <div
           className={"w-full px-6 pt-5 pb-[10px] flex flex-row gap-1.5 justify-between items-center"}>
@@ -34,47 +37,47 @@ function Navbar(): React.ReactElement {
           {/* side menu panel */}
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Remembear</SheetTitle>
-              <SheetDescription>
-                Version 0.1.0
+              <SheetTitle>
+                {APP_NAME}
+              </SheetTitle>
+              <SheetDescription
+                  className={badgeVariants({variant: 'secondary', className: 'flex items-center justify-center'})}>
+                Version {VERSION}
               </SheetDescription>
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Home
-                </Button>
+                </Link>
               </SheetClose>
+
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/integration')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/memory'}
+                    className={buttonVariants({variant: 'outline'})}
+                >
+                  Memory
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link
+                    href={'/integration'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Integration
-                </Button>
+                </Link>
               </SheetClose>
 
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/setting')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/setting'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Setting
-                </Button>
-              </SheetClose>
-
-              <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/login')}
-                    type={'submit'}
-                    variant={'outline'}
-                >
-                  Login
-                </Button>
+                </Link>
               </SheetClose>
             </SheetHeader>
           </SheetContent>

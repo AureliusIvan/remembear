@@ -1,6 +1,5 @@
 import {LocalNotifications, PermissionStatus} from "@capacitor/local-notifications";
 import {Capacitor} from "@capacitor/core";
-import {useEffect} from "react";
 
 /**
  * @description Defines a set of properties that an object must have in order to be
@@ -67,7 +66,7 @@ async function Notify(
   return await LocalNotifications.schedule({
     notifications: [
       {
-        // TODO: add more appropriate id
+        // TODO: add better way to generate id
         id: Math.floor(Math.random() * 101),
         channelId: "1234",
         title: title,
