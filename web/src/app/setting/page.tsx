@@ -138,7 +138,7 @@ export default function Setting(): React.ReactElement {
   return (
       <main className="flex flex-col items-center justify-between p-6 gap-6 w-full">
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>
@@ -161,7 +161,7 @@ export default function Setting(): React.ReactElement {
         </form>
 
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>
@@ -181,7 +181,7 @@ export default function Setting(): React.ReactElement {
           </Card>
         </form>
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>
