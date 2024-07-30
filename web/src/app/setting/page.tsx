@@ -37,7 +37,7 @@ export default function Setting(): React.ReactElement {
 
 
   React.useEffect(() => {
-    // Initializes and registers push notifications.
+    // Initializes and registers push notifications if available.
 
     // Initializes and registers push notifications if available.
 
@@ -95,7 +95,7 @@ export default function Setting(): React.ReactElement {
         (
             // token: Token
         ) => {
-          // Listens to push notification registrations.
+          // Registers for push notifications.
 
           // Listens for push notifications and displays a toast message on successful registration.
 
@@ -108,7 +108,8 @@ export default function Setting(): React.ReactElement {
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError',
         (error: unknown) => {
-          // Handles registration errors.
+          // Listens for and handles registration error events from PushNotifications module,
+          // displaying error details.
 
           // Handles errors.
 
@@ -119,7 +120,7 @@ export default function Setting(): React.ReactElement {
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
-          // Listens for push notifications and updates state.
+          // Handles received push notifications.
 
           // Handles push notifications.
 
@@ -135,7 +136,7 @@ export default function Setting(): React.ReactElement {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
-          // Handles push notifications by updating a notifications array.
+          // Handles push notifications and updates notifications array.
 
           // Handles push notifications.
 
@@ -152,7 +153,7 @@ export default function Setting(): React.ReactElement {
   return (
       <main className="flex flex-col items-center justify-between p-6 gap-6 w-full">
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>
@@ -175,7 +176,7 @@ export default function Setting(): React.ReactElement {
         </form>
 
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>
@@ -195,7 +196,7 @@ export default function Setting(): React.ReactElement {
           </Card>
         </form>
 
-        <form>
+        <form className={cn("w-full")}>
           <Card className={cn("w-full")}>
 
             <CardHeader className={'inline-flex flex-row justify-center items-center'}>

@@ -10,23 +10,13 @@ import {ScrollArea} from "@/components/ui/scroll-area"
 import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
 import {Input} from "@/components/ui/input";
+import {ChatBubble} from "@/components/chat-bubble";
 
+import type {ChatType} from "@/data/interface/chat.interface";
 
 type Inputs = {
   prompt: string
 }
-
-type Action = {
-  actionType: 'reminder' | 'notion'
-  description: string
-}
-
-type Chat = {
-  role: "user" | "model"
-  message: string
-  action?: Action[]
-}
-
 
 /**
  * @description Renders a chat interface, allowing users to submit prompts and receive
@@ -47,7 +37,7 @@ export default function Home(): React.ReactElement {
    * @description State variables
    */
   const {toast} = useToast()
-  const [chat, setChat] = useState<Chat[]>([])
+  const [chat, setChat] = useState<ChatType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
     register,
@@ -59,9 +49,9 @@ export default function Home(): React.ReactElement {
 
   // function to scroll to bottom (used to scroll to the bottom of the chat)
   /**
-   * @description Scrolls the element referenced by `chatHistoryRef` into view, ensuring
-   * that it is visible at the bottom of the viewport. The scrolling operation occurs
-   * smoothly.
+   * @description Scrolls to the bottom of an element referenced by `chatHistoryRef`
+   * when called, using a smooth animation. The element is assumed to be a scrollable
+   * container that can be scrolled vertically.
    */
   const scrollToBottom = () => {
     chatHistoryRef.current?.scrollIntoView({behavior: "smooth"})
@@ -108,22 +98,28 @@ export default function Home(): React.ReactElement {
           data: JSON.stringify(userNewChatHistory)
         })
         .then(() => {
-          // Logs "chat saved" to the console.
+          // Logs "chat saved" to console.
 
           console.log("chat saved")
         })
         .catch((error) => {
-          // Logs error message to the console.
+          // Handles errors.
 
           console.error(error)
         })
 
-    // invoke the model and save the response to the chat history
+    /**
+     * Invoke the model and save the response to the chat history
+     */
     try {
       const reply = await ask(prompt)
       if (reply) {
-        const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
-        setChat((prevChat: Chat[]) => {
+        const modelNewChatHistory = [...userNewChatHistory, {
+          role: 'model',
+          message: reply.message,
+          action: reply.action
+        }]
+        setChat((prevChat: ChatType[]) => {
           // Appends new chat item.
 
           // Appends new chat item.
@@ -131,10 +127,7 @@ export default function Home(): React.ReactElement {
             {
               role: "model",
               message: reply.message,
-              action: [{
-                actionType: 'reminder',
-                description: 'reminder to do something'
-              }]
+              action: reply.action
             }
           ];
         });
@@ -145,12 +138,12 @@ export default function Home(): React.ReactElement {
               data: JSON.stringify(modelNewChatHistory)
             })
             .then(() => {
-              // Logs "chat saved" to the console after a promise resolves.
+              // Logs "chat saved" to the console.
 
               console.log("chat saved")
             })
             .catch((error) => {
-              // Logs error messages to the console.
+              // Logs error to console.
 
               console.error(error)
             })
@@ -169,14 +162,14 @@ export default function Home(): React.ReactElement {
 
   // useEffect List
   useEffect(() => {
-    // Scrolls to the bottom on initialization.
+    // Scrolls chat window to the bottom upon initialization.
 
     // scroll to bottom when chat at initial loads
     scrollToBottom()
   }, []);
 
   useEffect(() => {
-    // Initializes and updates chat history state.
+    // Retrieves and sets chat history state.
 
     /**
      * Initializes and updates chat history state.
@@ -188,12 +181,12 @@ export default function Home(): React.ReactElement {
      */
     const fetchHistory = async (): Promise<void> => {
       const data = await getObject(CHAT_HISTORY_OBJ_KEY).then(data => {
-        // Retrieves and parses chat history.
+        // Retrieves and parses chat history data.
 
         // Retrieves and parses chat history.
         try {
           if (data && data.data) {
-            return JSON.parse(data.data) as Chat[]
+            return JSON.parse(data.data) as ChatType[]
           }
           return []
         } catch (e) {
@@ -209,7 +202,7 @@ export default function Home(): React.ReactElement {
 
   // handler for input errors
   useEffect(() => {
-    // Displays an error message when a prompt is empty.
+    // Displays an error toast message.
 
     if (errors.prompt) {
       toast({
@@ -230,26 +223,13 @@ export default function Home(): React.ReactElement {
 
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[120vh] px-6"}>
-            {chat.map((data: Chat, index: number) => {
-              // Renders chat messages.
-
-              // Maps over a chat array and renders a message for each item.
+            {/*// Maps over a chat array and renders a message for each item.*/}
+            {chat.map((data: ChatType, index: number) => {
+              // Maps over chat array, rendering JSX elements.
 
               const isUser = data.role === "user"; // Check if the message is from the user
-
               return (
-                  <div key={index} className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}>
-                    <div
-                        className={`
-                        ${isUser ? 'bg-blue-500' : 'bg-gray-200'} 
-                        ${isUser ? 'text-white' : 'text-gray-800'} 
-                        p-2 rounded-lg max-w-xs
-                        ${isUser ? 'rounded-br-none' : 'rounded-bl-none'}
-                        `}
-                    >
-                      {data.message}
-                    </div>
-                  </div>
+                  <ChatBubble key={index} isUser={isUser} data={data}/>
               );
             })}
 

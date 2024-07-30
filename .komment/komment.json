@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-29T17:05:38.365Z",
+    "updated_at": "2024-07-30T12:30:16.724Z",
     "created_at": "2024-07-26T12:36:31.817Z",
     "pipelines": [
       "acbdd4d4-6b90-4370-ada5-4009b94674bf",
@@ -14,7 +14,8 @@
       "3e3526de-993a-4d96-b6d6-e2c9585c065a",
       "95baff79-aa1d-476f-a7e5-04b28aedf626",
       "e9e769f9-e890-452b-a2d4-18b3419e2a1d",
-      "ebd534c7-e9bf-4c0c-9851-bb25315ce722"
+      "ebd534c7-e9bf-4c0c-9851-bb25315ce722",
+      "f97fab8f-8591-4c1f-8fc0-ec8a29b59613"
     ]
   },
   "lookup": [
@@ -51,7 +52,14 @@
       "web/src/components/ui/carousel.tsx",
       "web/android/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java",
       "web/android/app/src/main/java/com/remembear/app/MainActivity.java",
-      "web/android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java"
+      "web/android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java",
+      "web/src/components/chat-bubble.stories.ts",
+      "web/src/components/chat-bubble.tsx",
+      "web/src/components/ui/separator.tsx",
+      "web/src/config/version.ts",
+      "web/src/data/interface/chat.interface.ts",
+      "web/src/data/interface/memory.interface.ts",
+      "web/src/data/interface/user.interface.ts"
     ]
   ]
 }

@@ -11,21 +11,25 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import {LuMenu} from "react-icons/lu";
-import {Button, buttonVariants} from "@/components/ui/button";
-import {useRouter} from "next/navigation";
-import Link from "next/link";
+import {buttonVariants} from "@/components/ui/button";
 import {BiMemoryCard} from "react-icons/bi";
+import Link from "next/link";
+
+import {
+  APP_NAME,
+  VERSION
+} from "@/config/version";
+import {badgeVariants} from "@/components/ui/badge";
 
 /**
- * @description Generates a navigation bar with a side menu and main content area.
- * It includes buttons for routing to different pages, including home, integration,
- * settings, and login. The side menu is triggered by clicking on a button.
+ * @description Renders a navigation bar with a side menu, containing links to different
+ * pages, and a main title "Bear". It also includes two other elements: a button to
+ * trigger the side menu and an icon link to the memory page.
  * 
- * @returns {React.ReactElement} A JSX element that represents an HTML document fragment.
+ * @returns {React.ReactElement} A JSX element representing an HTML div with various
+ * child elements including navigation links and other UI components.
  */
 function Navbar(): React.ReactElement {
-  const router = useRouter()
-
   return (
       <div
           className={"w-full px-6 pt-5 pb-[10px] flex flex-row gap-1.5 justify-between items-center"}>
@@ -41,47 +45,47 @@ function Navbar(): React.ReactElement {
           {/* side menu panel */}
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Remembear</SheetTitle>
-              <SheetDescription>
-                Version 0.1.0
+              <SheetTitle>
+                {APP_NAME}
+              </SheetTitle>
+              <SheetDescription
+                  className={badgeVariants({variant: 'secondary', className: 'flex items-center justify-center'})}>
+                Version {VERSION}
               </SheetDescription>
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Home
-                </Button>
+                </Link>
               </SheetClose>
+
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/integration')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/memory'}
+                    className={buttonVariants({variant: 'outline'})}
+                >
+                  Memory
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link
+                    href={'/integration'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Integration
-                </Button>
+                </Link>
               </SheetClose>
 
               <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/setting')}
-                    type={'submit'}
-                    variant={'outline'}
+                <Link
+                    href={'/setting'}
+                    className={buttonVariants({variant: 'outline'})}
                 >
                   Setting
-                </Button>
-              </SheetClose>
-
-              <SheetClose asChild>
-                <Button
-                    onClick={() => router.push('/login')}
-                    type={'submit'}
-                    variant={'outline'}
-                >
-                  Login
-                </Button>
+                </Link>
               </SheetClose>
             </SheetHeader>
           </SheetContent>

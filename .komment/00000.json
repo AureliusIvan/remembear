@@ -261,32 +261,32 @@
     "path": "web/src/components/navbar.tsx",
     "content": {
       "structured": {
-        "description": "A React component named \"Navbar\" that renders a navigation bar. It uses Next.js's useRouter hook to manage client-side routing and react-icons libraries for custom icons. The Navbar includes a side menu triggered by an icon button, which opens a panel containing links to different routes, including home, integration, setting, and login.",
+        "description": "A React component named `Navbar` that renders a navigation bar with various features. It utilizes the `Sheet` component from the `@/components/ui/sheet` package to create a side menu triggered by a custom icon. The menu contains links to different pages, including home, memory, integration, and setting, which are styled using the `buttonVariants` function.",
         "items": [
           {
-            "id": "7fd6f6eb-db0f-61ab-ff4d-561b5cd5287c",
+            "id": "0703040e-d937-339c-bd4a-fc681593e4e4",
             "ancestors": [],
-            "description": "Generates a navigation bar with a side menu and main content area. It includes buttons for routing to different pages, including home, integration, settings, and login. The side menu is triggered by clicking on a button.",
+            "description": "Renders a navigation bar with a side menu, containing links to different pages, and a main title \"Bear\". It also includes two other elements: a button to trigger the side menu and an icon link to the memory page.",
             "params": [],
             "returns": {
               "type_name": "React.ReactElement",
-              "description": "A JSX element that represents an HTML document fragment."
+              "description": "A JSX element representing an HTML div with various child elements including navigation links and other UI components."
             },
             "usage": {
               "language": "typescript",
-              "code": "const App = () => {\n  return (\n    <div>\n      <Navbar />\n    </div>\n  )\n}\n",
+              "code": "function App(): React.ReactElement {\n  return (\n    <div>\n      <Navbar />\n    </div>\n  );\n}\n",
               "description": ""
             },
             "name": "Navbar",
             "location": {
-              "start": 19,
-              "insert": 19,
+              "start": 24,
+              "insert": 24,
               "offset": " ",
               "indent": 0,
               "comment": null
             },
             "item_type": "function",
-            "length": 75,
+            "length": 73,
             "docLength": null
           }
         ]
@@ -512,7 +512,7 @@
     "path": "web/src/app/integration/page.tsx",
     "content": {
       "structured": {
-        "description": "A reusable React component called \"Integration\" that renders a form containing a main section with an \"Integration\" heading and a list of links to external platforms (calendar, Whatsapp, Notion) wrapped in buttons. The links are styled using the `buttonVariants` function from the `@/components/ui/button` package.",
+        "description": "A React component responsible for rendering a form containing sections with links to external platforms (calendar, Whatsapp, Notion) wrapped in buttons. The buttons are styled using the `buttonVariants` function and each section has a header, content, and footer. The form also includes a drawer component that appears when a button is clicked, allowing users to confirm their actions.",
         "items": []
       }
     }
@@ -620,24 +620,24 @@
     "path": "web/src/app/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component named \"Home\" that renders a chat interface allowing users to send prompts and receive responses from a model. The component uses the react-hook-form library for form handling, react-toastify for displaying toast notifications, and uses local storage to persist chat history. It also utilizes the ServerService and HistoryService to interact with a server and store/retrieve data respectively.",
+        "description": "A React component responsible for rendering a chat interface that enables users to submit prompts and receive responses from a model in real-time. It utilizes react-hook-form and useToast to manage form state and display error messages. The component also employs scrollArea and ChatBubble components to display the chat history, which is persisted locally using HistoryService.",
         "items": [
           {
-            "id": "4da44f16-c3e4-8197-6b4a-6d7cbc0c60a7",
+            "id": "adad464d-945d-288b-6e44-0add9ee48fca",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf"
             ],
-            "description": "Scrolls the element referenced by `chatHistoryRef` into view, ensuring that it is visible at the bottom of the viewport. The scrolling operation occurs smoothly.",
+            "description": "Scrolls to the bottom of an element referenced by `chatHistoryRef` when called, using a smooth animation. The element is assumed to be a scrollable container that can be scrolled vertically.",
             "params": [],
             "usage": {
               "language": "typescript",
               "code": "scrollToBottom();\n",
-              "description": "\nThis code will scroll to the bottom of the chat history."
+              "description": ""
             },
             "name": "scrollToBottom",
             "location": {
-              "start": 61,
-              "insert": 61,
+              "start": 51,
+              "insert": 51,
               "offset": " ",
               "indent": 2,
               "comment": null
@@ -647,17 +647,17 @@
             "docLength": null
           },
           {
-            "id": "992f7750-69b8-108e-4249-76e71eeace31",
+            "id": "7f0bc1f0-dd0a-27a9-f540-9b235ea971ce",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "15ddbb93-e33e-d4ba-d34c-01a6a7362698",
-              "14707756-e5fa-fabf-8f4c-a10beb132047"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "01ed2387-8a0d-4294-1642-8a25064c1070",
+              "3850de82-4e21-05ab-984f-4f9296a61305"
             ],
-            "description": "Logs \"chat saved\" to the console.",
+            "description": "Logs \"chat saved\" to console.",
             "name": null,
             "location": {
-              "start": 100,
-              "insert": 106,
+              "start": 90,
+              "insert": 96,
               "offset": " ",
               "indent": 10,
               "comment": null
@@ -667,16 +667,16 @@
             "docLength": null
           },
           {
-            "id": "14707756-e5fa-fabf-8f4c-a10beb132047",
+            "id": "3850de82-4e21-05ab-984f-4f9296a61305",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "15ddbb93-e33e-d4ba-d34c-01a6a7362698"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "01ed2387-8a0d-4294-1642-8a25064c1070"
             ],
-            "description": "Logs error message to the console.",
+            "description": "Handles errors.",
             "name": null,
             "location": {
-              "start": 100,
-              "insert": 109,
+              "start": 90,
+              "insert": 99,
               "offset": " ",
               "indent": 10,
               "comment": null
@@ -686,36 +686,36 @@
             "docLength": null
           },
           {
-            "id": "c217a116-0ee5-6f94-f540-adb0b283231f",
+            "id": "fa8caa09-8fe8-83ae-c343-c1de524c744b",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "15ddbb93-e33e-d4ba-d34c-01a6a7362698"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "01ed2387-8a0d-4294-1642-8a25064c1070"
             ],
             "description": "Appends new chat item.",
             "name": null,
             "location": {
-              "start": 117,
-              "insert": 118,
+              "start": 113,
+              "insert": 114,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 13,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "60df269a-cc52-4ca4-5f45-d920c5c87399",
+            "id": "9880eeb2-97d2-c28f-2941-b232c43752d0",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "15ddbb93-e33e-d4ba-d34c-01a6a7362698",
-              "53b69cb0-0b6e-a09b-5c46-f7a18688e19d"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "01ed2387-8a0d-4294-1642-8a25064c1070",
+              "d7634204-17d9-639c-d643-085efc096bfd"
             ],
-            "description": "Logs \"chat saved\" to the console after a promise resolves.",
+            "description": "Logs \"chat saved\" to the console.",
             "name": null,
             "location": {
-              "start": 131,
-              "insert": 137,
+              "start": 124,
+              "insert": 130,
               "offset": " ",
               "indent": 14,
               "comment": null
@@ -725,16 +725,16 @@
             "docLength": null
           },
           {
-            "id": "53b69cb0-0b6e-a09b-5c46-f7a18688e19d",
+            "id": "d7634204-17d9-639c-d643-085efc096bfd",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "15ddbb93-e33e-d4ba-d34c-01a6a7362698"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "01ed2387-8a0d-4294-1642-8a25064c1070"
             ],
-            "description": "Logs error messages to the console.",
+            "description": "Logs error to console.",
             "name": null,
             "location": {
-              "start": 131,
-              "insert": 140,
+              "start": 124,
+              "insert": 133,
               "offset": " ",
               "indent": 14,
               "comment": null
@@ -744,15 +744,15 @@
             "docLength": null
           },
           {
-            "id": "8ab7ae40-5197-ae84-4b4d-451b7d321668",
+            "id": "5ef928e4-3295-f6bd-f24f-25a83325429f",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf"
             ],
-            "description": "Scrolls to the bottom on initialization.",
+            "description": "Scrolls chat window to the bottom upon initialization.",
             "name": null,
             "location": {
-              "start": 156,
-              "insert": 157,
+              "start": 149,
+              "insert": 150,
               "offset": " ",
               "indent": 4,
               "comment": null
@@ -762,15 +762,15 @@
             "docLength": null
           },
           {
-            "id": "46d357f8-176a-2b80-c14e-e5e06c613fb8",
+            "id": "17f3b452-af41-ce96-9b4f-392fb8ce6f4e",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf"
             ],
-            "description": "Initializes and updates chat history state.",
+            "description": "Retrieves and sets chat history state.",
             "name": null,
             "location": {
-              "start": 161,
-              "insert": 162,
+              "start": 154,
+              "insert": 155,
               "offset": " ",
               "indent": 4,
               "comment": null
@@ -780,17 +780,17 @@
             "docLength": null
           },
           {
-            "id": "c30b221b-4b38-6f91-b844-9cb8e878d26b",
+            "id": "8edbc78c-161e-97b6-7d44-32926e55ff0e",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c",
-              "46d357f8-176a-2b80-c14e-e5e06c613fb8",
-              "e2076ebd-beee-a59a-1146-4985f89ab3ff"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf",
+              "17f3b452-af41-ce96-9b4f-392fb8ce6f4e",
+              "7492a9b6-203e-93ba-4743-ad1599bfa36e"
             ],
-            "description": "Retrieves and parses chat history.",
+            "description": "Retrieves and parses chat history data.",
             "name": null,
             "location": {
-              "start": 171,
-              "insert": 172,
+              "start": 164,
+              "insert": 165,
               "offset": " ",
               "indent": 8,
               "comment": null
@@ -800,15 +800,15 @@
             "docLength": null
           },
           {
-            "id": "e5541417-47ef-e5ae-3f45-182c8b655c91",
+            "id": "5868836b-cef3-5a8a-0345-fe6b9f9d38e4",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf"
             ],
-            "description": "Displays an error message when a prompt is empty.",
+            "description": "Displays an error toast message.",
             "name": null,
             "location": {
-              "start": 190,
-              "insert": 191,
+              "start": 183,
+              "insert": 184,
               "offset": " ",
               "indent": 4,
               "comment": null
@@ -818,21 +818,21 @@
             "docLength": null
           },
           {
-            "id": "f43bd3f5-cb35-2d98-e543-e7eafb7c0d94",
+            "id": "bc4c4817-3bf5-9895-394d-dd2ba84c92ab",
             "ancestors": [
-              "d5c5ac82-1c96-a4ae-714a-b76d8809f76c"
+              "d467e08c-d177-f8b2-fa49-5c2a087191cf"
             ],
-            "description": "Renders chat messages.",
+            "description": "Maps over chat array, rendering JSX elements.",
             "name": null,
             "location": {
-              "start": 210,
-              "insert": 211,
+              "start": 204,
+              "insert": 205,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 20,
+            "length": 6,
             "docLength": null
           }
         ]
@@ -844,14 +844,14 @@
     "path": "web/src/app/setting/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component that handles push notifications in an application using the Capacitor and PushNotifications plugins. It initializes and registers for push notifications, listens for registration success/failure, push notification receipt, and action performed events, and updates local notifications state accordingly. The component also includes various HTML elements such as main, h1, Drawer, Button, etc., and utilizes other packages like Toast, NotificationService, Card, and more to provide a comprehensive user interface.",
+        "description": "A React component called \"Setting\" that initializes and manages push notifications for an application. It utilizes the Capacitor plugin to register for push notifications with Apple/Google, listen for registration success/failure, received notifications, and action performed on notifications. The component also uses Toast notifications and a NotificationService to handle permission requests and display messages.",
         "items": [
           {
-            "id": "a67c321d-8c30-ffa6-1d43-6559f5a3a096",
+            "id": "fd7dd606-bac2-369a-374e-1b9a67b25a79",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee"
             ],
-            "description": "Initializes and registers push notifications.",
+            "description": "Initializes and registers push notifications if available.",
             "name": null,
             "location": {
               "start": 39,
@@ -865,10 +865,10 @@
             "docLength": null
           },
           {
-            "id": "660a1765-2460-0e9b-7b48-deb51a5cffaa",
+            "id": "4e51e3f9-a959-129f-834e-d6fb8cffc2c4",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "a67c321d-8c30-ffa6-1d43-6559f5a3a096"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "fd7dd606-bac2-369a-374e-1b9a67b25a79"
             ],
             "description": "Handles push notifications permissions.",
             "name": null,
@@ -884,11 +884,11 @@
             "docLength": null
           },
           {
-            "id": "74954504-ec9a-14bd-704c-0201daf662f8",
+            "id": "46f6d521-abba-5bb6-ef45-cf914a88cca8",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "a67c321d-8c30-ffa6-1d43-6559f5a3a096",
-              "660a1765-2460-0e9b-7b48-deb51a5cffaa"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "fd7dd606-bac2-369a-374e-1b9a67b25a79",
+              "4e51e3f9-a959-129f-834e-d6fb8cffc2c4"
             ],
             "description": "Handles push notification permissions.",
             "name": null,
@@ -904,12 +904,12 @@
             "docLength": null
           },
           {
-            "id": "15c8d6cc-9328-6bbd-7846-9844bf9812f7",
+            "id": "1a69b0f0-b1c8-69b2-4042-b9b919172f54",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "d55fd578-51f7-17a8-1a48-ebf27b8383e7"
             ],
-            "description": "Listens to push notification registrations.",
+            "description": "Registers for push notifications.",
             "name": null,
             "location": {
               "start": 88,
@@ -923,12 +923,12 @@
             "docLength": null
           },
           {
-            "id": "e7610f3b-d50a-578a-024b-ea6a79f14bab",
+            "id": "8dcdf3c0-b2e6-9eb3-824d-f54c8b541cad",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "d55fd578-51f7-17a8-1a48-ebf27b8383e7"
             ],
-            "description": "Handles registration errors.",
+            "description": "Listens for and handles registration error events from PushNotifications module, displaying error details.",
             "name": null,
             "location": {
               "start": 101,
@@ -942,12 +942,12 @@
             "docLength": null
           },
           {
-            "id": "05da43f4-2919-638b-434d-87b8fefe1c9d",
+            "id": "cc32bbcb-726b-a188-7f47-ace1ecf41814",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "d55fd578-51f7-17a8-1a48-ebf27b8383e7"
             ],
-            "description": "Listens for push notifications and updates state.",
+            "description": "Handles received push notifications.",
             "name": null,
             "location": {
               "start": 110,
@@ -961,12 +961,12 @@
             "docLength": null
           },
           {
-            "id": "c2e4c319-cf00-fa9f-c444-1b63c14b493b",
+            "id": "a6aa337a-987c-0796-c742-f7ba89ab7efa",
             "ancestors": [
-              "bc900971-04f5-8baa-2049-e2d0d6532bc3",
-              "e188feaf-ea44-9fb1-1042-d41e8d448a0e"
+              "6e342217-6b6c-4c9e-1b4c-0c7d69dc0aee",
+              "d55fd578-51f7-17a8-1a48-ebf27b8383e7"
             ],
-            "description": "Handles push notifications by updating a notifications array.",
+            "description": "Handles push notifications and updates notifications array.",
             "name": null,
             "location": {
               "start": 124,
@@ -988,32 +988,16 @@
     "path": "web/src/services/ServerService.ts",
     "content": {
       "structured": {
-        "description": "Two asynchronous functions, ask and getMemories, that interact with a server through HTTP requests using the fetch API. The ask function retrieves a payload from the server and executes actions defined in the payload by displaying notifications. The getMemories function retrieves an array of memory items from the server and reverses it before returning the result.",
+        "description": "Two asynchronous functions: `ask` and `getMemories`, which interact with a server using the Fetch API. The `ask` function sends a GET request to retrieve data based on a prompt, parses the response as JSON, and executes actions defined in the payload if present.",
         "items": [
           {
-            "id": "6af35b10-bf8b-06aa-274f-bffbc7e98765",
+            "id": "55485921-1b6e-499b-e84f-e5640586a1a6",
             "ancestors": [],
-            "description": "Defines a set of properties that can be used to describe an action. \n\nThe properties are:\n\n- `type`: optional, allows a string value;\n- `title`: optional, allows a string value;\n- `body`: optional, allows a string value;\n- `at`: optional, allows a string value;\n\nThis interface is designed to provide a structure for actions that require additional information beyond just the type of action. The presence or absence of these properties can be controlled by using optional types.",
-            "name": "actionType",
-            "location": {
-              "start": 5,
-              "insert": 5,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "interface",
-            "length": 6,
-            "docLength": null
-          },
-          {
-            "id": "1ef7913d-e010-2199-3343-5c0e509be741",
-            "ancestors": [],
-            "description": "Defines a type that consists of two properties: `message` and `action`. \n\nThe `message` property is a string that represents the payload's message.\n\nThe `action` property, which is optional (indicated by the `?` symbol), is an array of `actionType` objects.",
+            "description": "Defines an object type with two properties: `message` and `action`. \n\nThe `message` property is required and has the type `string`, indicating that it must be a string value.\n\nThe `action` property is optional and has the type `actionType[]`, indicating that it can be either null or an array of objects with the type `actionType`.",
             "name": "askPayloadType",
             "location": {
-              "start": 12,
-              "insert": 12,
+              "start": 6,
+              "insert": 6,
               "offset": " ",
               "indent": 0,
               "comment": null
@@ -1023,31 +1007,31 @@
             "docLength": null
           },
           {
-            "id": "4ffef678-7184-8694-be46-00f89718f253",
+            "id": "92717b22-4e7b-51ae-0643-a183f39d33c8",
             "ancestors": [],
-            "description": "Sends a GET request to a server, retrieves a JSON response, and parses it into a payload. It then executes actions specified in the payload, which may include notifications with specific titles, bodies, and timestamps. If an error occurs, it logs the error to the console.",
+            "description": "Retrieves a response from a server based on a given prompt, parses the response as JSON, and executes actions if present, including sending notifications if an action has a specified timestamp.",
             "params": [
               {
                 "name": "prompt",
                 "default_value": null,
                 "optional": false,
                 "type_name": "string",
-                "description": "Used as part of the URL query."
+                "description": "Used to send a request to the server."
               }
             ],
             "returns": {
-              "type_name": "object",
-              "description": "Parsed payload from JSON response if parsing was successful and no error occurred. If an error occurs during fetching, parsing or execution, it will return null."
+              "type_name": "askPayloadType",
+              "description": "Parsed from JSON payload received from a fetch request. If an error occurs during the execution, it logs an error and returns null."
             },
             "usage": {
               "language": "typescript",
-              "code": "ask(\"What is your name?\")\n",
+              "code": "ask(\"What's your name?\").then((payload) => {\n  if (payload.action) {\n    Notify(payload.action[0].title, payload.action[0].body);\n  }\n});\n",
               "description": ""
             },
             "name": "ask",
             "location": {
-              "start": 17,
-              "insert": 17,
+              "start": 11,
+              "insert": 11,
               "offset": " ",
               "indent": 0,
               "comment": null
@@ -1057,23 +1041,23 @@
             "docLength": null
           },
           {
-            "id": "12a190b5-c5c2-27a6-4442-8879676440f2",
+            "id": "6f590684-acb1-a4a7-c64e-5eba85cd48d6",
             "ancestors": [],
-            "description": "Retrieves memories from a server, checks for network errors, parses the response payload to JSON, and reverses the resulting array before returning it. If an error occurs during this process, it logs the error to the console.",
+            "description": "Retrieves a list of memories from a server, parses the response as JSON, checks for network errors, and reverses the list before returning it. It catches any exceptions and logs them to the console if an error occurs.",
             "params": [],
             "returns": {
               "type_name": "string[]",
-              "description": "A reverse order array of JSON-parsed payload received from the server."
+              "description": "An array of strings, reversed from the original order."
             },
             "usage": {
               "language": "typescript",
-              "code": "getMemories().then((memories) => { \n  console.table(memories); \n}).catch((error) => {\n  // handle error\n});\n",
-              "description": ""
+              "code": "getMemories().then(result => processMemoryList(result)).catch(error => handleFetchError(error));\n",
+              "description": "\nReverse."
             },
             "name": "getMemories",
             "location": {
-              "start": 53,
-              "insert": 53,
+              "start": 47,
+              "insert": 47,
               "offset": " ",
               "indent": 0,
               "comment": null
@@ -1146,7 +1130,7 @@
     "path": "web/src/services/NotificationService.ts",
     "content": {
       "structured": {
-        "description": "An interface `Notify` and a function `Notify` that schedules local notifications using the `@capacitor/local-notifications` package. The function checks for permission to schedule notifications on platforms other than web, requests permission if necessary, creates a notification channel, and then schedules a single notification at a specified time.",
+        "description": "An interface for scheduling local notifications and a function `Notify` that schedules notifications using the `@capacitor/local-notifications` package. It requests permission to display notifications on the device and creates a notification channel with specific settings. The function then schedules a single notification at a specified time, including additional details such as title, body, and sound.",
         "items": []
       }
     }
@@ -1449,6 +1433,177 @@
             },
             "item_type": "method",
             "length": 4,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "chat-bubble.stories.ts",
+    "path": "web/src/components/chat-bubble.stories.ts",
+    "content": {
+      "structured": {
+        "description": "Storybook configurations and stories for a ChatBubble component using React. It utilizes the @storybook/react package to set up the story metadata, including title, component, and parameters. The code exports three stories with different arguments for the ChatBubble component: UserChatBubble, ModelChatBubble, and ModelChatBubbleWithoutActionString.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "chat-bubble.tsx",
+    "path": "web/src/components/chat-bubble.tsx",
+    "content": {
+      "structured": {
+        "description": "A React component called ChatBubble that renders a chat message with optional actions and user information. It uses the cn utility from the lib/utils package to generate class names for styling. The component conditionally applies different styles based on whether the message is from the current user or not, using the isUser prop.",
+        "items": [
+          {
+            "id": "6d514e96-028f-8e98-6f48-e947f6e3086b",
+            "ancestors": [],
+            "description": "Renders a chat message bubble with user-defined content and actions. It takes two props: `isUser` indicating whether it's a user message or not, and `data` containing the message and optional action array. The function styles the bubble based on the provided data.",
+            "params": [
+              {
+                "name": "obj",
+                "default_value": null,
+                "optional": false,
+                "type_name": "object",
+                "description": "Destructured into two properties: `isUser`, a boolean indicating whether the chat bubble belongs to the user or not, and `data`, an object of type `ChatType`."
+              },
+              {
+                "name": "obj.isUser",
+                "default_value": null,
+                "optional": false,
+                "type_name": "boolean",
+                "description": "Used to determine the alignment and color of the chat bubble."
+              },
+              {
+                "name": "obj.data",
+                "default_value": null,
+                "optional": false,
+                "type_name": "ChatType",
+                "description": "Used to render chat bubble content."
+              }
+            ],
+            "returns": {
+              "type_name": "JSX.Element",
+              "description": "A React component consisting of a div element containing nested elements with various class names and properties. The returned component represents a chat bubble in a messaging application."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "<ChatBubble isUser={true} data={{ message: 'Hello', action: [{ type: 'Download' }] }} />\n",
+              "description": ""
+            },
+            "name": "ChatBubble",
+            "location": {
+              "start": 9,
+              "insert": 9,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 44,
+            "docLength": null
+          },
+          {
+            "id": "4bd43def-1148-329f-a64a-6fce185e67d3",
+            "ancestors": [
+              "6d514e96-028f-8e98-6f48-e947f6e3086b"
+            ],
+            "description": "Transforms data.",
+            "name": null,
+            "location": {
+              "start": 33,
+              "insert": 34,
+              "offset": " ",
+              "indent": 18,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 15,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "separator.tsx",
+    "path": "web/src/components/ui/separator.tsx",
+    "content": {
+      "structured": {
+        "description": "A reusable React component called Separator that creates a customizable horizontal or vertical separator line. It uses the Radix UI's React-Separator library and takes props for orientation, decoration, and additional classes. The component utilizes the cn utility from the lib/utils package to generate a class name based on the specified parameters.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "version.ts",
+    "path": "web/src/config/version.ts",
+    "content": {
+      "structured": {
+        "description": "Two constants: APP_NAME and VERSION, which represent the name and version number of an application named Remembear, respectively. The constants are exported, making them accessible outside of the current scope. This export is likely used in other parts of the application to reference these values.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "chat.interface.ts",
+    "path": "web/src/data/interface/chat.interface.ts",
+    "content": {
+      "structured": {
+        "description": "Two interfaces: `actionType` and `ChatType`. The `actionType` interface represents a set of optional properties for an object that can contain information such as type, title, body, and at. The `ChatType` interface represents a type for chat messages in a conversation between a user and a model.",
+        "items": []
+      }
+    }
+  },
+  {
+    "name": "memory.interface.ts",
+    "path": "web/src/data/interface/memory.interface.ts",
+    "content": {
+      "structured": {
+        "description": "An interface named MemoryType with two properties: id and message. It is then exported as a type for use elsewhere in the program. This interface establishes a contract for any variable or property that conforms to its definition. The interface can be used to enforce data typing and provide code completion in IDEs.",
+        "items": [
+          {
+            "id": "75dc990e-283f-c290-1545-14601ec19764",
+            "ancestors": [],
+            "description": "Defines a type that represents an object with two properties: `id` and `message`.",
+            "name": "MemoryType",
+            "location": {
+              "start": 1,
+              "insert": 1,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 4,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "user.interface.ts",
+    "path": "web/src/data/interface/user.interface.ts",
+    "content": {
+      "structured": {
+        "description": "An interface called UserType with three properties: id, name, and email, representing a user type entity. It then exports this interface as a type. This exportable type can be used in other parts of the application to enforce consistency in data structure and typing for objects that conform to the UserType definition.",
+        "items": [
+          {
+            "id": "4d8166fe-052d-1286-ad44-72721544c695",
+            "ancestors": [],
+            "description": "Defines a contract for objects that have three properties: `id`, `name`, and `email`.",
+            "name": "UserType",
+            "location": {
+              "start": 1,
+              "insert": 1,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "interface",
+            "length": 5,
             "docLength": null
           }
         ]
