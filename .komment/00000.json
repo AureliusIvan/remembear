@@ -4,41 +4,8 @@
     "path": "web/src/data/interface/chat.interface.ts",
     "content": {
       "structured": {
-        "description": "Two interfaces: `actionType` and `ChatType`. The `actionType` interface specifies properties for an action type, including type, title, body, and at. The `ChatType` interface describes a chat message with optional role, required message property, and optional array of actions.",
-        "items": [
-          {
-            "id": "75f14f94-f176-3c91-6344-762659b7008b",
-            "ancestors": [],
-            "description": "Defines a set of optional properties for an object: `type`, `title`, `body`, and `at`.",
-            "name": "actionType",
-            "location": {
-              "start": 1,
-              "insert": 1,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "interface",
-            "length": 6,
-            "docLength": null
-          },
-          {
-            "id": "760019fd-01e6-89a6-674c-86cdc17e3bbd",
-            "ancestors": [],
-            "description": "Defines a type for chat messages that can be used in a conversation between a user and a model. The interface consists of three properties:\n\n*   `role`: This property is optional and represents the role of the sender of the message, which can either be \"user\" or \"model\".\n*   `message`: This property is required and represents the actual message sent by the sender.\n*   `action`: This property is also optional and represents an array of actions that the model can perform in response to the user's message. The type of this property is inferred from the `actionType` type.",
-            "name": "ChatType",
-            "location": {
-              "start": 8,
-              "insert": 8,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "interface",
-            "length": 5,
-            "docLength": null
-          }
-        ]
+        "description": "Two interfaces: `actionType` and `ChatType`. The `actionType` interface represents a set of optional properties for an object, while the `ChatType` interface models a type for chat messages exchanged between users and AI models. It includes three required properties: role, message, and action, which can be used to represent user or model interactions in conversations.",
+        "items": []
       }
     }
   }
