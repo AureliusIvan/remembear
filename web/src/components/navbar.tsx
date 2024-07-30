@@ -16,6 +16,15 @@ import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {BiMemoryCard} from "react-icons/bi";
 
+/**
+ * @description Renders a navigation bar with various features such as side menu,
+ * buttons for different routes, and a main title. It utilizes React Router to handle
+ * route changes when buttons are clicked.
+ * 
+ * @returns {React.ReactElement} A JSX element that represents an HTML div with various
+ * child elements such as buttons, text, and icons, which together form a navigation
+ * bar.
+ */
 function Navbar(): React.ReactElement {
   const router = useRouter()
 
@@ -36,7 +45,7 @@ function Navbar(): React.ReactElement {
             <SheetHeader>
               <SheetTitle>Remembear</SheetTitle>
               <SheetDescription>
-                Version {process.env.NEXT_PUBLIC_VERSION}
+                Version 0.1.0
               </SheetDescription>
               <SheetClose asChild>
                 <Button
