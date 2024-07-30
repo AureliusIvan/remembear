@@ -4,219 +4,195 @@
     "path": "web/src/app/page.tsx",
     "content": {
       "structured": {
-        "description": "A React application that allows users to interact with a chat interface, sending prompts and receiving responses from a model. The chat interface displays a list of messages with user input on the right and model output on the left, updated in real-time as new messages are added or fetched from local storage.",
+        "description": "A React component that renders a chat interface allowing users to send prompts and receive responses from a model. The UI updates in real-time as new messages are added or fetched from local storage using the react-hook-form library for form management and useToast for displaying toast notifications. It utilizes the ServerService to interact with the model, and HistoryService to manage the chat history locally.",
         "items": [
           {
-            "id": "487a0663-78a8-41b0-6443-ab924a040a3e",
+            "id": "d4b505e8-a922-8ab6-9e4d-2aa2a879a77d",
             "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b"
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "d40899c1-da20-2599-b244-9068e1812d10",
+              "38397162-2715-7d91-6541-be1d34fb23ff"
             ],
-            "description": "Scrolls a targeted element, referenced by `chatHistoryRef`, into view at its bottommost position with smooth animation. The element's current scroll position is updated to ensure it reaches the bottom smoothly.",
-            "params": [],
-            "usage": {
-              "language": "typescript",
-              "code": "scrollToBottom()\n",
-              "description": ""
-            },
-            "name": "scrollToBottom",
-            "location": {
-              "start": 61,
-              "insert": 61,
-              "offset": " ",
-              "indent": 2,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "2422793c-9ebc-2dbd-9443-c2c63f008f9e",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "7ee6babd-9523-acb4-8246-e33506b6e272",
-              "185b1a93-6056-f691-8444-872bda330cff"
-            ],
-            "description": "Logs a message to the console.",
+            "description": "Logs \"chat saved\" to the console after some asynchronous operation completes successfully.",
             "name": null,
             "location": {
-              "start": 100,
-              "insert": 106,
+              "start": 105,
+              "insert": 111,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 8,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "185b1a93-6056-f691-8444-872bda330cff",
+            "id": "38397162-2715-7d91-6541-be1d34fb23ff",
             "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "7ee6babd-9523-acb4-8246-e33506b6e272"
-            ],
-            "description": "Logs error to console.",
-            "name": null,
-            "location": {
-              "start": 100,
-              "insert": 109,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 11,
-            "docLength": null
-          },
-          {
-            "id": "a5f47f91-8759-62ad-de47-7e8e061ccdc6",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "7ee6babd-9523-acb4-8246-e33506b6e272"
-            ],
-            "description": "Appends new chat item.",
-            "name": null,
-            "location": {
-              "start": 117,
-              "insert": 118,
-              "offset": " ",
-              "indent": 10,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 13,
-            "docLength": null
-          },
-          {
-            "id": "f2848315-39c1-7996-9342-3c006d6ba439",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "7ee6babd-9523-acb4-8246-e33506b6e272",
-              "20556730-9028-54b5-2d4e-a768b30504be"
-            ],
-            "description": "Logs \"chat saved\" to the console when executed.",
-            "name": null,
-            "location": {
-              "start": 131,
-              "insert": 137,
-              "offset": " ",
-              "indent": 14,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 8,
-            "docLength": null
-          },
-          {
-            "id": "20556730-9028-54b5-2d4e-a768b30504be",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "7ee6babd-9523-acb4-8246-e33506b6e272"
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "d40899c1-da20-2599-b244-9068e1812d10"
             ],
             "description": "Logs error messages to the console.",
             "name": null,
             "location": {
-              "start": 131,
-              "insert": 140,
+              "start": 105,
+              "insert": 116,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 15,
+            "docLength": null
+          },
+          {
+            "id": "3a29bb8d-f2fa-3fab-3e41-7dcf6e902743",
+            "ancestors": [
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "d40899c1-da20-2599-b244-9068e1812d10"
+            ],
+            "description": "Appends a new chat item to an existing array of chat items.",
+            "name": null,
+            "location": {
+              "start": 126,
+              "insert": 127,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 15,
+            "docLength": null
+          },
+          {
+            "id": "4d21a88b-3e4d-e294-e240-4c6705ff0f1b",
+            "ancestors": [
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "d40899c1-da20-2599-b244-9068e1812d10",
+              "62af8c46-07b0-0e89-2245-f8d6ddc63b98"
+            ],
+            "description": "Logs 'chat saved' to the console.",
+            "name": null,
+            "location": {
+              "start": 142,
+              "insert": 148,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 11,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "9adb7607-5e5c-6bb7-3042-befac9558625",
+            "id": "62af8c46-07b0-0e89-2245-f8d6ddc63b98",
             "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b"
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "d40899c1-da20-2599-b244-9068e1812d10"
+            ],
+            "description": "Logs errors to the console.",
+            "name": null,
+            "location": {
+              "start": 142,
+              "insert": 153,
+              "offset": " ",
+              "indent": 14,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 15,
+            "docLength": null
+          },
+          {
+            "id": "7d5b9cf2-d6e2-168d-c44a-703a7261d0a4",
+            "ancestors": [
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48"
             ],
             "description": "Scrolls to the bottom on initial load.",
-            "name": null,
-            "location": {
-              "start": 156,
-              "insert": 157,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 4,
-            "docLength": null
-          },
-          {
-            "id": "4d2f4596-6ba1-8e97-b648-a362c662e99e",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b"
-            ],
-            "description": "Initializes and updates chat history state by retrieving and parsing data from storage.",
-            "name": null,
-            "location": {
-              "start": 161,
-              "insert": 162,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 27,
-            "docLength": null
-          },
-          {
-            "id": "50f4564d-3bd9-90b6-8a4b-dd58460984de",
-            "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b",
-              "4d2f4596-6ba1-8e97-b648-a362c662e99e",
-              "a08bf636-21a4-4db2-814f-7666a53ba840"
-            ],
-            "description": "Retrieves and parses chat history.",
             "name": null,
             "location": {
               "start": 171,
               "insert": 172,
               "offset": " ",
-              "indent": 8,
+              "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 12,
+            "length": 6,
             "docLength": null
           },
           {
-            "id": "c234a92f-04e7-82b6-8e41-6edb2075fdfc",
+            "id": "a19f8423-0470-2c92-d840-78c5aaa9590d",
             "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b"
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48"
             ],
-            "description": "Displays a toast notification when a prompt error occurs.",
+            "description": "Retrieves and updates chat history state.",
             "name": null,
             "location": {
-              "start": 190,
-              "insert": 191,
+              "start": 178,
+              "insert": 179,
               "offset": " ",
               "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 7,
+            "length": 31,
             "docLength": null
           },
           {
-            "id": "e48916f0-251d-0eae-f445-23b4216391f6",
+            "id": "af4321ff-5e9a-249d-8046-df2fbf452fa5",
             "ancestors": [
-              "0068fe0d-a086-8d81-eb42-f94c242f206b"
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48",
+              "a19f8423-0470-2c92-d840-78c5aaa9590d",
+              "fc1e7abf-4507-2ead-2d48-7ed0c79f5405"
+            ],
+            "description": "Retrieves and parses chat history.",
+            "name": null,
+            "location": {
+              "start": 190,
+              "insert": 191,
+              "offset": " ",
+              "indent": 8,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 14,
+            "docLength": null
+          },
+          {
+            "id": "ec356442-a92c-439d-574a-25fab9328664",
+            "ancestors": [
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48"
+            ],
+            "description": "Displays a toast notification.",
+            "name": null,
+            "location": {
+              "start": 211,
+              "insert": 212,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 9,
+            "docLength": null
+          },
+          {
+            "id": "5190af66-cd90-0496-4f4a-811c0fe045fd",
+            "ancestors": [
+              "d5f9d7e0-d76f-9689-3643-4170082a2d48"
             ],
             "description": "Renders chat messages.",
             "name": null,
             "location": {
-              "start": 210,
-              "insert": 211,
+              "start": 233,
+              "insert": 234,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 20,
+            "length": 22,
             "docLength": null
           }
         ]

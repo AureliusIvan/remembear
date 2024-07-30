@@ -108,11 +108,15 @@ export default function Home(): React.ReactElement {
           data: JSON.stringify(userNewChatHistory)
         })
         .then(() => {
+          // Logs "chat saved" to the console after some asynchronous operation completes successfully.
+
           // Logs a message to the console.
 
           console.log("chat saved")
         })
         .catch((error) => {
+          // Logs error messages to the console.
+
           // Logs error to console.
 
           console.error(error)
@@ -124,6 +128,8 @@ export default function Home(): React.ReactElement {
       if (reply) {
         const modelNewChatHistory = [...userNewChatHistory, {role: 'model', message: reply.message}]
         setChat((prevChat: Chat[]) => {
+          // Appends a new chat item to an existing array of chat items.
+
           // Appends new chat item.
 
           // Appends new chat item.
@@ -145,11 +151,15 @@ export default function Home(): React.ReactElement {
               data: JSON.stringify(modelNewChatHistory)
             })
             .then(() => {
+              // Logs 'chat saved' to the console.
+
               // Logs "chat saved" to the console when executed.
 
               console.log("chat saved")
             })
             .catch((error) => {
+              // Logs errors to the console.
+
               // Logs error messages to the console.
 
               console.error(error)
@@ -171,11 +181,15 @@ export default function Home(): React.ReactElement {
   useEffect(() => {
     // Scrolls to the bottom on initial load.
 
+    // Scrolls to the bottom on initial load.
+
     // scroll to bottom when chat at initial loads
     scrollToBottom()
   }, []);
 
   useEffect(() => {
+    // Retrieves and updates chat history state.
+
     // Initializes and updates chat history state by retrieving and parsing data from storage.
 
     /**
@@ -188,6 +202,8 @@ export default function Home(): React.ReactElement {
      */
     const fetchHistory = async (): Promise<void> => {
       const data = await getObject(CHAT_HISTORY_OBJ_KEY).then(data => {
+        // Retrieves and parses chat history.
+
         // Retrieves and parses chat history.
 
         // Retrieves and parses chat history.
@@ -209,6 +225,8 @@ export default function Home(): React.ReactElement {
 
   // handler for input errors
   useEffect(() => {
+    // Displays a toast notification.
+
     // Displays a toast notification when a prompt error occurs.
 
     if (errors.prompt) {
@@ -231,6 +249,8 @@ export default function Home(): React.ReactElement {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[120vh] px-6"}>
             {chat.map((data: Chat, index: number) => {
+              // Renders chat messages.
+
               // Renders chat messages.
 
               // Maps over a chat array and renders a message for each item.
