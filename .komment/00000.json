@@ -4,219 +4,195 @@
     "path": "web/src/app/page.tsx",
     "content": {
       "structured": {
-        "description": "A React component that renders a chat interface allowing users to submit prompts and receive responses from a model. The component uses react-hook-form for form management, react-toast for displaying error messages, and uses-effect hooks to manage state updates and side effects. It fetches and stores chat history locally using HistoryService, and uses ask function from ServerService to send prompts to the model and retrieve responses.",
+        "description": "A React component called Home that renders a chat interface allowing users to submit prompts and receive responses from a model. The component uses react-hook-form to handle form data and toast notifications for errors. It also utilizes other libraries such as react-icons, use-toast, and scroll-area to render icons and manage scrolling.",
         "items": [
           {
-            "id": "f2d88b24-0a74-b9bd-1f41-c6f337a3b8ac",
+            "id": "c7b63844-89ae-94b9-cd45-2bd79c459674",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "098ca198-1b52-f0a6-be4c-984c1a0c4503",
+              "7e960725-e9ae-1986-7c4f-82ad8ad7ce00"
             ],
-            "description": "Scrolls a chat history element into view smoothly, bringing it to the bottom of the viewport when called. It uses the `scrollIntoView` method with an optional `behavior` parameter set to `\"smooth\"` for a smooth scrolling effect.",
-            "params": [],
-            "usage": {
-              "language": "typescript",
-              "code": "scrollToBottom()\n",
-              "description": "\nIt simply calls the scrollToBottom function, which scrolls the chat history to the bottom with a smooth animation."
-            },
-            "name": "scrollToBottom",
-            "location": {
-              "start": 61,
-              "insert": 61,
-              "offset": " ",
-              "indent": 2,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 3,
-            "docLength": null
-          },
-          {
-            "id": "32cee41f-32cc-11a7-9240-11cf229ef67d",
-            "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "a120adbd-f9d6-d8b5-9c4d-41256c51d9b8",
-              "488d9b42-960d-6a95-2a4c-e8ea529e5f63"
-            ],
-            "description": "Logs a message to the console.",
+            "description": "Logs \"Chat saved\" to the console.",
             "name": null,
             "location": {
-              "start": 100,
-              "insert": 106,
+              "start": 105,
+              "insert": 111,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 8,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "488d9b42-960d-6a95-2a4c-e8ea529e5f63",
+            "id": "7e960725-e9ae-1986-7c4f-82ad8ad7ce00",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "a120adbd-f9d6-d8b5-9c4d-41256c51d9b8"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "098ca198-1b52-f0a6-be4c-984c1a0c4503"
             ],
-            "description": "Logs errors to the console.",
+            "description": "Logs error messages to console.",
             "name": null,
             "location": {
-              "start": 100,
-              "insert": 109,
+              "start": 105,
+              "insert": 116,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 11,
+            "length": 15,
             "docLength": null
           },
           {
-            "id": "b7191d81-f4ee-b89a-d74a-a43d07edcc2e",
+            "id": "f46a3f75-0c8b-e897-2f47-a837e90a5ef8",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "a120adbd-f9d6-d8b5-9c4d-41256c51d9b8"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "098ca198-1b52-f0a6-be4c-984c1a0c4503"
             ],
-            "description": "Modifies an array of chat objects.",
+            "description": "Appends new chat item.",
             "name": null,
             "location": {
-              "start": 117,
-              "insert": 118,
+              "start": 126,
+              "insert": 127,
               "offset": " ",
               "indent": 10,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 13,
+            "length": 15,
             "docLength": null
           },
           {
-            "id": "a8109cf3-58bf-d1af-d547-fc263eb056a9",
+            "id": "a0c4fc54-44f2-36ad-294f-69e4e8da0314",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "a120adbd-f9d6-d8b5-9c4d-41256c51d9b8",
-              "09a9918d-41ac-c79d-6043-d5ab74bc9acf"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "098ca198-1b52-f0a6-be4c-984c1a0c4503",
+              "f54bb082-c2e0-49b1-424f-081439d9d4c6"
             ],
-            "description": "Logs \"chat saved\" to the console.",
+            "description": "Logs success message.",
             "name": null,
             "location": {
-              "start": 131,
-              "insert": 137,
+              "start": 142,
+              "insert": 148,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 8,
+            "length": 10,
             "docLength": null
           },
           {
-            "id": "09a9918d-41ac-c79d-6043-d5ab74bc9acf",
+            "id": "f54bb082-c2e0-49b1-424f-081439d9d4c6",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "a120adbd-f9d6-d8b5-9c4d-41256c51d9b8"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "098ca198-1b52-f0a6-be4c-984c1a0c4503"
             ],
-            "description": "Logs error messages.",
+            "description": "Logs errors.",
             "name": null,
             "location": {
-              "start": 131,
-              "insert": 140,
+              "start": 142,
+              "insert": 153,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 11,
+            "length": 15,
             "docLength": null
           },
           {
-            "id": "464c360a-5de6-7197-c944-b7ce92154033",
+            "id": "56bd2516-3249-bab5-0e40-eb72fd3e25db",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a"
             ],
-            "description": "Scrolls to bottom on component mount.",
-            "name": null,
-            "location": {
-              "start": 156,
-              "insert": 157,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 4,
-            "docLength": null
-          },
-          {
-            "id": "07d5f022-13fd-768b-034e-027bf8e5f09b",
-            "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079"
-            ],
-            "description": "Initializes and updates chat history state.",
-            "name": null,
-            "location": {
-              "start": 161,
-              "insert": 162,
-              "offset": " ",
-              "indent": 4,
-              "comment": null
-            },
-            "item_type": "higher_order_invocation",
-            "length": 27,
-            "docLength": null
-          },
-          {
-            "id": "c4f85059-1d12-fe80-004e-9ac340009906",
-            "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079",
-              "07d5f022-13fd-768b-034e-027bf8e5f09b",
-              "738008ea-a3ef-6fa4-8a40-544655a94f1c"
-            ],
-            "description": "Parses chat history data.",
+            "description": "Scrolls to the bottom of the chat component.",
             "name": null,
             "location": {
               "start": 171,
               "insert": 172,
               "offset": " ",
-              "indent": 8,
+              "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 12,
+            "length": 6,
             "docLength": null
           },
           {
-            "id": "e3b32e06-cf29-319f-4044-8a95dad2ebe0",
+            "id": "eda60a97-0694-8693-2c44-0943fd7814a9",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a"
             ],
-            "description": "Displays an error message.",
+            "description": "Initializes and updates chat history state.",
             "name": null,
             "location": {
-              "start": 190,
-              "insert": 191,
+              "start": 178,
+              "insert": 179,
               "offset": " ",
               "indent": 4,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 7,
+            "length": 31,
             "docLength": null
           },
           {
-            "id": "d09f61ac-1d7c-0ead-c543-198c3a57c4b3",
+            "id": "422bfead-3753-e7ab-7b47-884863fa7fd6",
             "ancestors": [
-              "3bc80d41-7fc2-71bc-2e46-80affb3aa079"
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a",
+              "eda60a97-0694-8693-2c44-0943fd7814a9",
+              "def75ab6-aedb-4ead-d94f-85caa86d228b"
             ],
-            "description": "Maps an array of chat data and renders each item as a message component.",
+            "description": "Retrieves and parses chat history data.",
             "name": null,
             "location": {
-              "start": 210,
-              "insert": 211,
+              "start": 190,
+              "insert": 191,
+              "offset": " ",
+              "indent": 8,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 14,
+            "docLength": null
+          },
+          {
+            "id": "30be944a-3342-799f-2644-76630f721c85",
+            "ancestors": [
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a"
+            ],
+            "description": "Displays a toast error message.",
+            "name": null,
+            "location": {
+              "start": 211,
+              "insert": 212,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 9,
+            "docLength": null
+          },
+          {
+            "id": "85272dcf-75be-d38c-bb45-2ac6d196ae79",
+            "ancestors": [
+              "63f41e8c-3b2a-95ba-cc4c-daebe39c4f4a"
+            ],
+            "description": "Maps an array of chat data to JSX components.",
+            "name": null,
+            "location": {
+              "start": 233,
+              "insert": 234,
               "offset": " ",
               "indent": 14,
               "comment": null
             },
             "item_type": "higher_order_invocation",
-            "length": 20,
+            "length": 22,
             "docLength": null
           }
         ]
@@ -228,35 +204,8 @@
     "path": "web/src/components/navbar.tsx",
     "content": {
       "structured": {
-        "description": "A React component called `Navbar` that renders a navigation bar for an application. It utilizes the `Sheet` and related components from a UI library to create a side menu with various buttons that trigger different routes. The navigation bar also includes a title, description, and a set of links to other pages in the application.",
-        "items": [
-          {
-            "id": "96e908c0-f3aa-f1b0-b048-887e7cc52315",
-            "ancestors": [],
-            "description": "Renders a navigation bar with a side menu, containing buttons for navigating to different routes, and a main title \"Bear\". The side menu is triggered by a button and can be closed using the buttons provided.",
-            "params": [],
-            "returns": {
-              "type_name": "React.ReactElement",
-              "description": "A JSX element that represents a navigation bar containing various components such as buttons and links."
-            },
-            "usage": {
-              "language": "typescript",
-              "code": "const App = () => {\n    return (\n        <div>\n            <Navbar />\n        </div>\n    );\n};\n",
-              "description": "\nUse."
-            },
-            "name": "Navbar",
-            "location": {
-              "start": 19,
-              "insert": 19,
-              "offset": " ",
-              "indent": 0,
-              "comment": null
-            },
-            "item_type": "function",
-            "length": 75,
-            "docLength": null
-          }
-        ]
+        "description": "A React component that renders a navigation bar with a side menu and main title \"Bear\". The side menu is triggered by a button and contains various links and buttons for navigating to different routes. The component uses Next.js' `useRouter` hook to handle route changes and React icons from \"react-icons\" package.",
+        "items": []
       }
     }
   }
