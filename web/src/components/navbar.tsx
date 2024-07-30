@@ -16,6 +16,14 @@ import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {BiMemoryCard} from "react-icons/bi";
 
+/**
+ * @description Renders a navigation bar with a side menu, containing buttons for
+ * navigating to different routes, and a main title "Bear". The side menu is triggered
+ * by a button and can be closed using the buttons provided.
+ * 
+ * @returns {React.ReactElement} A JSX element that represents a navigation bar
+ * containing various components such as buttons and links.
+ */
 function Navbar(): React.ReactElement {
   const router = useRouter()
 
