@@ -1130,7 +1130,7 @@
     "path": "web/src/services/NotificationService.ts",
     "content": {
       "structured": {
-        "description": "An interface for scheduling local notifications and a function `Notify` that schedules notifications using the `@capacitor/local-notifications` package. It requests permission to display notifications on the device and creates a notification channel with specific settings. The function then schedules a single notification at a specified time, including additional details such as title, body, and sound.",
+        "description": "An interface `Notify` with three properties and a function `Notify` that schedules local notifications using the `LocalNotifications` module from Capacitor. The function checks for and requests permission before scheduling the notification, which is triggered at a specified time. It also creates a channel for the notification.",
         "items": []
       }
     }
