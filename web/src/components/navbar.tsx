@@ -36,7 +36,7 @@ function Navbar(): React.ReactElement {
             <SheetHeader>
               <SheetTitle>Remembear</SheetTitle>
               <SheetDescription>
-                Version {process.env.NEXT_PUBLIC_VERSION}
+                Version 0.1.0
               </SheetDescription>
               <SheetClose asChild>
                 <Button
