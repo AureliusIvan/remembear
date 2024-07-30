@@ -1,16 +1,15 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-07-29T02:49:03.252Z",
-    "created_at": "2024-07-29T02:49:05.307Z",
+    "updated_at": "2024-07-30T12:16:59.194Z",
+    "created_at": "2024-07-30T12:17:00.572Z",
     "pipelines": [
-      "f9f5d8a0-2486-4e78-a9fc-881de465c7e2"
+      "bf5d3afc-7c15-43b4-8397-496416da21b8"
     ]
   },
   "lookup": [
     [
-      "web/src/components/ui/badge.tsx",
-      "web/src/components/ui/carousel.tsx"
+      "web/src/data/interface/chat.interface.ts"
     ]
   ]
 }
