@@ -37,8 +37,7 @@ async function Notify(
     at = new Date(Date.now() + 1000 * 10)
 ) {
   const isPlatformAvailable = Capacitor.getPlatform()
-  console.log(isPlatformAvailable)
-  if (isPlatformAvailable !== "web") {
+  if (isPlatformAvailable === "web") {
     console.log("LocalNotifications not available")
     return
   }
