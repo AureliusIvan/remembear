@@ -6,7 +6,7 @@ interface actionType {
 }
 
 interface ChatType {
-  role: "user" | "model"
+  role?: "user" | "model"
   message: string
   action?: actionType[]
 }
