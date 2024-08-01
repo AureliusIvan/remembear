@@ -10,16 +10,15 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
+import {badgeVariants} from "@/components/ui/badge";
 import {LuMenu} from "react-icons/lu";
 import {buttonVariants} from "@/components/ui/button";
 import {BiMemoryCard} from "react-icons/bi";
 import Link from "next/link";
-
 import {
   APP_NAME,
   VERSION
 } from "@/config/version";
-import {badgeVariants} from "@/components/ui/badge";
 
 function Navbar(): React.ReactElement {
   return (
@@ -85,7 +84,7 @@ function Navbar(): React.ReactElement {
 
 
         <h1 className={'font-bold'}>
-          Bear
+          Bear 🐻
         </h1>
 
         <Link href={"/memory"} className={buttonVariants({variant: "ghost"})}>
