@@ -1,13 +1,7 @@
 import {Notify} from "@/services/NotificationService";
+import type {actionType} from "@/data/interface/chat.interface";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
-
-interface actionType {
-  type?: string,
-  title?: string,
-  body?: string,
-  at?: string
-}
 
 interface askPayloadType {
   message: string,
@@ -42,7 +36,7 @@ async function ask(prompt: string) {
         }
       }
     }
-
+    console.log(payload)
     return payload;
   } catch (error) {
     console.error("Fetch error: ", error);

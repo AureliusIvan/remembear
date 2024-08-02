@@ -36,32 +36,32 @@ export default function Integration(): React.ReactElement {
               <p>Connect your Notion account to Remembear</p>
             </CardContent>
             <CardFooter>
-                <Drawer>
-                  <DrawerTrigger
-                      className={buttonVariants({variant: 'default', size: 'lg', className: 'w-full'})}
-                  >
-                    Connect via API!
-                  </DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                      <DrawerDescription>This action cannot be undone.</DrawerDescription>
-                    </DrawerHeader>
-                    <DrawerFooter>
-                      <Button
-                          type={'button'}
-                          onClick={() => {
-                            Notify()
-                          }}
-                      >
-                        Connect
-                      </Button>
-                      <DrawerClose>
-                        <Button variant="outline">Cancel</Button>
-                      </DrawerClose>
-                    </DrawerFooter>
-                  </DrawerContent>
-                </Drawer>
+              <Drawer>
+                <DrawerTrigger
+                    className={buttonVariants({variant: 'default', size: 'lg', className: 'w-full'})}
+                >
+                  Connect via API!
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                  </DrawerHeader>
+                  <DrawerFooter>
+                    <Button
+                        type={'button'}
+                        onClick={() => {
+                          Notify()
+                        }}
+                    >
+                      Connect
+                    </Button>
+                    <DrawerClose>
+                      <Button variant="outline">Cancel</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
             </CardFooter>
           </Card>
 

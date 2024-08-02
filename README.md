@@ -1,4 +1,4 @@
-# Remembear: An app for short term memory 🧠
+# Remembear: An app for people with short term memory 🧠
 
 ![Remembear-Banner.png](./assets/Remembear-Banner.png)
 
@@ -20,7 +20,8 @@
 
 ## Introduction 📖
 
-Remembear is an app that helps you to remember things in short term memory. It's a simple app that can be used in daily
+*Remembear* is an app that helps you to remember things in short term memory. It's a simple app that can be used in
+daily
 life to remember things like shopping list, to-do list, or any other things that you want to remember in short term.
 
 > [!NOTE]
@@ -49,7 +50,16 @@ To getting started, you can follow guides below:
 - [Frontend App](./docs/getting-started/setup-frontend.md)
 - [Mobile App](./docs/getting-started/setup-mobile.md)
 
+or with Docker:
+
+- [Docker Compose](./docs/getting-started/setup-docker-compose.md)
+
 ## Contributing 🤝
+
+> [!NOTE]
+> Since the Repo is on personal account,
+> to contribute to this project, you can fork this repository and create a pull request or
+> you can also add your name in discussion section so that I can add you as a contributor.
 
 We are open for ANY contributions to this project. You can contribute by:
 
