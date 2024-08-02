@@ -1,6 +1,5 @@
 import {LocalNotifications, PermissionStatus} from "@capacitor/local-notifications";
 import {Capacitor} from "@capacitor/core";
-import {useEffect} from "react";
 
 /**
  * @description Defines a set of properties that an object must have in order to be
@@ -38,8 +37,7 @@ async function Notify(
     at = new Date(Date.now() + 1000 * 10)
 ) {
   const isPlatformAvailable = Capacitor.getPlatform()
-  console.log(isPlatformAvailable)
-  if (isPlatformAvailable !== "web") {
+  if (isPlatformAvailable === "web") {
     console.log("LocalNotifications not available")
     return
   }
@@ -67,7 +65,7 @@ async function Notify(
   return await LocalNotifications.schedule({
     notifications: [
       {
-        // TODO: add more appropriate id
+        // TODO: add better way to generate id
         id: Math.floor(Math.random() * 101),
         channelId: "1234",
         title: title,
