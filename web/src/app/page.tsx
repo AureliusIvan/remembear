@@ -11,6 +11,7 @@ import {useToast} from "@/components/ui/use-toast";
 import {BiSolidSend} from "react-icons/bi";
 import {Input} from "@/components/ui/input";
 import {ChatBubble} from "@/components/chat-bubble";
+import {EmptyChat} from "@/components/empty-chat";
 
 import type {ChatType} from "@/data/interface/chat.interface";
 
@@ -39,6 +40,7 @@ export default function Home(): React.ReactElement {
   const {toast} = useToast()
   const [chat, setChat] = useState<ChatType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [alreadyFetched, setAlreadyFetched] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
@@ -174,6 +176,7 @@ export default function Home(): React.ReactElement {
         }
       })
       setChat(data)
+      setAlreadyFetched(true)
     };
 
     fetchHistory()
@@ -201,12 +204,23 @@ export default function Home(): React.ReactElement {
           {/* chat bubble */}
           <ScrollArea className={"w-full h-[120vh] px-6"}>
             {/*// Maps over a chat array and renders a message for each item.*/}
-            {chat.map((data: ChatType, index: number) => {
-              const isUser = data.role === "user"; // Check if the message is from the user
-              return (
-                  <ChatBubble key={index} isUser={isUser} data={data}/>
-              );
-            })}
+            {
+              chat.map((data: ChatType, index: number) => {
+                    const isUser = data.role === "user"; // Check if the message is from the user
+                    return (
+                        <ChatBubble key={index} isUser={isUser} data={data}/>
+                    );
+                  }
+              )
+            }
+
+            {
+                chat.length === 0 &&
+                alreadyFetched &&
+                (
+                    <EmptyChat/>
+                )
+            }
 
             {/* status loading */}
             {isLoading && (
