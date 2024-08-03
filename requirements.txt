@@ -38,7 +38,7 @@ markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 matplotlib-inline==0.1.7
 mdurl==0.1.2
-mem0ai==0.0.9
+mem0ai==0.0.12
 mistune==3.0.2
 monotonic==1.6
 nbclient==0.10.0
@@ -86,7 +86,7 @@ traitlets==5.14.3
 typer==0.12.3
 typing_extensions==4.12.2
 urllib3==2.2.2
-uvicorn==0.30.4
+uvicorn==0.30.5
 uvloop==0.19.0
 watchfiles==0.22.0
 wcwidth==0.2.13
