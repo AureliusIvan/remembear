@@ -32,8 +32,8 @@ life to remember things like shopping list, to-do list, or any other things that
 
 Thanks for all your contributions and efforts towards improving this project 🙏
 
-<a href="https://github.com/AureliusIvan/remembear/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AureliusIvan/remembear" />
+<a href="https://github.com/aureliusivan/remembear/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=aureliusivan/remembear" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
