@@ -45,7 +45,7 @@ nbclient==0.10.0
 nbconvert==7.16.4
 nbformat==5.10.4
 numpy==2.0.1
-openai==1.38.0
+openai==1.40.3
 packaging==24.1
 pandocfilters==1.5.1
 parso==0.8.4
