@@ -45,7 +45,7 @@ nbclient==0.10.0
 nbconvert==7.16.4
 nbformat==5.10.4
 numpy==2.0.1
-openai==1.38.0
+openai==1.41.0
 packaging==24.1
 pandocfilters==1.5.1
 parso==0.8.4
@@ -67,7 +67,7 @@ python-dotenv==1.0.1
 python-multipart==0.0.9
 PyYAML==6.0.2
 pyzmq==26.1.0
-qdrant-client==1.10.1
+qdrant-client==1.11.0
 referencing==0.35.1
 requests==2.32.3
 rich==13.7.1
