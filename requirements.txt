@@ -96,7 +96,7 @@ yarg==0.1.9
 google-generativeai==0.7.2
 litellm==1.42.12
 pyjwt==2.9.0
-sqlalchemy==2.0.31
+sqlalchemy==2.0.34
 passlib==1.7.4
 fastapi-limiter==0.1.6
 redis==5.0.8
