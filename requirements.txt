@@ -60,7 +60,7 @@ protobuf
 ptyprocess==0.7.0
 pure_eval==0.2.3
 pydantic==2.8.2
-pydantic_core==2.20.1
+pydantic_core==2.23.3
 Pygments==2.18.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
