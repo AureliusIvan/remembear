@@ -17,7 +17,7 @@
     "@capacitor/action-sheet": "^6.0.1",
     "@capacitor/android": "^6.1.1",
     "@capacitor/app-launcher": "^6.0.1",
-    "@capacitor/background-runner": "1.0.6-dev-20240628T145630.0",
+    "@capacitor/background-runner": "1.0.6-dev-20240906T161151.0",
     "@capacitor/browser": "^6.0.1",
     "@capacitor/camera": "^6.0.1",
     "@capacitor/core": "^6.1.1",
