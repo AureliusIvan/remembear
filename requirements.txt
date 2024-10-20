@@ -64,7 +64,7 @@ pydantic_core==2.20.1
 Pygments==2.18.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
-python-multipart==0.0.9
+python-multipart==0.0.12
 PyYAML==6.0.2
 pyzmq==26.1.0
 qdrant-client==1.11.0
