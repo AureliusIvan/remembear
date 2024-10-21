@@ -80,7 +80,7 @@
     "eslint": "^9.7.0",
     "eslint-config-next": "14.2.15",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-storybook": "^0.9.0",
+    "eslint-plugin-storybook": "^0.10.1",
     "globals": "^15.8.0",
     "postcss": "^8.4.40",
     "storybook": "^8.2.6",
