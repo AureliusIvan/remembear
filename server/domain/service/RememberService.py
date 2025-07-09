@@ -6,6 +6,7 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from google.ai.generativelanguage_v1beta.types import content
 import json
+from server.domain.service.MCPService import mcp_server
 
 load_dotenv()
 
@@ -125,6 +126,15 @@ class RememberService:
             example: 
             '{"message":"Oke siap! akan bear jadwalkan!",
             "action": [{"type":"notification", "title":"Pengingat Meeting", "body":"Jangan lupa meeting di Tangerang bersama Pak Rudi!","at":"2024-07-26T09:00:00"}]}'
+            
+            You have access to the following tools:
+            - get_current_time: Get current date and time
+            - calculate: Perform mathematical calculations
+            - get_weather: Get weather information for a location
+            - create_note: Create notes with title and content
+            
+            When you need to use tools, indicate this in your response with tool_calls.
+            If user asks for time, weather, calculations, or wants to create notes, use the appropriate tools.
             """,
         )
         self.app_id = "remembear-app"
@@ -274,6 +284,124 @@ class RememberService:
         self.messages.append({
             "role": "model",
             "parts": [collected_text]
+        })
+
+    async def ask_with_mcp(self, question, user_id="1"):
+        """
+        Generate response with MCP tool support
+        
+        :param question: String
+        :param user_id: Int
+        :return: Dict
+        """
+        # Fetch previous related memories
+        previous_memories = self.get_memories(user_id=user_id)
+        
+        prompt = question
+        
+        if previous_memories:
+            prompt = f"User input: {question}\n Previous memories: {previous_memories}"
+        
+        # Get available tools
+        available_tools = mcp_server.get_available_tools()
+        
+        # Add tool information to prompt
+        tools_info = "\n".join([f"- {tool['name']}: {tool['description']}" for tool in available_tools])
+        enhanced_prompt = f"{prompt}\n\nAvailable tools:\n{tools_info}"
+        
+        response = self.client.generate_content([
+            "input: " + enhanced_prompt,
+        ])
+        
+        try:
+            parsed_response = json.loads(response.text)
+        except json.JSONDecodeError:
+            # If response is not valid JSON, wrap it
+            parsed_response = {"message": response.text, "action": []}
+        
+        # Check if the response contains tool calls
+        tool_results = []
+        message = parsed_response.get('message', '')
+        
+        # Simple pattern matching for tool calls (in a real implementation, you'd use function calling)
+        if 'waktu' in question.lower() or 'time' in question.lower():
+            tool_result = await mcp_server.call_tool('get_current_time')
+            if tool_result.get('success'):
+                current_time = tool_result['result']['current_time']
+                message += f"\n\nCurrent time: {current_time}"
+                tool_results.append({
+                    "tool": "get_current_time",
+                    "result": tool_result['result']
+                })
+        
+        if any(op in question.lower() for op in ['+', '-', '*', '/', 'hitung', 'calculate']):
+            # Extract mathematical expression (simplified)
+            import re
+            math_pattern = r'(\d+\s*[\+\-\*/]\s*\d+(?:\s*[\+\-\*/]\s*\d+)*)'
+            match = re.search(math_pattern, question)
+            if match:
+                expression = match.group(1)
+                tool_result = await mcp_server.call_tool('calculate', {'expression': expression})
+                if tool_result.get('success'):
+                    result = tool_result['result']['result']
+                    message += f"\n\nCalculation result: {expression} = {result}"
+                    tool_results.append({
+                        "tool": "calculate",
+                        "result": tool_result['result']
+                    })
+        
+        if 'cuaca' in question.lower() or 'weather' in question.lower():
+            # Extract location (simplified)
+            location = "Jakarta"  # Default location
+            tool_result = await mcp_server.call_tool('get_weather', {'location': location})
+            if tool_result.get('success'):
+                weather = tool_result['result']
+                message += f"\n\nWeather in {location}: {weather['condition']}, {weather['temperature']}"
+                tool_results.append({
+                    "tool": "get_weather",
+                    "result": tool_result['result']
+                })
+        
+        if 'buat catatan' in question.lower() or 'create note' in question.lower():
+            # Extract title and content (simplified)
+            title = f"Note from {user_id}"
+            content = question
+            tool_result = await mcp_server.call_tool('create_note', {'title': title, 'content': content})
+            if tool_result.get('success'):
+                message += f"\n\nNote created: {tool_result['result']['message']}"
+                tool_results.append({
+                    "tool": "create_note",
+                    "result": tool_result['result']
+                })
+        
+        # Add tool results to actions
+        actions = parsed_response.get('action', [])
+        if tool_results:
+            actions.append({
+                "type": "tool_calls",
+                "title": "MCP Tool Results",
+                "body": f"Executed {len(tool_results)} tool(s)",
+                "results": tool_results
+            })
+        
+        self.messages.append({
+            "role": "user",
+            "parts": [prompt],
+        })
+        
+        self.messages.append({
+            "role": "model",
+            "parts": [message],
+        })
+        
+        # Store the question in memory
+        self.memory.add(question, user_id=user_id)
+        
+        return dict({
+            "message": message,
+            "action": actions,
+            "tool_results": tool_results,
+            "code": 200
         })
 
     def get_memories(self, user_id):

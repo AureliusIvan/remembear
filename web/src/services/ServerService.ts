@@ -68,6 +68,79 @@ async function askStream(prompt: string, onChunk: (chunk: any) => void) {
   }
 }
 
+async function askWithMCP(prompt: string) {
+  try {
+    const response = await fetch(
+        `${SERVER_URL}/ask/mcp/${encodeURIComponent(prompt + ", current_datetime: " + new Date(Date.now()).toISOString())}`,
+        {
+          method: 'GET'
+        }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    // parse payload to json
+    const payload: askPayloadType & {tool_results?: any[]} = await response.json();
+
+    // execute actions
+    if (payload.action) {
+      for (const action of payload.action) {
+        if (action.at) {
+          // leave it without wait, or else the notif won't work
+          Notify(action.title,
+              action.body,
+              new Date(action.at.toString())
+          );
+        }
+      }
+    }
+    console.log("MCP Response:", payload)
+    return payload;
+  } catch (error) {
+    console.error("MCP Fetch error: ", error);
+  }
+}
+
+async function getMCPTools() {
+  try {
+    const response = await fetch(`${SERVER_URL}/mcp/tools`, {
+      method: 'GET'
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    const payload = await response.json();
+    return payload;
+  } catch (error) {
+    console.error("MCP Tools fetch error: ", error);
+  }
+}
+
+async function callMCPTool(toolName: string, parameters: any = {}) {
+  try {
+    const response = await fetch(`${SERVER_URL}/mcp/call/${toolName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(parameters)
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    const payload = await response.json();
+    return payload;
+  } catch (error) {
+    console.error("MCP Tool call error: ", error);
+  }
+}
+
 async function ask(prompt: string) {
   try {
     const response = await fetch(
@@ -134,5 +207,8 @@ export type {
 export {
   ask,
   askStream,
+  askWithMCP,
+  getMCPTools,
+  callMCPTool,
   getMemories
 }
