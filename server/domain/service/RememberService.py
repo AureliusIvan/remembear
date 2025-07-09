@@ -191,6 +191,91 @@ class RememberService:
             "code": 200
         })
 
+    async def ask_stream(self, question, user_id="1"):
+        """
+        Generate streaming response based on prompt. Will invoke qdrant and LLM
+        
+        :param question: String
+        :param user_id: Int
+        :return: AsyncGenerator yielding Dict chunks
+        """
+        # Fetch previous related memories
+        previous_memories = self.get_memories(user_id=user_id)
+        
+        prompt = question
+        
+        if previous_memories:
+            prompt = f"User input: {question}\n Previous memories: {previous_memories}"
+        
+        # Create streaming response
+        response = self.client.generate_content(
+            ["input: " + prompt],
+            stream=True
+        )
+        
+        collected_text = ""
+        
+        try:
+            for chunk in response:
+                if hasattr(chunk, 'text') and chunk.text:
+                    collected_text += chunk.text
+                    
+                    # Try to parse collected text as JSON
+                    try:
+                        parsed_response = json.loads(collected_text)
+                        # If successful, yield the complete response
+                        yield {
+                            "type": "complete",
+                            "message": parsed_response.get('message', ""),
+                            "action": parsed_response.get('action', []),
+                            "code": 200
+                        }
+                        break
+                    except json.JSONDecodeError:
+                        # If not valid JSON yet, yield partial response
+                        yield {
+                            "type": "partial",
+                            "message": collected_text,
+                            "action": [],
+                            "code": 200
+                        }
+                        
+        except Exception as e:
+            # Fallback to non-streaming response
+            response = self.client.generate_content([
+                "input: " + prompt,
+            ])
+            
+            try:
+                parsed_response = json.loads(response.text)
+                yield {
+                    "type": "complete",
+                    "message": parsed_response.get('message', ""),
+                    "action": parsed_response.get('action', []),
+                    "code": 200
+                }
+            except json.JSONDecodeError:
+                yield {
+                    "type": "complete",
+                    "message": response.text,
+                    "action": [],
+                    "code": 200
+                }
+        
+        # Store the question in memory after streaming is complete
+        self.memory.add(question, user_id=user_id)
+        
+        # Add to messages history
+        self.messages.append({
+            "role": "user",
+            "parts": [prompt]
+        })
+        
+        self.messages.append({
+            "role": "model",
+            "parts": [collected_text]
+        })
+
     def get_memories(self, user_id):
         """
         Retrieves all memories associated with a specified user ID from the memory

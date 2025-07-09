@@ -8,6 +8,66 @@ interface askPayloadType {
   action?: actionType[]
 }
 
+async function askStream(prompt: string, onChunk: (chunk: any) => void) {
+  try {
+    const response = await fetch(
+        `${SERVER_URL}/ask/stream/${encodeURIComponent(prompt + ", current_datetime: " + new Date(Date.now()).toISOString())}`,
+        {
+          method: 'GET'
+        }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+    
+    if (!reader) {
+      throw new Error("No reader available");
+    }
+
+    let buffer = '';
+    
+    while (true) {
+      const { done, value } = await reader.read();
+      
+      if (done) break;
+      
+      const chunk = decoder.decode(value, { stream: true });
+      buffer += chunk;
+      
+      // Parse Server-Sent Events
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          try {
+            const data = JSON.parse(line.slice(6));
+            onChunk(data);
+            
+            // Execute actions if complete
+            if (data.type === 'complete' && data.action) {
+              for (const action of data.action) {
+                if (action.at) {
+                  Notify(action.title, action.body, new Date(action.at.toString()));
+                }
+              }
+            }
+          } catch (error) {
+            console.error("Error parsing chunk:", error);
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Streaming error: ", error);
+    throw error;
+  }
+}
+
 async function ask(prompt: string) {
   try {
     const response = await fetch(
@@ -73,5 +133,6 @@ export type {
 
 export {
   ask,
+  askStream,
   getMemories
 }

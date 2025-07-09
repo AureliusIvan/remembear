@@ -2,7 +2,7 @@
 
 import React from 'react'
 import {Button} from "@/components/ui/button";
-import {ask} from "@/services/ServerService";
+import {ask, askStream} from "@/services/ServerService";
 import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
 import {getObject, setObject} from "@/services/HistoryService";
@@ -40,6 +40,8 @@ export default function Home(): React.ReactElement {
   const {toast} = useToast()
   const [chat, setChat] = useState<ChatType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isStreaming, setIsStreaming] = useState<boolean>(false)
+  const [streamingMessage, setStreamingMessage] = useState<string>("")
   const [alreadyFetched, setAlreadyFetched] = useState<boolean>(false)
   const {
     register,
@@ -77,6 +79,8 @@ export default function Home(): React.ReactElement {
      */
     scrollToBottom()
     setIsLoading(true)
+    setIsStreaming(true)
+    setStreamingMessage("")
     reset()
 
     // add user chat to the chat history
@@ -102,48 +106,65 @@ export default function Home(): React.ReactElement {
         })
 
     /**
-     * Invoke the model and save the response to the chat history
+     * Invoke the model with streaming and save the response to the chat history
      */
     try {
-      const reply = await ask(prompt)
-      if (reply) {
-        const modelNewChatHistory = [...userNewChatHistory, {
-          role: 'model',
-          message: reply.message,
-          action: reply.action
-        }]
-        setChat((prevChat: ChatType[]) => {
-          // Appends new chat item.
-          return [...prevChat,
-            {
+      let completeMessage = ""
+      let completeAction: any[] = []
+      
+      await askStream(prompt, (chunk) => {
+        console.log("Received chunk:", chunk)
+        
+        if (chunk.type === "partial") {
+          setStreamingMessage(chunk.message)
+          scrollToBottom()
+        } else if (chunk.type === "complete") {
+          completeMessage = chunk.message
+          completeAction = chunk.action || []
+          setStreamingMessage("")
+          setIsStreaming(false)
+          
+          // Add complete message to chat history
+          const modelNewChatHistory = [...userNewChatHistory, {
+            role: 'model',
+            message: completeMessage,
+            action: completeAction
+          }]
+          
+          setChat((prevChat: ChatType[]) => {
+            return [...prevChat, {
               role: "model",
-              message: reply.message,
-              action: reply.action
-            }
-          ];
-        });
+              message: completeMessage,
+              action: completeAction
+            }];
+          });
 
-        setObject(
-            CHAT_HISTORY_OBJ_KEY,
-            {
-              data: JSON.stringify(modelNewChatHistory)
-            })
-            .then(() => {
-              console.log("chat saved")
-            })
-            .catch((error) => {
-              console.error(error)
-            })
-      }
+          setObject(
+              CHAT_HISTORY_OBJ_KEY,
+              {
+                data: JSON.stringify(modelNewChatHistory)
+              })
+              .then(() => {
+                console.log("chat saved")
+              })
+              .catch((error) => {
+                console.error(error)
+              })
+        }
+      })
 
     } catch (Error) {
       console.error(Error)
+      setIsStreaming(false)
+      setStreamingMessage("")
       toast({
         title: "Cannot invoke Bear :("
       })
     } finally {
       console.log(chat)
       setIsLoading(false)
+      setIsStreaming(false)
+      setStreamingMessage("")
     }
   }
 
@@ -222,8 +243,25 @@ export default function Home(): React.ReactElement {
                 )
             }
 
+            {/* streaming message */}
+            {isStreaming && streamingMessage && (
+                <div className={`flex 'justify-start my-2`}>
+                  <div
+                      className={`
+                      bg-gray-200 
+                      text-gray-800
+                      p-2 rounded-lg max-w-xs
+                      rounded-bl-none
+                      border-l-4 border-blue-500
+                      `}
+                  >
+                    {streamingMessage}
+                  </div>
+                </div>
+            )}
+
             {/* status loading */}
-            {isLoading && (
+            {isLoading && !isStreaming && (
                 <div className={`flex 'justify-start my-2`}>
                   <div
                       className={`
