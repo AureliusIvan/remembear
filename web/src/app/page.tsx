@@ -2,7 +2,7 @@
 
 import React from 'react'
 import {Button} from "@/components/ui/button";
-import {ask, askStream} from "@/services/ServerService";
+import {ask, askStream, askWithMCP, getMCPTools} from "@/services/ServerService";
 import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form"
 import {getObject, setObject} from "@/services/HistoryService";
@@ -43,6 +43,9 @@ export default function Home(): React.ReactElement {
   const [isStreaming, setIsStreaming] = useState<boolean>(false)
   const [streamingMessage, setStreamingMessage] = useState<string>("")
   const [alreadyFetched, setAlreadyFetched] = useState<boolean>(false)
+  const [mcpMode, setMcpMode] = useState<boolean>(false)
+  const [mcpTools, setMcpTools] = useState<any[]>([])
+  const [showMcpTools, setShowMcpTools] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
@@ -79,8 +82,6 @@ export default function Home(): React.ReactElement {
      */
     scrollToBottom()
     setIsLoading(true)
-    setIsStreaming(true)
-    setStreamingMessage("")
     reset()
 
     // add user chat to the chat history
@@ -106,52 +107,93 @@ export default function Home(): React.ReactElement {
         })
 
     /**
-     * Invoke the model with streaming and save the response to the chat history
+     * Invoke the model with or without MCP support
      */
     try {
-      let completeMessage = ""
-      let completeAction: any[] = []
+      let reply: any;
       
-      await askStream(prompt, (chunk) => {
-        console.log("Received chunk:", chunk)
+      if (mcpMode) {
+        // Use MCP mode
+        reply = await askWithMCP(prompt)
+      } else {
+        // Use streaming mode
+        setIsStreaming(true)
+        setStreamingMessage("")
         
-        if (chunk.type === "partial") {
-          setStreamingMessage(chunk.message)
-          scrollToBottom()
-        } else if (chunk.type === "complete") {
-          completeMessage = chunk.message
-          completeAction = chunk.action || []
-          setStreamingMessage("")
-          setIsStreaming(false)
+        let completeMessage = ""
+        let completeAction: any[] = []
+        
+        await askStream(prompt, (chunk) => {
+          console.log("Received chunk:", chunk)
           
-          // Add complete message to chat history
-          const modelNewChatHistory = [...userNewChatHistory, {
-            role: 'model',
-            message: completeMessage,
-            action: completeAction
-          }]
-          
-          setChat((prevChat: ChatType[]) => {
-            return [...prevChat, {
-              role: "model",
+          if (chunk.type === "partial") {
+            setStreamingMessage(chunk.message)
+            scrollToBottom()
+          } else if (chunk.type === "complete") {
+            completeMessage = chunk.message
+            completeAction = chunk.action || []
+            setStreamingMessage("")
+            setIsStreaming(false)
+            
+            // Add complete message to chat history
+            const modelNewChatHistory = [...userNewChatHistory, {
+              role: 'model',
               message: completeMessage,
               action: completeAction
-            }];
-          });
+            }]
+            
+            setChat((prevChat: ChatType[]) => {
+              return [...prevChat, {
+                role: "model",
+                message: completeMessage,
+                action: completeAction
+              }];
+            });
 
-          setObject(
-              CHAT_HISTORY_OBJ_KEY,
-              {
-                data: JSON.stringify(modelNewChatHistory)
-              })
-              .then(() => {
-                console.log("chat saved")
-              })
-              .catch((error) => {
-                console.error(error)
-              })
-        }
-      })
+            setObject(
+                CHAT_HISTORY_OBJ_KEY,
+                {
+                  data: JSON.stringify(modelNewChatHistory)
+                })
+                .then(() => {
+                  console.log("chat saved")
+                })
+                .catch((error) => {
+                  console.error(error)
+                })
+          }
+        })
+        
+        return; // Exit early for streaming mode
+      }
+      
+      // Handle MCP mode response
+      if (reply) {
+        const modelNewChatHistory = [...userNewChatHistory, {
+          role: 'model',
+          message: reply.message,
+          action: reply.action
+        }]
+        setChat((prevChat: ChatType[]) => {
+          return [...prevChat, {
+            role: "model",
+            message: reply.message,
+            action: reply.action
+          }];
+        });
+
+        setObject(
+            CHAT_HISTORY_OBJ_KEY,
+            {
+              data: JSON.stringify(modelNewChatHistory)
+            })
+            .then(() => {
+              console.log("chat saved")
+            })
+            .catch((error) => {
+              console.error(error)
+            })
+      }
 
     } catch (Error) {
       console.error(Error)
@@ -202,6 +244,24 @@ export default function Home(): React.ReactElement {
 
     fetchHistory()
   }, []);
+
+  useEffect(() => {
+    /**
+     * Load MCP tools when component mounts
+     */
+    const loadMCPTools = async () => {
+      try {
+        const toolsData = await getMCPTools()
+        if (toolsData && toolsData.tools) {
+          setMcpTools(toolsData.tools)
+        }
+      } catch (error) {
+        console.error("Failed to load MCP tools:", error)
+      }
+    }
+    
+    loadMCPTools()
+  }, [])
 
   // handler for input errors
   useEffect(() => {
@@ -292,24 +352,72 @@ export default function Home(): React.ReactElement {
            * message. The text area is registered with the `react-hook-form` library and
            * displays an error message if the user does not enter a prompt.
            */}
-          <section className={"flex flex-row gap-[10px] w-full fixed bottom-0 p-6"}>
-            <Input
-                type={"text"}
-                onFocusCapture={scrollToBottom}
-                id={"prompt"}
-                className={"w-full h-fit resize-y"}
-                placeholder={"Enter message here"}
-                aria-invalid={errors.prompt ? "true" : "false"}
-                {...register("prompt", {required: true, maxLength: 250})}
-            >
-            </Input>
+          <section className={"flex flex-col gap-[10px] w-full fixed bottom-0 p-6 bg-white"}>
+            {/* MCP Mode Toggle */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={mcpMode}
+                    onChange={(e) => setMcpMode(e.target.checked)}
+                    className="w-4 h-4"
+                  />
+                  <span className="text-sm font-medium">MCP Mode</span>
+                </label>
+                
+                {mcpMode && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowMcpTools(!showMcpTools)}
+                  >
+                    Tools ({mcpTools.length})
+                  </Button>
+                )}
+              </div>
+              
+              <div className="text-xs text-gray-500">
+                {mcpMode ? "Tool support enabled" : "Streaming mode"}
+              </div>
+            </div>
+            
+            {/* MCP Tools Display */}
+            {showMcpTools && mcpMode && (
+              <div className="bg-gray-50 rounded-lg p-3 max-h-32 overflow-y-auto">
+                <div className="text-sm font-medium mb-2">Available Tools:</div>
+                <div className="space-y-1">
+                  {mcpTools.map((tool, index) => (
+                    <div key={index} className="text-xs">
+                      <span className="font-medium">{tool.name}</span>: {tool.description}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Input Section */}
+            <div className="flex flex-row gap-[10px] w-full">
+              <Input
+                  type={"text"}
+                  onFocusCapture={scrollToBottom}
+                  id={"prompt"}
+                  className={"w-full h-fit resize-y"}
+                  placeholder={mcpMode ? "Enter message here (MCP tools available)" : "Enter message here"}
+                  aria-invalid={errors.prompt ? "true" : "false"}
+                  {...register("prompt", {required: true, maxLength: 250})}
+              >
+              </Input>
 
-            {/* Submit Button */}
-            <Button
-                type={"submit"}
-            >
-              <BiSolidSend/>
-            </Button>
+              {/* Submit Button */}
+              <Button
+                  type={"submit"}
+                  disabled={isLoading || isStreaming}
+              >
+                <BiSolidSend/>
+              </Button>
+            </div>
           </section>
 
         </main>

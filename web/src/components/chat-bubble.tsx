@@ -36,6 +36,27 @@ const ChatBubble = ({isUser, data}: { isUser: boolean, data: ChatType }) => {
                    */
                   if (!action.type) return null
 
+                  // Special handling for MCP tool calls
+                  if (action.type === 'tool_calls' && action.results) {
+                    return (
+                      <div key={index} className="w-full">
+                        <Badge
+                          variant="outline"
+                          className={'bg-green-500 text-white flex gap-2 w-fit hover:opacity-75 mb-2'}>
+                          <IoPlayCircleOutline/> {action.title}
+                        </Badge>
+                        <div className="text-xs space-y-1">
+                          {action.results.map((result: any, resultIndex: number) => (
+                            <div key={resultIndex} className="bg-gray-100 p-2 rounded text-gray-700">
+                              <div className="font-medium">{result.tool}</div>
+                              <div>{JSON.stringify(result.result, null, 2)}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+
                   return (
                       <Badge
                           key={index}
