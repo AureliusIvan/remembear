@@ -39,7 +39,7 @@ MarkupSafe==2.1.5
 matplotlib-inline==0.1.7
 mdurl==0.1.2
 mem0ai==0.0.14
-mistune==3.0.2
+mistune==3.3.0
 monotonic==1.6
 nbclient==0.10.0
 nbconvert==7.16.4
