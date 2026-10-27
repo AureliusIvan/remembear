@@ -19,7 +19,7 @@ executing==2.0.1
 fastapi==0.112.2
 fastapi-cli==0.0.5
 fastjsonschema==2.20.0
-h11==0.14.0
+h11==0.16.0
 h2==4.1.0
 hpack==4.0.0
 httpcore==1.0.5
