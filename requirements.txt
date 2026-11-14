@@ -12,7 +12,7 @@ click==8.1.7
 decorator==5.1.1
 defusedxml==0.7.1
 distro==1.9.0
-dnspython==2.6.1
+dnspython==2.9.2
 docopt==0.6.2
 email_validator==2.2.0
 executing==2.0.1
